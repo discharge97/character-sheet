@@ -1,0 +1,14 @@
+<div class="row money">
+  <div class="row gold">
+    <mat-icon>paid</mat-icon>
+    <span [class.negative]="(money?.gold??0) < 0">{{ money?.gold ?? 0 }}</span>
+  </div>
+  <div class="row silver">
+    <mat-icon>paid</mat-icon>
+    <span [class.negative]="(money?.silver??0) < 0">{{ money?.silver ?? 0 }}</span>
+  </div>
+  <div class="row copper">
+    <mat-icon>paid</mat-icon>
+    <span [class.negative]="(money?.copper??0) < 0">{{ money?.copper ?? 0 }}</span>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+.money {
+  margin-bottom: 20px;
+}
+
+.headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inventory {
+  .item {
+    border-bottom: 1px dotted lightgray;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+
+    .row {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+
+    .name {
+      color: darkslateblue;
+      border-bottom: 1px solid darkslateblue;
+      width: min-content;
+    }
+
+    .options {
+      opacity: 0.8;
+      height: 26px;
+
+      mat-icon {
+        margin: 0;
+      }
+    }
+  }
+}

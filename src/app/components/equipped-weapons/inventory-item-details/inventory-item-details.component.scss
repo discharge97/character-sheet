@@ -1,0 +1,46 @@
+h4 {
+  margin: 16px 24px 0;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.price {
+  .coin {
+    color: #3e3e3e;
+    border-radius: 10px;
+    padding: 2px 5px;
+    margin-left: 10px;
+  }
+
+  .gold {
+    background-color: gold;
+    margin-left: 5px;
+  }
+
+  .silver {
+    background-color: silver;
+  }
+
+  .copper {
+    background-color: coral;
+  }
+}
+
+p {
+  span {
+    color: #3e3e3e;
+    font-weight: bold;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 350px;
+
+  .delete {
+    color: crimson;
+  }
+}

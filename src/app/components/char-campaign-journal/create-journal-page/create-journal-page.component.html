@@ -1,0 +1,28 @@
+<span class="title">{{ data?.date ? 'Update' : 'Create' }} Session Note</span>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="input">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field class="input" (click)="picker.open()">
+      <mat-label>Session Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" readonly [max]="CURRENT_DATE">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" rows="5"></textarea>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button [mat-dialog-close]="undefined">Close</button>
+  <button mat-flat-button [mat-dialog-close]="form.value" [disabled]="!form.valid">Save</button>
+</mat-dialog-actions>

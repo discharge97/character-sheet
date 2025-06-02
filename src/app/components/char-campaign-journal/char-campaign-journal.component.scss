@@ -1,0 +1,37 @@
+.content {
+  margin: 0 auto;
+
+  .session {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    color: #3e3e3e;
+
+    .title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      justify-content: space-between;
+      align-items: center;
+
+      .delete {
+        color: crimson;
+      }
+    }
+
+    .date {
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    .desc {
+      font-size: 14px;
+    }
+
+    & + .session {
+      margin-top: 20px;
+    }
+  }
+
+}

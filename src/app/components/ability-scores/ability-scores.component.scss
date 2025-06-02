@@ -1,0 +1,65 @@
+:host {
+  margin-top: 10px;
+}
+
+.ability-score {
+  padding: 2px;
+  text-align: center;
+  border: 2px solid lightgray;
+  border-radius: 15px;
+  color: #3e3e3e;
+
+  .title {
+    font-size: 11px;
+  }
+
+  & + .ability-score {
+    margin-top: 10px;
+  }
+
+  .score {
+    font-size: 36px;
+  }
+}
+
+.skills {
+  margin-left: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  justify-content: space-around;
+
+  .skill {
+    font-size: 10px;
+    padding-bottom: 2px;
+    border-bottom: 1px dashed lightgray;
+    position: relative;
+    align-items: center;
+
+    .dot {
+      margin-right: 4px;
+      margin-left: -2px;
+    }
+
+    .basic {
+      opacity: 0.3;
+    }
+
+    .adv-dis {
+      position: absolute;
+      top: 0;
+      right: -2px;
+      font-size: 13px;
+      font-weight: bold;
+      width: 13px;
+      height: 13px;
+
+      &.yes {
+        color: limegreen;
+      }
+
+      &.no {
+        color: crimson;
+      }
+    }
+  }
+}

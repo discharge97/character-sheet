@@ -1,0 +1,66 @@
+<div [formGroup]="form" class="column col-100">
+  <mat-form-field class="input">
+    <mat-label>Modifier Type</mat-label>
+    <mat-select formControlName="type" #modType>
+      @for (mod of modifierTypes; track $index) {
+        <mat-option [value]="$any(mod[1])">{{ mod[0] }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  @if (category === 'amount' || modType.value === 'ac' || modType.value === 'skill') {
+    <mat-form-field class="input">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" formControlName="amount">
+      @if (modType?.value === 'ac') {
+        <mat-hint>Base armor 10! Amount is added to it</mat-hint>
+      }
+    </mat-form-field>
+  }
+  <!--  ability & skill -->
+  @if (category === 'ability' || modType.value === 'ac' || modType.value?.endsWith('advantage') || modType.value === 'proficiency' || modType.value === 'expertise') {
+    @let isAC = modType.value === 'ac';
+    <mat-form-field class="input">
+      <mat-label>{{ isAC ? "Ability Name" : "Skill" }}</mat-label>
+      <mat-select formControlName="skill" [compareWith]="compareSkill">
+        @if (isAC) {
+          <mat-option [value]="undefined">None</mat-option>
+        }
+        @for (skill of (isAC ? abilityScores : skills); track $index) {
+          <mat-option
+            [value]="formatSkillValue($any(isAC?skill[1]: skill))">{{ isAC ? skill[0] : skill }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+
+  @if (category === 'ac') {
+    <mat-form-field class="input">
+      <mat-label>Max AC</mat-label>
+      <input matInput formControlName="maxAC">
+    </mat-form-field>
+  }
+
+
+  @if (category === 'dice') {
+    <mat-form-field class="input">
+      <mat-label>Dice</mat-label>
+      <mat-select formControlName="dice">
+        @for (dice of dices; track $index) {
+          <mat-option [value]="$any(dice[1])">{{ dice[0] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+
+  <ng-content/>
+  <div class="row">
+    <div class="column col-50 clear">
+      <button mat-button (click)="form.reset()">Clear</button>
+    </div>
+    <div class="column col-50">
+      <button mat-stroked-button (click)="addModifier()" [disabled]="!form.valid">Save Modifier</button>
+    </div>
+  </div>
+</div>

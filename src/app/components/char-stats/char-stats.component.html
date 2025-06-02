@@ -1,0 +1,41 @@
+<div class="row section">
+  <div class="column col-33">
+    <span class="title">AC</span>
+    <span>🛡️ {{ character?.armor }}</span>
+  </div>
+  <div class="column col-33">
+    <span class="title">Initiative</span>
+    <span>💪🏼 {{ character?.dex | abilityModifier }}</span>
+  </div>
+  <div class="column col-33">
+    <span class="title">Speed</span>
+    <span>🚶🏼 {{ charSpeed }}ft</span>
+  </div>
+</div>
+
+<div class="row section hp">
+  <div class="column col-50" (click)="handleHP()">
+    <span class="title">HP <span class="max-hp">(D{{ character?.hitDice }})</span></span>
+    <span>❤️ {{ character?.health }}<span class="max-hp">/{{ character | maxHealth }}</span></span>
+  </div>
+  <div class="column col-50" (click)="handleTempHP()">
+    <span class="title">Temp HP</span>
+    <span>❤️‍🩹 {{ character?.temp_health ?? 0 }}</span>
+  </div>
+</div>
+
+<div class="column section death-saves">
+  <span>Death Saves</span>
+  <div class="row">
+    <span class="title">Success</span>
+    <mat-checkbox [checked]="character?.deathSave?.success?.[0]"></mat-checkbox>
+    <mat-checkbox [checked]="character?.deathSave?.success?.[1]"></mat-checkbox>
+    <mat-checkbox [checked]="character?.deathSave?.success?.[2]"></mat-checkbox>
+  </div>
+  <div class="row">
+    <span class="title">Failures</span>
+    <mat-checkbox [checked]="character?.deathSave?.failure?.[0]"></mat-checkbox>
+    <mat-checkbox [checked]="character?.deathSave?.failure?.[1]"></mat-checkbox>
+    <mat-checkbox [checked]="character?.deathSave?.failure?.[2]"></mat-checkbox>
+  </div>
+</div>

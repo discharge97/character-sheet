@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="column col-66 dice-roller">
+    @if (typeof data === 'number') {
+      <span>{{ result }}</span>
+    }
+    <span class="dice" [ngClass]="{ 'nat-20': isD20&&result===20, 'nat-1': isD20&&result===1}">{{ getResult() }}</span>
+    <p>
+      @if (typeof data === 'number') {
+        (
+        @if (mod >= 0) {
+          <span>+</span>
+        }{{ mod }})
+      }
+    </p>
+  </div>
+  <div class="column col-33">
+    <button mat-flat-button (click)="roll(4)">D4</button>
+    <button mat-flat-button (click)="roll(6)">D6</button>
+    <button mat-flat-button (click)="roll(8)">D8</button>
+    <button mat-flat-button (click)="roll(10)">D10</button>
+    <button mat-flat-button (click)="roll(12)">D12</button>
+    <button mat-flat-button (click)="roll(20)">D20</button>
+  </div>
+</div>

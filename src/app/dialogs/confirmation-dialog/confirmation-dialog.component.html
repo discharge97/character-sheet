@@ -1,0 +1,10 @@
+<p mat-dialog-title>{{ data?.title ?? "Confirmation" }}</p>
+
+<mat-dialog-content>
+  {{ data?.body ?? "Are you sure you want to continue with this action?" }}
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-raised-button class="no" [mat-dialog-close]="false">No</button>
+  <button mat-raised-button [mat-dialog-close]="true">Yes</button>
+</mat-dialog-actions>

@@ -1,0 +1,55 @@
+<h3 mat-dialog-title>Grouped modifiers (Feats)</h3>
+
+<mat-dialog-content>
+  <p>Here you can define custom modifiers based when app doesn't support it. Example feats are defined here...</p>
+
+  <mat-tab-group #tabs>
+    <mat-tab label="Groups">
+      <button mat-raised-button class="btn-add" (click)="openGroupDialog()">Add Modifiers Group (Feat)</button>
+      @for (group of groupedModifiers; track group) {
+        <div class="column mod-group" [class.selected]="selectedGroup === $index"
+             (click)="selectedGroup = $index;tabs.selectedIndex=1">
+          <span class="row title">
+            <span>{{ group.title }}</span>
+            <span>
+              <mat-icon class="edit"
+                        (click)="selectedGroup=$index;$event.stopPropagation();openGroupDialog(group)">edit</mat-icon>
+              <mat-icon class="delete" (click)="$event.stopPropagation();removeGroup($index)">delete</mat-icon>
+            </span>
+          </span>
+          <span class="desc">Level: {{ group?.level ?? 0 }} {{ group.description }}</span>
+        </div>
+      }
+    </mat-tab>
+    <mat-tab label="Modifiers" [disabled]="selectedGroup===-1">
+      <button mat-raised-button class="btn-add" (click)="selectedModifier=-1;tabs.selectedIndex=2">Add Modifier</button>
+      @for (mod of groupedModifiers?.[selectedGroup]?.modifiers; track mod) {
+        <div class="column mod-group">
+          <span class="row title">
+            <span>{{ mod.type | titlecase }}</span>
+            <span>
+              <mat-icon class="edit"
+                        (click)="$event.stopPropagation();modifierCreation.editModifier(mod);selectedModifier=$index;tabs.selectedIndex=2">edit</mat-icon>
+              <mat-icon class="delete" (click)="$event.stopPropagation(); removeModifier($index)">delete</mat-icon>
+            </span>
+          </span>
+          <span class="desc">
+            {{ mod?.amount ?? '' }} {{ mod?.skill?.name ?? '' }} {{ mod?.maxAC ?? '' }} {{ mod?.dice ? '1d' + mod?.dice : '' }}
+          </span>
+        </div>
+      }
+    </mat-tab>
+
+    <mat-tab [label]="selectedModifier === -1?'Create':'Edit'" [disabled]="selectedGroup ===-1">
+      <app-modifier-creation (create)="saveModifier($event);tabs.selectedIndex=1" #modifierCreation/>
+      <button mat-raised-button class="btn-add" (click)="selectedModifier=-1;tabs.selectedIndex=1">Cancel</button>
+    </mat-tab>
+  </mat-tab-group>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions" align="end">
+  <button mat-stroked-button [mat-dialog-close]="undefined">Close</button>
+  <button mat-flat-button [mat-dialog-close]="groupedModifiers">Save</button>
+</mat-dialog-actions>

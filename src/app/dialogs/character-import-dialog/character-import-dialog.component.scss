@@ -1,0 +1,46 @@
+.types {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.char-json {
+  width: 100%;
+}
+
+.content {
+  margin-top: 20px;
+
+  .upload {
+    margin-bottom: 20px;
+  }
+
+  .char {
+    text-align: center;
+    height: 20px;
+
+    .desc {
+      color: grey;
+    }
+
+    .name {
+      font-weight: bold;
+    }
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 350px;
+
+  .clear {
+    color: crimson;
+    border-color: crimson !important;
+  }
+}

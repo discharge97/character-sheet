@@ -1,0 +1,9 @@
+<div class="column col-100">
+  <span class="title">Weapons</span>
+  @for (weapon of weapons; track weapon?.uuid) {
+    <div class="row">
+      <span class="name" (click)="weaponDetails(weapon)"><span>{{ weapon?.name }}</span></span>
+      <span class="dmg"><span>{{ formatDmgDie(weapon) }}</span></span>
+    </div>
+  }
+</div>

@@ -1,0 +1,29 @@
+.dice-roller {
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  width: 250px;
+
+  .dice {
+    font-size: 164px;
+    font-weight: bold;
+    color: #3e3e3e;
+
+    &.nat-1 {
+      color: crimson;
+    }
+
+    &.nat-20 {
+      color: darkslateblue;
+    }
+  }
+}
+
+.column.col-33 {
+  padding: 0.5em;
+  background-color: whitesmoke;
+
+  button {
+    margin-bottom: 0.5em;
+  }
+}

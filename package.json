@@ -1,0 +1,51 @@
+{
+  "name": "character-sheet",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve -o --host=0.0.0.0",
+    "build": "ng build --configuration production",
+    "build-android": "npm run build && npm run android",
+    "android": "npx cap copy && npx cap open android",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^19.2.14",
+    "@angular/cdk": "^19.2.18",
+    "@angular/common": "^19.2.14",
+    "@angular/compiler": "^19.2.14",
+    "@angular/core": "^19.2.14",
+    "@angular/forms": "^19.2.14",
+    "@angular/material": "^19.2.18",
+    "@angular/platform-browser": "^19.2.14",
+    "@angular/platform-browser-dynamic": "^19.2.14",
+    "@angular/router": "^19.2.14",
+    "@angular/service-worker": "^19.2.14",
+    "@capacitor/android": "^7.3.0",
+    "@capacitor/cli": "^7.3.0",
+    "@capacitor/core": "^7.3.0",
+    "@capacitor/preferences": "^7.0.1",
+    "@fontsource-variable/lora": "^5.2.6",
+    "material-icons": "^1.13.14",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "uuid": "^11.1.0",
+    "zone.js": "~0.15.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.2.14",
+    "@angular/cli": "^19.2.14",
+    "@angular/compiler-cli": "^19.2.14",
+    "@capacitor/assets": "^3.0.5",
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "~5.1.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.8.3"
+  }
+}

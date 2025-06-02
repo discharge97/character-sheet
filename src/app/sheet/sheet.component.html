@@ -1,0 +1,98 @@
+<mat-tab-group headerPosition="below" class="sheet" [(selectedIndex)]="selectedIndex">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-label">backpack</mat-icon>
+    </ng-template>
+    <div class="tab-content">
+      <h4>Inventory</h4>
+      <app-char-inventory [character]="char" #inv/>
+      <button mat-fab aria-label="Manage Gold" class="action-button" (click)="inv.itemDialog()">
+        <mat-icon>playlist_add</mat-icon>
+      </button>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-label">contact_page</mat-icon>
+    </ng-template>
+
+    <div class="tab-content">
+      <app-char-header [character]="char"/>
+      <div class="row">
+        <div class="column col-50">
+          <app-ability-scores [character]="char"/>
+        </div>
+        <div class="column col-50">
+          <app-char-stats [character]="char"/>
+          <app-equipped-weapons [character]="char"/>
+          <app-char-proficiencies [character]="char"/>
+        </div>
+      </div>
+      <div class="column col-100">
+        <button class="special-mods" (click)="openSpecialMods()" mat-raised-button>Special Modifiers (Feats)</button>
+        <app-char-notes [notes]="char?.notes"/>
+      </div>
+    </div>
+    <button mat-fab aria-label="Dice roll" class="action-button" (click)="diceRoll()">
+      <mat-icon>casino</mat-icon>
+    </button>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-label">sports_martial_arts</mat-icon>
+    </ng-template>
+    <div class="tab-content">
+      <h4>Class Features</h4>
+      <app-char-class-feature [classFeatures]="char?.classFeatures" #classFeatures/>
+      <button mat-fab aria-label="Add Class Feature" class="action-button" (click)="classFeatures.openClassFeature()">
+        <mat-icon>person_add_alt</mat-icon>
+      </button>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-label">menu_book</mat-icon>
+    </ng-template>
+    <div class="tab-content">
+      <h4>Spellbook</h4>
+      <p>In progress... Last task</p>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="icon-label">book</mat-icon>
+    </ng-template>
+    <div class="tab-content">
+      <h4>Campaign Journal</h4>
+      <app-char-campaign-journal [journal]="char?.journal" #journal/>
+    </div>
+    <button mat-fab aria-label="Add Session" class="action-button" (click)="journal.openJournalPage()">
+      <mat-icon>post_add</mat-icon>
+    </button>
+  </mat-tab>
+</mat-tab-group>
+<button mat-mini-fab aria-label="Settings" class="settings" [matMenuTriggerFor]="menu">
+  <mat-icon>settings</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item class="menu-item" (click)="exportCharToJSON()">
+    <mat-icon>file_download</mat-icon>
+    Export Character to JSON
+  </button>
+  <button mat-menu-item class="menu-item" (click)="exportCharToClipboard()">
+    <mat-icon>content_copy</mat-icon>
+    Export Character to clipboard
+  </button>
+  <button mat-menu-item class="menu-item" (click)="saveChar()">
+    <mat-icon>save_as</mat-icon>
+    Save Character changes
+  </button>
+  <button mat-menu-item class="menu-item" (click)="saveAndBack()">
+    <mat-icon>follow_the_signs</mat-icon>
+    Save Character changes & exit
+  </button>
+  <button mat-menu-item class="menu-item" routerLink="/home">
+    <mat-icon>backspace</mat-icon>
+    Discard Character changes & exit
+  </button>
+</mat-menu>

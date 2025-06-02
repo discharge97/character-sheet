@@ -1,0 +1,10 @@
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 350px;
+
+  .no {
+    color: crimson;
+  }
+}

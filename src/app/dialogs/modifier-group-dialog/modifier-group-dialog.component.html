@@ -1,0 +1,30 @@
+<h4 mat-dialog-title>Modifier Group (Feat)</h4>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <div class="column">
+      <mat-form-field class="input" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Level</mat-label>
+        <mat-select formControlName="level">
+          <mat-option [value]="0"><span class="decoration">Level:</span> 0</mat-option>
+          @for (lvl of levels; track $index) {
+            <mat-option [value]="$index+1"><span class="decoration">Level:</span> {{ $index + 1 }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <textarea matInput formControlName="description" rows="4"></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button [mat-dialog-close]="undefined">Close</button>
+  <button mat-flat-button [mat-dialog-close]="form.value" [disabled]="!form.valid">Save</button>
+</mat-dialog-actions>

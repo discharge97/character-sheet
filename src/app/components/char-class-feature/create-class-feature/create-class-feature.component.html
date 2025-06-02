@@ -1,0 +1,40 @@
+<span class="title">{{ data ? 'Update' : 'Create' }} Session Note</span>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="input">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Level</mat-label>
+      <mat-select formControlName="level">
+        @for (lvl of levels; track $index) {
+          <mat-option [value]="$index+1"><span class="decoration">Level:</span> {{ $index + 1 }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" rows="5"></textarea>
+    </mat-form-field>
+    <p class="title">Modifiers</p>
+    <app-modifier-creation (create)="addModifier($event)"/>
+  </form>
+
+  <div class="modifiers">
+    @for (mod of modifiers; track mod) {
+      <div class="row mod-item">
+        <span>{{ mod.type.replaceAll("_", " ") | titlecase }}: {{ mod.amount }}</span>
+        <button mat-button (click)="removeItem($index)">Remove</button>
+      </div>
+    }
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button [mat-dialog-close]="undefined">Close</button>
+  <button mat-flat-button (click)="save()" [disabled]="!form.valid">Save</button>
+</mat-dialog-actions>

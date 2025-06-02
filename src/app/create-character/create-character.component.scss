@@ -1,0 +1,38 @@
+.little-title {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 2px;
+  font-weight: bold;
+}
+
+.background {
+  margin-bottom: 20px;
+}
+
+.modifier {
+  justify-content: space-between;
+  align-items: center;
+
+  .delete {
+    color: crimson;
+    margin-left: 10px;
+  }
+}
+
+.row.row-100 {
+  justify-content: space-around;
+}
+
+.create-ability-scores {
+  justify-content: space-around;
+}
+
+.prof {
+  margin-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 300px;
+}

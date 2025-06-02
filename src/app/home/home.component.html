@@ -1,0 +1,21 @@
+<div class="column col-80 content">
+  <h3>DnD Character Sheets</h3>
+
+  <div class="row char-actions">
+    <button mat-stroked-button (click)="importChar()">Import Character</button>
+    <button mat-stroked-button (click)="charDialog()">Create Character</button>
+  </div>
+
+  @for (char of characters; track char.uuid) {
+    <div class="column char" (click)="openCharSheet(char?.uuid)">
+      <span class="title row">
+        <span>{{ char?.name }} {{ char?.level }}</span>
+        <span>
+          <mat-icon (click)="$event.stopPropagation();charDialog(char)">edit</mat-icon>
+          <mat-icon class="delete" (click)="$event.stopPropagation();deleteChar(char?.uuid)">delete</mat-icon>
+        </span>
+      </span>
+      <span>{{ char?.race }}: {{ char?.charClass }}</span>
+    </div>
+  }
+</div>

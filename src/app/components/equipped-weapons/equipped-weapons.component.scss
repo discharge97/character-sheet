@@ -1,0 +1,28 @@
+.title {
+  width: 80%;
+  text-align: center;
+  font-size: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid lightgray;
+  margin: 10px auto;
+}
+
+.name {
+  border-bottom: 1px solid darkslateblue;
+  color: darkslateblue;
+}
+
+.row {
+  font-size: 12px;
+  align-self: center;
+  margin-bottom: 5px;
+  justify-content: space-between;
+  width: 100%;
+  margin-left: 15px;
+  border-bottom: 1px dashed lightgray;
+}
+
+.dmg {
+  color: #3e3e3e;
+  margin-left: 10px;
+}

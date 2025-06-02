@@ -1,0 +1,19 @@
+.title {
+  font-weight: bold;
+  color: #3e3e3e;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 5px;
+  margin: 20px;
+}
+
+.input {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 300px;
+}

@@ -1,0 +1,45 @@
+import {Dice} from "./dice";
+import {DeathSave} from "./deathSave";
+import {AbilityScore} from "./abilityScore";
+import {InventoryItem} from "./inventoryItem";
+import {Money} from "./money";
+import {Skill} from "./skill";
+import {JournalNote} from "./journalNote";
+import {ClassProficiency} from "./classProficiency";
+import {ModifierGroup} from "./modifierGroup";
+
+export interface Character {
+  attunement?: number;
+  uuid: string;
+  name: string;
+  race: string;
+  level: number;
+  charClass: string;
+  inspiration?: number;
+  experience: number;
+  background: ModifierGroup;
+  alignment?: string;
+  armor: number;
+  health: number;
+  temp_health?: number;
+  speed: number;
+  hitDice: Dice;
+  deathSave?: DeathSave;
+  str: AbilityScore;
+  dex: AbilityScore;
+  con: AbilityScore;
+  int: AbilityScore;
+  wis: AbilityScore;
+  cha: AbilityScore;
+  inventory: InventoryItem[];
+  equipped: InventoryItem[];
+  classFeatures?: ModifierGroup[];
+  skills: Skill[];
+  money: Money;
+  buffs?: ModifierGroup[];
+  height?: number;
+  weight?: number;
+  notes?: string;
+  journal?: JournalNote[];
+  proficiency?: ClassProficiency;
+}

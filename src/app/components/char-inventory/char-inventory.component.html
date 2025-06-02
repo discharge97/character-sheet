@@ -1,0 +1,79 @@
+<div class="money">
+  <app-money-preview [money]="character?.money" (click)="handleMoney()"/>
+</div>
+
+<mat-accordion class="headers-align" multi>
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-description>
+        Equipped Items
+        <mat-icon>sensor_occupied</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="column col-100 inventory">
+      @for (item of character?.equipped; track item.uuid) {
+        <div class="column col-100 item" (click)="itemDetails(item, true)">
+          <span class="row">
+            <span class="name">{{ item?.name | titlecase }}</span>
+            <button mat-button [matMenuTriggerFor]="menu" class="options" (click)="itemMenu($event, item, true);">
+              <mat-icon>settings</mat-icon>
+            </button>
+          </span>
+        </div>
+      }
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-description>
+        Backpack Items
+        <mat-icon>backpack</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="column col-100 inventory">
+      @for (item of character?.inventory; track item.uuid) {
+        <div class="column col-100 item" (click)="itemDetails(item)">
+          <span class="row">
+            <span class="name">{{ item?.name | titlecase }}</span>
+            <button mat-button [matMenuTriggerFor]="menu" class="options" (click)="itemMenu($event, item, false);">
+              <mat-icon>settings</mat-icon>
+            </button>
+          </span>
+          @if (item?.description) {
+            <span class="desc">{{ item?.description?.slice(0, 50) }}...</span>
+          }
+        </div>
+      }
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-menu #menu="matMenu" (closed)="closeMenu()">
+  @if ($any(selectedItem)?.equipped) {
+    <button mat-menu-item class="menu-item" (click)="unequipItem()">
+      <mat-icon>backpack</mat-icon>
+      Unequip
+    </button>
+  } @else {
+    <button mat-menu-item class="menu-item" (click)="equipItem()">
+      <mat-icon>sensor_occupied</mat-icon>
+      Equip
+    </button>
+  }
+
+  <button mat-menu-item class="menu-item" (click)="sellItem()">
+    <mat-icon>paid</mat-icon>
+    Sell
+  </button>
+  <button mat-menu-item class="menu-item" (click)="itemDialog()">
+    <mat-icon>edit</mat-icon>
+    Edit
+  </button>
+  <button mat-menu-item class="menu-item" (click)="deleteItem()">
+    <mat-icon>close</mat-icon>
+    Delete
+  </button>
+</mat-menu>

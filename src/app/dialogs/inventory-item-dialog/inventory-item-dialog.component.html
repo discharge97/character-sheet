@@ -1,0 +1,133 @@
+<h2>{{ data?.uuid ? "Edit" : "Create" }} Inventory Item</h2>
+
+<mat-dialog-content>
+
+  <mat-tab-group>
+    <mat-tab label="General">
+      <div class="column" [formGroup]="form">
+        <mat-form-field class="input">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="input">
+          <mat-label>Item Type</mat-label>
+          <mat-select formControlName="type">
+            @for (type of itemTypes; track type) {
+              <mat-option [value]="type">{{ type | titlecase }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="input">
+          <mat-label>Weight</mat-label>
+          <input matInput type="number" formControlName="weight">
+        </mat-form-field>
+
+        <div class="row">
+          <div class="column col-33">
+            <mat-form-field class="input" floatLabel="always">
+              <mat-label>Gold</mat-label>
+              <input matInput type="number" [value]="form.value.price?.gold ?? 0" #gold
+                     (focusout)="handleMoney(+gold.value, +silver.value, +copper.value)">
+            </mat-form-field>
+          </div>
+          <div class="column col-33">
+            <mat-form-field class="input" floatLabel="always">
+              <mat-label>Silver</mat-label>
+              <input matInput type="number" [value]="form.value.price?.silver ?? 0" #silver
+                     (focusout)="handleMoney(+gold.value, +silver.value, +copper.value)">
+            </mat-form-field>
+          </div>
+          <div class="column col-33">
+            <mat-form-field class="input" floatLabel="always">
+              <mat-label>Copper</mat-label>
+              <input matInput type="number" [value]="form.value.price?.copper ?? 0" #copper
+                     (focusout)="handleMoney(+gold.value, +silver.value, +copper.value)">
+            </mat-form-field>
+          </div>
+        </div>
+
+        @if (form.value.type === 'weapon') {
+          <mat-form-field class="input">
+            <mat-label>Ability Score</mat-label>
+            <mat-select formControlName="weaponMod">
+              @for (ability of abilityModifiers; track ability) {
+                <mat-option [value]="ability">{{ ability | uppercase }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="input">
+            <mat-label>Damage Type</mat-label>
+            <mat-select formControlName="damageType">
+              @for (dmg of damageTypes; track dmg) {
+                <mat-option [value]="dmg">{{ dmg | titlecase }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <div class="column">
+            <mat-form-field class="input" (click)="dmgSelect.open()">
+              <mat-label>Damage</mat-label>
+              <mat-select #dmgSelect (valueChange)="addDmgDice($event);dmgSelect.value = undefined">
+                @for (dice of dices; track dice) {
+                  <mat-option [value]="dice">D{{ dice }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <div class="chips">
+              <mat-chip-set>
+                @for (chip of form.value.damage; track $index) {
+                  <mat-chip>
+                    <div class="row dice">
+                      <span>D{{ chip }}</span>
+                      <mat-icon (click)="$event.stopPropagation();removeDmgDice(chip)">close</mat-icon>
+                    </div>
+                  </mat-chip>
+                }
+              </mat-chip-set>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="column">
+        <p>Required Item Proficiencies</p>
+        @if (form.value.type === 'armor') {
+          <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.lightArmor">Light Armor</mat-slide-toggle>
+          <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.mediumArmor">Medium Armor</mat-slide-toggle>
+          <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.heavyArmor">Heavy Armor</mat-slide-toggle>
+        } @else if (form.value.type === 'weapon') {
+          <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.martialWeapon">Martial Weapon</mat-slide-toggle>
+          <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.simpleWeapon">Simple Weapon</mat-slide-toggle>
+        } @else if (form.value.type === 'shield') {
+          <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.shield">Shield</mat-slide-toggle>
+        }
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Modifiers">
+      <app-modifier-creation #modControl (create)="addModifier($event)"/>
+
+      <p class="modifiers">Modifiers</p>
+      @for (mod of form.value.modifiers; track mod) {
+        <div class="column col-90 modifier">
+          <span class="title row">
+            <span>{{ mod.type | titlecase }}</span>
+            <span>
+              <mat-icon (click)="modControl.editModifier(mod)">edit</mat-icon>
+              <mat-icon class="delete" (click)="removeModifier($index)">delete</mat-icon>
+            </span>
+          </span>
+        </div>
+      }
+    </mat-tab>
+  </mat-tab-group>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button [mat-dialog-close]="undefined">Close</button>
+  <button mat-flat-button (click)="saveItem()" [disabled]="!form.valid">Save</button>
+</mat-dialog-actions>

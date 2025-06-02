@@ -1,0 +1,20 @@
+<div class="row title">
+  <h4 (click)="handleLevel()">{{ character?.name }} <span class="level">({{ character?.level }})</span></h4>
+</div>
+<div class="header">
+  <div class="info column col-40">
+    <p>Attunements: <span>{{ character?.attunement ?? 0 }}/{{ maxAttunements }}</span></p>
+    <p>Proficiency: <span>+{{ character | proficiency }}</span></p>
+    <p>P. Perception: <span>{{ character | passivePerception }}</span></p>
+    <p>P. Insight: <span>{{ character | passiveInsight }}</span></p>
+    <p (click)="handleInspiration()">Inspiration: <span>{{ character?.inspiration ?? 0 }}</span></p>
+  </div>
+
+  <div class="info column col-60">
+    <p>Class: <span>{{ character?.charClass }}</span></p>
+    <p>Species: <span>{{ character?.race }}</span></p>
+    <p>Background: <span>{{ character?.background?.title }}</span></p>
+    <p>Alignment: <span>{{ character?.alignment }}</span></p>
+    <p (click)="handleExperience()">Experience: <span>{{ character?.experience }}</span></p>
+  </div>
+</div>

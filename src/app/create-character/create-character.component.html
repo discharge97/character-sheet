@@ -1,0 +1,155 @@
+<h2 mat-dialog-title>{{ char?.uuid ? 'Edit' : 'Create' }} Character</h2>
+
+<mat-dialog-content>
+  <div class="column">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="char.name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Race</mat-label>
+      <input matInput [(ngModel)]="char.race">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Class</mat-label>
+      <input matInput [(ngModel)]="char.charClass">
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Alignment</mat-label>
+      <mat-select [(ngModel)]="char.alignment">
+        @for (align of alignments; track $index) {
+          <mat-option [value]="align">{{ align }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Level</mat-label>
+      <mat-select [(ngModel)]="char.level">
+        @for (align of Array.from({length: 20}); track $index) {
+          <mat-option [value]="$index+1">Level: {{ $index + 1 }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Hit Dice</mat-label>
+      <mat-select [(ngModel)]="char.hitDice">
+        @for (dice of dices; track $index) {
+          <mat-option [value]="dice">D{{ dice }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Experience</mat-label>
+      <input matInput type="number" [(ngModel)]="char.experience">
+    </mat-form-field>
+
+    <p class="little-title">Background</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="char.background.title">
+    </mat-form-field>
+    <mat-accordion class="background">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Background Modifiers</mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-modifier-creation #bgMod (create)="addBackgroundModifier($event)"/>
+        <p>Modifiers</p>
+        @for (mod of char?.background?.modifiers; track mod) {
+          <p class="row modifier">
+            <span>{{ mod.type|titlecase }} {{ (mod.skill?.name ?? '') | titlecase }}</span>
+            <span>
+            <mat-icon (click)="editBGModIndex=$index;bgMod.editModifier(mod)">edit</mat-icon>
+            <mat-icon class="delete" (click)="removeBackgroundModifier($index)">delete</mat-icon>
+          </span>
+          </p>
+        }
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="row row-100">
+      <div class="column col-40">
+        <mat-form-field appearance="fill">
+          <mat-label>Armor</mat-label>
+          <input matInput type="number" [(ngModel)]="char.armor">
+        </mat-form-field>
+      </div>
+      <div class="column col-40">
+        <mat-form-field appearance="fill">
+          <mat-label>Speed</mat-label>
+          <input matInput type="number" [(ngModel)]="char.speed">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <p class="little-title">Ability scores</p>
+    <span>Check Ability Score for proficiency in saving throws</span>
+    <div class="row create-ability-scores">
+      <div class="column col-30">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>STR</mat-label>
+          <input matInput type="number" placeholder="10" [(ngModel)]="char.str.score">
+          <mat-checkbox [(ngModel)]="char.str.proficiency" matTextPrefix></mat-checkbox>
+        </mat-form-field>
+      </div>
+      <div class="column col-30">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>DEX</mat-label>
+          <input matInput type="number" placeholder="10" [(ngModel)]="char.dex.score">
+          <mat-checkbox [(ngModel)]="char.dex.proficiency" matTextPrefix></mat-checkbox>
+        </mat-form-field>
+      </div>
+      <div class="column col-30">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>CON</mat-label>
+          <input matInput type="number" placeholder="10" [(ngModel)]="char.con.score">
+          <mat-checkbox [(ngModel)]="char.con.proficiency" matTextPrefix></mat-checkbox>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row create-ability-scores">
+      <div class="column col-30">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>INT</mat-label>
+          <input matInput type="number" placeholder="10" [(ngModel)]="char.int.score">
+          <mat-checkbox [(ngModel)]="char.int.proficiency" matTextPrefix></mat-checkbox>
+        </mat-form-field>
+      </div>
+      <div class="column col-30">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>WIS</mat-label>
+          <input matInput type="number" placeholder="10" [(ngModel)]="char.wis.score">
+          <mat-checkbox [(ngModel)]="char.wis.proficiency" matTextPrefix></mat-checkbox>
+        </mat-form-field>
+      </div>
+      <div class="column col-30">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>CHA</mat-label>
+          <input matInput type="number" placeholder="10" [(ngModel)]="char.cha.score">
+          <mat-checkbox [(ngModel)]="char.cha.proficiency" matTextPrefix></mat-checkbox>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <p class="little-title">Proficiencies</p>
+    <div class="column">
+      <mat-slide-toggle class="prof" [(ngModel)]="char.proficiency!.lightArmor">Light Armor</mat-slide-toggle>
+      <mat-slide-toggle class="prof" [(ngModel)]="char.proficiency!.mediumArmor">Medium Armor</mat-slide-toggle>
+      <mat-slide-toggle class="prof" [(ngModel)]="char.proficiency!.heavyArmor">Heavy Armor</mat-slide-toggle>
+      <mat-slide-toggle class="prof" [(ngModel)]="char.proficiency!.martialWeapon">Martial Weapon</mat-slide-toggle>
+      <mat-slide-toggle class="prof" [(ngModel)]="char.proficiency!.simpleWeapon">Simple Weapon</mat-slide-toggle>
+      <mat-slide-toggle class="prof" [(ngModel)]="char.proficiency!.shield">Shield</mat-slide-toggle>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button [mat-dialog-close]="undefined">Close</button>
+  <button mat-flat-button [mat-dialog-close]="char" [disabled]="!isCharValid">Save</button>
+</mat-dialog-actions>

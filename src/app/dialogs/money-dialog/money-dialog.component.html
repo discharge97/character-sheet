@@ -1,0 +1,28 @@
+<app-money-preview [money]="money"/>
+
+<mat-dialog-content>
+  <div class="row gold">
+    <mat-slider min="-100" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel('g')">
+      <input matSliderThumb value="0" #gold
+             (dragEnd)="calculateMoney((+gold.value)*10000+(+silver.value)*100+ +copper.value)">
+    </mat-slider>
+  </div>
+  <div class="row silver">
+    <mat-slider min="-100" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel('s')">
+      <input matSliderThumb value="0" #silver
+             (dragEnd)="calculateMoney((+gold.value)*10000+(+silver.value)*100+ +copper.value)">
+    </mat-slider>
+  </div>
+  <div class="row copper">
+    <mat-slider min="-100" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel('c')">
+      <input matSliderThumb value="0" #copper
+             (dragEnd)="calculateMoney((+gold.value)*10000+(+silver.value)*100+ +copper.value)">
+    </mat-slider>
+  </div>
+</mat-dialog-content>
+
+
+<mat-dialog-actions class="actions">
+  <button mat-raised-button [mat-dialog-close]="undefined">Cancel</button>
+  <button mat-flat-button [mat-dialog-close]="money" [disabled]="(money?.gold??0) < 0">Save</button>
+</mat-dialog-actions>

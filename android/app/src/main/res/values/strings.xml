@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DnD Character Sheet</string>
+    <string name="title_activity_main">DnD Character Sheet</string>
+    <string name="package_name">com.alex_s.dndCharSheet</string>
+    <string name="custom_url_scheme">com.alex_s.dndCharSheet</string>
+</resources>

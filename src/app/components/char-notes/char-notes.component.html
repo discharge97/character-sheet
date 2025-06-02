@@ -1,0 +1,6 @@
+<div class="column col-100">
+  <span class="title">Notes</span>
+  <mat-form-field appearance="fill">
+    <textarea matInput [(ngModel)]="note" (focusout)="saveNote()" placeholder="Write a note..." rows="10"></textarea>
+  </mat-form-field>
+</div>

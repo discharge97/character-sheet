@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="column col-40">
+    <div class="column ability-score" [matBadgeHidden]="!character?.str?.proficiency"
+         [matBadge]="character?.str|abilityModifier:(character|proficiency)">
+      <span class="title">Strength</span>
+      <span class="score">{{ character?.str?.score }}</span>
+      <span class="mod">({{ character?.str | abilityModifier }})</span>
+    </div>
+    <div class="column ability-score" [matBadgeHidden]="!character?.dex?.proficiency"
+         [matBadge]="character?.dex|abilityModifier:(character|proficiency)">
+      <span class="title">Dexterity</span>
+      <span class="score">{{ character?.dex?.score }}</span>
+      <span class="mod">({{ character?.dex | abilityModifier }})</span>
+    </div>
+    <div class="column ability-score" [matBadgeHidden]="!character?.con?.proficiency"
+         [matBadge]="character?.con|abilityModifier:(character|proficiency)">
+      <span class="title">Constitution</span>
+      <span class="score">{{ character?.con?.score }}</span>
+      <span class="mod">({{ character?.con | abilityModifier }})</span>
+    </div>
+    <div class="column ability-score" [matBadgeHidden]="!character?.int?.proficiency"
+         [matBadge]="character?.int|abilityModifier:(character|proficiency)">
+      <span class="title">Intelligence</span>
+      <span class="score">{{ character?.int?.score }}</span>
+      <span class="mod">({{ character?.int | abilityModifier }})</span>
+    </div>
+    <div class="column ability-score" [matBadgeHidden]="!character?.wis?.proficiency"
+         [matBadge]="character?.wis|abilityModifier:(character|proficiency)">
+      <span class="title">Wisdom</span>
+      <span class="score">{{ character?.wis?.score }}</span>
+      <span class="mod">({{ character?.wis | abilityModifier }})</span>
+    </div>
+    <div class="column ability-score" [matBadgeHidden]="!character?.cha?.proficiency"
+         [matBadge]="character?.cha|abilityModifier:(character|proficiency)">
+      <span class="title">Charisma</span>
+      <span class="score">{{ character?.cha?.score }}</span>
+      <span class="mod">({{ character?.cha | abilityModifier }})</span>
+    </div>
+  </div>
+  <div class="column col-60 skills">
+    @for (skill of character?.skills; track skill?.name) {
+      <div class="row skill">
+        @if (skill?.proficiency) {
+          @if (skill?.expertise) {
+            <span class="dot" (click)="skillInfo(skill)">🟣</span>
+          } @else {
+            <span class="dot" (click)="skillInfo(skill)">🟢</span>
+          }
+        } @else {
+          <span class="dot basic">⚪</span>
+        } <span (click)="rollWithModifier(skill)">{{ skillModifier(skill) }} {{ skill?.name }}</span>
+        @if (skill.adv_dis) {
+          <mat-icon class="adv-dis yes" (click)="showInfo(skill?.name??'',true)">north</mat-icon>
+        } @else if (skill.adv_dis === false) {
+          <mat-icon class="adv-dis no" (click)="showInfo(skill?.name??'', false)">south</mat-icon>
+        }
+      </div>
+    }
+  </div>
+</div>

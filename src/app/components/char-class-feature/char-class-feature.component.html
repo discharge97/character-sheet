@@ -1,0 +1,9 @@
+<div class="column col-90 content">
+  @for (feature of classFeatures; track feature) {
+    <div class="column col-100 session" (click)="openClassFeature(feature)">
+      <span class="title">{{ feature?.title | titlecase }}</span>
+      <span class="lvl">Level: {{ feature?.level }}</span>
+      <span class="desc">{{ feature?.description }}</span>
+    </div>
+  }
+</div>

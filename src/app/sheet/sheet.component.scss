@@ -1,0 +1,41 @@
+.save-back {
+  width: 100%;
+}
+
+h4 {
+  color: #3e3e3e;
+  text-align: center;
+}
+
+.sheet {
+  min-height: 100%;
+}
+
+.tab-content {
+  padding: 15px;
+
+  h4 {
+    margin-top: 10px;
+  }
+}
+
+.action-button {
+  position: absolute;
+  right: 15px;
+  bottom: 10svh;
+  opacity: 0.7;
+}
+
+.settings {
+  position: absolute;
+  right: 23px;
+  bottom: 10svh;
+  opacity: 0.7;
+  z-index: 999;
+}
+
+.special-mods {
+  font-size: 12px;
+  margin: 15px 0;
+  height: 32px;
+}

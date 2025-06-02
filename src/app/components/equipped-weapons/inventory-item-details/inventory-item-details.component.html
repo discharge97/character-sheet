@@ -1,0 +1,24 @@
+<h4>{{ item?.name | titlecase }}</h4>
+
+<mat-dialog-content>
+  @if (item?.type === ItemType.Weapon) {
+    <p><span>Damage:</span> 1d{{ item?.damage?.join('+1d') }}</p>
+    <p><span>Damage Type:</span> {{ item?.damageType | titlecase }}</p>
+    <p><span>Ability Modifier:</span> {{ item?.weaponMod | uppercase }}</p>
+    <p><span>Proficiency:</span> {{ weaponProficiencies(item?.proficiency) | titlecase }}</p>
+  }
+  <p><span>Weight:</span> {{ item?.weight }}</p>
+  <p class="price"><span>Price:</span>
+    <span class="coin gold" *ngIf="item?.price?.gold">{{ item?.price?.gold }}g</span>
+    <span class="coin silver" *ngIf="item?.price?.silver">{{ item?.price?.silver }}s</span>
+    <span class="coin copper" *ngIf="item?.price?.copper">{{ item?.price?.copper }}c</span>
+  </p>
+  <p><span>Description:</span> {{ item?.description }}</p>
+</mat-dialog-content>
+<mat-dialog-actions class="actions">
+  @if (!$any(item)?.readOnly) {
+    <button mat-button class="delete" (click)="deleteItem()">Delete</button>
+    <button mat-raised-button (click)="sellItem()">Sell</button>
+  }
+  <button mat-flat-button [mat-dialog-close]="undefined">Close</button>
+</mat-dialog-actions>

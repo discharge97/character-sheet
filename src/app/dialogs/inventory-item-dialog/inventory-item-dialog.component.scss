@@ -1,0 +1,52 @@
+h2 {
+  padding: 0 25px;
+}
+
+.chips {
+  min-height: 40px;
+  border-bottom: 1px solid lightgray;
+}
+
+.dice {
+  align-items: center;
+
+  mat-icon {
+    margin-left: 5px;
+    color: white;
+    border-radius: 50%;
+    background-color: lightgray;
+  }
+}
+
+.modifiers {
+  text-align: center;
+}
+
+.modifier {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 10px;
+
+  .title {
+    justify-content: space-between;
+    align-items: center;
+
+    .delete {
+      margin-left: 15px;
+      color: crimson;
+    }
+  }
+}
+
+.prof {
+  & + .prof {
+    margin-top: 10px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 350px;
+}

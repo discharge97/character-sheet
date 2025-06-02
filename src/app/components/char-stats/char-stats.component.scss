@@ -1,0 +1,47 @@
+.section {
+  margin-top: 20px;
+
+  &.hp {
+    margin-top: 20px;
+  }
+}
+
+.title {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.column {
+  &.col-33, &.col-50 {
+    align-items: center;
+
+    .max-hp {
+      font-size: 12px;
+      color: lightgray;
+    }
+
+    & + .col-33, & + .col-50 {
+      border-left: 1px solid lightgray;
+    }
+  }
+}
+
+.death-saves {
+  & > span {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid lightgray;
+  }
+  .title {
+    line-height: 40px;
+    width: 45px;
+  }
+
+  .row {
+    justify-content: space-around;
+    margin: 0 10px;
+  }
+}

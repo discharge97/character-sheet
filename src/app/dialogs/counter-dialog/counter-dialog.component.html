@@ -1,0 +1,13 @@
+<p mat-dialog-title>{{ data?.title ?? "Modify value by" }}</p>
+
+<mat-dialog-content>
+  <mat-slider class="slider" [min]="data?.min??-100" [max]="data?.max??100" [step]="data?.step ?? 1" showTickMarks
+              discrete>
+    <input matSliderThumb [(ngModel)]="value">
+  </mat-slider>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-button [mat-dialog-close]="undefined">Close</button>
+  <button mat-raised-button [mat-dialog-close]="value">{{ data?.btn ?? "Save" }}</button>
+</mat-dialog-actions>

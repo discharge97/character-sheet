@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Character Import</h2>
+
+<mat-dialog-content>
+  <p>Import type</p>
+  <mat-radio-group [(ngModel)]="type" class="types">
+    <mat-radio-button value="file">File</mat-radio-button>
+    <mat-radio-button value="clipboard">Clipboard</mat-radio-button>
+  </mat-radio-group>
+
+  <div class="column content">
+    @if (type === 'file') {
+      <input #charUpload type="file" (change)="fileChanged($event)">
+      <p class="char">
+        @if (char?.name) {
+          <span class="desc">{{ char?.race }}: </span>
+          <span class="name">{{ char?.name }} </span>
+          <span class="desc">({{ char?.level }})</span>
+        }
+      </p>
+      <button class="upload" mat-flat-button (click)="charUpload.click()">Choose character JSON file</button>
+    } @else {
+      <mat-form-field appearance="fill" class="char-json">
+        <mat-label>Character source</mat-label>
+        <textarea matInput #clipChar (focusout)="charFromClipboard(clipChar.value)"
+                  (paste)="charFromClipboard(clipChar.value)" rows="5"></textarea>
+      </mat-form-field>
+    }
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button [mat-dialog-close]="undefined">Close</button>
+  <button mat-stroked-button class="clear" (click)="char=undefined">Clear</button>
+  <button mat-flat-button (click)="saveChar()" [disabled]="!char">Save</button>
+</mat-dialog-actions>

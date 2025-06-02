@@ -1,0 +1,31 @@
+.content {
+  align-items: center;
+  color: #3e3e3e;
+  margin: 20px auto 0;
+
+  .char-actions {
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+.char {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin: 10px 10px;
+  padding: 10px;
+  width: 100%;
+
+  .title {
+    font-weight: bold;
+    color: darkslateblue;
+    margin-bottom: 5px;
+    justify-content: space-between;
+
+    .delete {
+      margin-left: 15px;
+      color: crimson;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<div class="column col-90 content">
+  @for (session of journal; track session?.uuid) {
+    <div class="column col-100 session" (click)="openJournalPage(session)">
+      <span class="row title">
+        <span>{{ session?.title }}</span>
+        <mat-icon class="delete" (click)="$event.stopPropagation();removeJournalPage(session.date)">delete</mat-icon>
+      </span>
+      <span class="date">Date: {{ session?.date | date: 'dd.MM.yyyy' }}</span>
+      <span class="desc">{{ session?.description?.slice(0, 110) }}...</span>
+    </div>
+  }
+</div>

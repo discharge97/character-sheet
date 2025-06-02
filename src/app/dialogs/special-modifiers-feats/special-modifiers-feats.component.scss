@@ -1,0 +1,35 @@
+.btn-add {
+  margin-top: 10px;
+  width: 100%;
+  height: 32px;
+}
+
+.mod-group {
+  margin-top: 15px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 10px;
+
+  &.selected {
+    border-color: #3e3e3e;
+  }
+
+  .title {
+    justify-content: space-between;
+    border-bottom: 1px solid darkslateblue;
+    padding-bottom: 3px;
+    color: darkslateblue;
+    font-weight: bold;
+
+    .delete {
+      color: crimson;
+      margin-left: 15px;
+    }
+  }
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 350px;
+}
