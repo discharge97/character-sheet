@@ -10,4 +10,4 @@ bestzip ./release/angular_build_"$version".7z ./dist/character-sheet/browser/*
 echo "
 Version: $version"
 
-gh release create "$version" ./release/* --latest=true -t "$version"
+gh release create "$version" ./release/* --latest=true -t "$version" && git push origin "$version"
