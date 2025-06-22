@@ -6,7 +6,6 @@
     "start": "ng serve -o --host=0.0.0.0",
     "build": "ng build --configuration production",
     "build-android": "npm run build && npm run android",
-    "relese": "sh ./scripts/relese.sh",
     "android": "npx cap copy && npx cap open android",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -41,6 +40,7 @@
     "@angular/compiler-cli": "^19.2.14",
     "@capacitor/assets": "^3.0.5",
     "@types/jasmine": "~5.1.0",
+    "bestzip": "^2.2.1",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
