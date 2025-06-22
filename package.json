@@ -6,6 +6,7 @@
     "start": "ng serve -o --host=0.0.0.0",
     "build": "ng build --configuration production",
     "build-android": "npm run build && npm run android",
+    "relese": "sh ./scripts/relese.sh",
     "android": "npx cap copy && npx cap open android",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
