@@ -78,8 +78,12 @@ export class ModifierCreationComponent implements OnDestroy {
         this.category = undefined;
         this.handleValidations();
         return;
-      } else if (value === ModifierType.ToHit ||
-        value === ModifierType.Damage ||
+      } else if (value === ModifierType.ToHitAllWeapon ||
+        value === ModifierType.ToHitRange ||
+        value === ModifierType.ToHitMelee ||
+        value === ModifierType.DamageAllWeapon ||
+        value === ModifierType.DamageMelee ||
+        value === ModifierType.DamageRange ||
         value === ModifierType.Speed ||
         value === ModifierType.MaxHealth) {
         this.category = 'amount';
@@ -124,7 +128,7 @@ export class ModifierCreationComponent implements OnDestroy {
     if (!skillName) return;
     return {
       name: skillName,
-      ability: SkillAbility[skillName] as any
+      ability: (SkillAbility?.[skillName] ?? skillName) as any
     }
   }
 

@@ -1,7 +1,7 @@
 <h4>{{ item?.name | titlecase }}</h4>
 
 <mat-dialog-content>
-  @if (item?.type === ItemType.Weapon) {
+  @if (item?.type?.endsWith("_weapon")) {
     <p><span>Damage:</span> 1d{{ item?.damage?.join('+1d') }}</p>
     <p><span>Damage Type:</span> {{ item?.damageType | titlecase }}</p>
     <p><span>Ability Modifier:</span> {{ item?.weaponMod | uppercase }}</p>

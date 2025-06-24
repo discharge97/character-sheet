@@ -84,7 +84,7 @@ export class InventoryItemDialogComponent {
       return;
     }
     if (data.proficiency) {
-      this.classProficiency = data.proficiency;
+      this.classProficiency = {...data.proficiency};
     }
     this.form.patchValue(this.data!);
   }
@@ -116,6 +116,6 @@ export class InventoryItemDialogComponent {
   }
 
   saveItem() {
-    this.dialogRef.close(this.form.value);
+    this.dialogRef.close({...this.form.value, proficiency: {...this.classProficiency}});
   }
 }

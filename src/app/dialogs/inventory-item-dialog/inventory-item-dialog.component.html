@@ -48,7 +48,7 @@
           </div>
         </div>
 
-        @if (form.value.type === 'weapon') {
+        @if (form.value.type?.endsWith('_weapon')) {
           <mat-form-field class="input">
             <mat-label>Ability Score</mat-label>
             <mat-select formControlName="weaponMod">
@@ -93,11 +93,11 @@
       </div>
       <div class="column">
         <p>Required Item Proficiencies</p>
-        @if (form.value.type === 'armor') {
+        @if (form.value?.type === 'armor') {
           <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.lightArmor">Light Armor</mat-slide-toggle>
           <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.mediumArmor">Medium Armor</mat-slide-toggle>
           <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.heavyArmor">Heavy Armor</mat-slide-toggle>
-        } @else if (form.value.type === 'weapon') {
+        } @else if (form.value?.type?.endsWith('_weapon')) {
           <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.martialWeapon">Martial Weapon</mat-slide-toggle>
           <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.simpleWeapon">Simple Weapon</mat-slide-toggle>
         } @else if (form.value.type === 'shield') {

@@ -12,12 +12,13 @@ export class MaxHealthPipe implements PipeTransform {
   }
 
   transform(char: Character | undefined): number {
-    if (!char) return -99;
+    if (!char?.level) return -99;
+    let hp = char.hitDice + CHARACTER_MODS.maxHealth + (+this.modifier.transform(char.con));
     if (char?.level === 1) {
-      return char.hitDice + CHARACTER_MODS.maxHealth + (+this.modifier.transform(char.con));
-    } else {
-      return char.hitDice + CHARACTER_MODS.maxHealth + (char.hitDice / 2 + 1 + (+this.modifier.transform(char.con))) * char.level;
+      return hp;
     }
+    hp += (char.hitDice / 2 + 1 + (+this.modifier.transform(char.con))) * (char.level - 1);
+    return hp;
   }
 
 }

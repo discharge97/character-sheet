@@ -4,7 +4,8 @@ import {Dice} from "./dice";
 import {ClassProficiency} from "./classProficiency";
 
 export enum ItemType {
-  Weapon = 'weapon',
+  MeleeWeapon = 'melee_weapon',
+  RangeWeapon = 'range_weapon',
   Armor = 'armor',
   Potion = 'potion',
   Shield = 'shield',

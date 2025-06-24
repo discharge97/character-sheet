@@ -4,7 +4,6 @@ import {Modifier, ModifierType} from "../models/modifier";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AbilityScoreModifierPipe} from "../pipes/ability-score-modifier.pipe";
 import {CHARACTER_MODS} from "./constants";
-import {ItemType} from "../models/inventoryItem";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +20,8 @@ export class CharacterModService {
 
     const modifiers: Modifier[] = [
       ...(modChar?.background?.modifiers ?? []),
-      ...(modChar?.equipped?.filter(x => x.type === ItemType.Weapon)?.flatMap(x => x.modifiers ?? []) ?? []).filter(x => x.type !== ModifierType.ToHit && x.type !== ModifierType.Damage && x.type !== ModifierType.DamageDice),
-      ...(modChar?.equipped?.filter(x => x.type !== ItemType.Weapon)?.flatMap(x => x.modifiers ?? []) ?? []),
+      ...(modChar?.equipped?.filter(x => x.type?.endsWith('_weapon'))?.flatMap(x => x.modifiers ?? []) ?? []).filter(x => !x.type.startsWith("to_hit") && !x.type.startsWith('damage')),
+      ...(modChar?.equipped?.filter(x => !x.type?.endsWith('_weapon'))?.flatMap(x => x.modifiers ?? []) ?? []),
       ...(modChar?.classFeatures?.flatMap(x => (char?.level ?? 0) >= (x?.level ?? 0) ? x.modifiers ?? [] : []) ?? []),
       ...(modChar?.buffs?.flatMap(b => (char?.level ?? 0) >= (b?.level ?? 0) ? b.modifiers ?? [] : []) ?? []),
     ].sort((a, b) => {
@@ -31,9 +30,11 @@ export class CharacterModService {
       return 0;
     });
 
-    CHARACTER_MODS.toHit = 0;
+    CHARACTER_MODS.toHitMelee = 0;
+    CHARACTER_MODS.toHitRange = 0;
     CHARACTER_MODS.maxHealth = 0;
-    CHARACTER_MODS.damage = 0;
+    CHARACTER_MODS.damageMelee = 0;
+    CHARACTER_MODS.damageRange = 0;
     CHARACTER_MODS.maxAttunements = 3;
     CHARACTER_MODS.damageDice = [];
     CHARACTER_MODS.skills = [];
@@ -74,11 +75,25 @@ export class CharacterModService {
             modChar.armor = modifier.maxAC ?? 0;
           }
           break;
-        case ModifierType.ToHit:
-          CHARACTER_MODS.toHit += modifier.amount ?? 0;
+        case ModifierType.ToHitMelee:
+          CHARACTER_MODS.toHitMelee += modifier.amount ?? 0;
+          break
+        case ModifierType.ToHitRange:
+          CHARACTER_MODS.toHitRange += modifier.amount ?? 0;
           break;
-        case ModifierType.Damage:
-          CHARACTER_MODS.damage += modifier.amount ?? 0;
+        case ModifierType.ToHitAllWeapon:
+          CHARACTER_MODS.toHitMelee += modifier.amount ?? 0;
+          CHARACTER_MODS.toHitRange += modifier.amount ?? 0;
+          break;
+        case ModifierType.DamageMelee:
+          CHARACTER_MODS.damageMelee += modifier.amount ?? 0;
+          break;
+        case ModifierType.DamageRange:
+          CHARACTER_MODS.damageRange += modifier.amount ?? 0;
+          break;
+        case ModifierType.DamageAllWeapon:
+          CHARACTER_MODS.damageMelee += modifier.amount ?? 0;
+          CHARACTER_MODS.damageRange += modifier.amount ?? 0;
           break;
         case ModifierType.DamageDice:
           if (!modifier?.dice) {

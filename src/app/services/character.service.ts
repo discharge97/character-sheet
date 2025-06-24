@@ -271,9 +271,12 @@ export class CharacterService {
       return;
     }
     if (!item?.uuid) return;
+    if (!this._activeChar?.inventory?.length) {
+      this._activeChar.inventory = [];
+    }
     this._activeChar.inventory.push(structuredClone(item));
     const char = this.$modChar.value!;
-    char.inventory.push(structuredClone(item));
+    char.inventory = structuredClone(this._activeChar.inventory);
     this.$modChar.next(char);
   }
 
@@ -374,6 +377,9 @@ export class CharacterService {
     }
     const index = this._activeChar?.equipped?.findIndex(x => x.uuid === uuid) ?? -1;
     if (index === -1) return false;
+    if (!this._activeChar?.inventory?.length) {
+      this._activeChar!.inventory = [];
+    }
     this._activeChar?.inventory.push(this._activeChar?.equipped[index]);
     this._activeChar!.equipped.splice(index, 1);
     this.modCharacter();
@@ -390,6 +396,9 @@ export class CharacterService {
     const attunement = this.$modChar.value?.attunement ?? 0;
     if ((attunement + 1) > CHARACTER_MODS.maxAttunements) {
       this.snackBar.open("You already have MAX attunements!", "OK");
+    }
+    if (!this._activeChar?.equipped?.length) {
+      this._activeChar!.equipped = [];
     }
     this._activeChar?.equipped.push(this._activeChar.inventory[index]);
     this._activeChar!.inventory.splice(index, 1);

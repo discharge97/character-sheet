@@ -11,6 +11,7 @@ import {MatButton} from "@angular/material/button";
 import {FormsModule} from "@angular/forms";
 import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
 import {Character} from "../../models/character";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   imports: [
@@ -34,7 +35,7 @@ export class CharacterImportDialogComponent {
   char?: Character;
   type: 'file' | 'clipboard' = 'file';
 
-  constructor(private dialogRef: MatDialogRef<CharacterImportDialogComponent>) {
+  constructor(private dialogRef: MatDialogRef<CharacterImportDialogComponent>, private snackBar: MatSnackBar) {
   }
 
 
@@ -46,13 +47,16 @@ export class CharacterImportDialogComponent {
   fileChanged(file: any) {
     new Response(file.target.files?.[0]).json().then(json => {
       this.char = JSON.parse(json);
+    }).catch((e: any) => {
+      this.snackBar.open(e)
     });
   }
 
   charFromClipboard(json: string) {
     try {
       this.char = JSON.parse(json);
-    } catch (e) {
+    } catch (e: any) {
+      this.snackBar.open(e);
     }
   }
 }
