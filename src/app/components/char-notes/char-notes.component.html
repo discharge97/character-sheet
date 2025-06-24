@@ -1,6 +1,11 @@
 <div class="column col-100">
-  <span class="title">Notes</span>
+  <span class="title">Notes
+  <button mat-mini-fab aria-label="Toggle Readonly" class="toggle-edit" (click)="readOnly = !readOnly">
+    <mat-icon>edit{{ readOnly ? '' : '_off' }}</mat-icon>
+  </button>
+  </span>
   <mat-form-field appearance="fill">
-    <textarea matInput [(ngModel)]="note" (focusout)="saveNote()" placeholder="Write a note..." rows="10"></textarea>
+    <textarea matInput [(ngModel)]="note" (focusout)="saveNote()" placeholder="Write a note..." rows="20"
+              [readonly]="readOnly"></textarea>
   </mat-form-field>
 </div>

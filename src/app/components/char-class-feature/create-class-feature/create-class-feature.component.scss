@@ -21,6 +21,11 @@
   justify-content: space-between;
   gap: 15px;
   min-width: 300px;
+
+  .delete {
+    color: crimson;
+    border-color: crimson;
+  }
 }
 
 .modifiers {

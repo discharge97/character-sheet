@@ -68,6 +68,7 @@ export class InventoryItemDialogComponent {
   form = new FormGroup({
     uuid: new FormControl<string>(undefined!, Validators.required),
     name: new FormControl<string>(undefined!, Validators.required),
+    description: new FormControl<string>(undefined!, Validators.required),
     weight: new FormControl<number>(undefined!),
     price: new FormControl<Money>({gold: 0, silver: 0, copper: 0}),
     type: new FormControl<ItemType>(undefined!, Validators.required),

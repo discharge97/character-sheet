@@ -90,7 +90,13 @@
             </div>
           </div>
         }
+
+        <mat-form-field class="input">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="5"></textarea>
+        </mat-form-field>
       </div>
+
       <div class="column">
         <p>Required Item Proficiencies</p>
         @if (form.value?.type === 'armor') {
@@ -98,7 +104,8 @@
           <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.mediumArmor">Medium Armor</mat-slide-toggle>
           <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.heavyArmor">Heavy Armor</mat-slide-toggle>
         } @else if (form.value?.type?.endsWith('_weapon')) {
-          <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.martialWeapon">Martial Weapon</mat-slide-toggle>
+          <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.martialWeapon">Martial Weapon
+          </mat-slide-toggle>
           <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.simpleWeapon">Simple Weapon</mat-slide-toggle>
         } @else if (form.value.type === 'shield') {
           <mat-slide-toggle class="prof" [(ngModel)]="classProficiency.shield">Shield</mat-slide-toggle>
@@ -123,7 +130,6 @@
       }
     </mat-tab>
   </mat-tab-group>
-
 
 </mat-dialog-content>
 

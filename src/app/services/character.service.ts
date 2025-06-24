@@ -354,6 +354,16 @@ export class CharacterService {
     this.modCharacter();
   }
 
+  removeClassFeature(level: number | undefined) {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    if (!this._activeChar?.classFeatures?.some(x => x.level === level)) return;
+    this._activeChar.classFeatures = this._activeChar.classFeatures?.filter(x => x.level !== level);
+    this.modCharacter();
+  }
+
   removeItem(uuid: string | undefined, equipped: boolean): boolean {
     if (!uuid) {
       this.snackBar.open("Invalid item uuid! It's null.", "OK");
