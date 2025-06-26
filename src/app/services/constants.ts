@@ -11,7 +11,7 @@ export const CHARACTER_MODS = {
   damageRange: 0,
   damageDice: [] as Dice[],
   skills: [] as ModSkill[],
-  maxAttunements:3
+  maxAttunements: 3
 }
 
 interface ModSkill {

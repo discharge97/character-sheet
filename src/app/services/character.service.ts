@@ -10,6 +10,7 @@ import {JournalNote} from "../models/journalNote";
 import {ModifierGroup} from "../models/modifierGroup";
 import {CharacterModService} from "./character.mod.service";
 import {Preferences} from "@capacitor/preferences";
+import {Spell} from "../models/spell";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class CharacterService {
   private characters: Character[] = [];
   private _activeChar: Character | undefined;
   private $modChar: BehaviorSubject<Character | undefined> = new BehaviorSubject<Character | undefined>(undefined);
+  public hasChanges: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private snackBar: MatSnackBar, private modService: CharacterModService) {
     Preferences.get({key: CHARACTERS}).then(res => {
@@ -211,6 +213,7 @@ export class CharacterService {
       this.characters.push(char);
     }
     this.storeCharacters();
+    this.hasChanges.next(false);
     return true;
   }
 
@@ -244,6 +247,7 @@ export class CharacterService {
     if (!char) return;
     char.money = money;
     this.$modChar.next(char);
+    this.hasChanges.next(true);
   }
 
   modifyInventoryItem(item: InventoryItem | undefined, equipped: boolean): void {
@@ -263,6 +267,7 @@ export class CharacterService {
       char.inventory[index] = structuredClone(item);
       this.$modChar.next(char);
     }
+    this.hasChanges.next(true);
   }
 
   addInventoryItem(item: InventoryItem | undefined): void {
@@ -278,6 +283,7 @@ export class CharacterService {
     const char = this.$modChar.value!;
     char.inventory = structuredClone(this._activeChar.inventory);
     this.$modChar.next(char);
+    this.hasChanges.next(true);
   }
 
   setNote(note: string) {
@@ -290,6 +296,7 @@ export class CharacterService {
     if (!char) return;
     char.notes = note;
     this.$modChar.next(char);
+    this.hasChanges.next(true);
   }
 
   addJournalPage(page: JournalNote) {
@@ -314,6 +321,7 @@ export class CharacterService {
     const char = this.$modChar.value!;
     char.journal = structuredClone(this._activeChar.journal);
     this.$modChar.next(char);
+    this.hasChanges.next(true);
   }
 
   removeJournalPage(date: Date) {
@@ -325,6 +333,7 @@ export class CharacterService {
     const char = this.$modChar.value!;
     char.journal = structuredClone(this._activeChar!.journal);
     this.$modChar.next(structuredClone(char));
+    this.hasChanges.next(true);
   }
 
   private modCharacter() {
@@ -352,6 +361,7 @@ export class CharacterService {
     }
     this._activeChar.classFeatures?.sort((a, b) => a.level - b.level);
     this.modCharacter();
+    this.hasChanges.next(true);
   }
 
   removeClassFeature(level: number | undefined) {
@@ -362,6 +372,7 @@ export class CharacterService {
     if (!this._activeChar?.classFeatures?.some(x => x.level === level)) return;
     this._activeChar.classFeatures = this._activeChar.classFeatures?.filter(x => x.level !== level);
     this.modCharacter();
+    this.hasChanges.next(true);
   }
 
   removeItem(uuid: string | undefined, equipped: boolean): boolean {
@@ -377,6 +388,7 @@ export class CharacterService {
       this._activeChar!.inventory = this._activeChar!.inventory!.filter(item => item.uuid !== uuid);
     }
     this.modCharacter();
+    this.hasChanges.next(true);
     return true;
   }
 
@@ -393,6 +405,7 @@ export class CharacterService {
     this._activeChar?.inventory.push(this._activeChar?.equipped[index]);
     this._activeChar!.equipped.splice(index, 1);
     this.modCharacter();
+    this.hasChanges.next(true);
     return false;
   }
 
@@ -413,6 +426,7 @@ export class CharacterService {
     this._activeChar?.equipped.push(this._activeChar.inventory[index]);
     this._activeChar!.inventory.splice(index, 1);
     this.modCharacter();
+    this.hasChanges.next(true);
     return true;
   }
 
@@ -429,6 +443,7 @@ export class CharacterService {
     const char = this.$modChar.value;
     char!.inspiration = this._activeChar.inspiration;
     this.$modChar.next(char);
+    this.hasChanges.next(true);
   }
 
   modifyExperience(mod: number) {
@@ -444,6 +459,7 @@ export class CharacterService {
     const char = this.$modChar.value;
     char!.experience = this._activeChar.experience;
     this.$modChar.next(char);
+    this.hasChanges.next(true);
   }
 
   setCharacterLevel(lvl: number) {
@@ -456,6 +472,7 @@ export class CharacterService {
     const char = this.$modChar.value;
     char!.level = lvl;
     this.modCharacter();
+    this.hasChanges.next(true);
   }
 
   modifyHealth(mod: number) {
@@ -483,6 +500,7 @@ export class CharacterService {
       this._activeChar!.health += mod;
       this.$modChar.next(char);
     }
+    this.hasChanges.next(true);
   }
 
   addTempHealth(value: number) {
@@ -500,6 +518,7 @@ export class CharacterService {
     this._activeChar!.temp_health! += value;
     char!.temp_health += value;
     this.$modChar.next(char);
+    this.hasChanges.next(true);
   }
 
   setBuffs(buffs?: ModifierGroup[]) {
@@ -509,6 +528,7 @@ export class CharacterService {
     }
     this._activeChar.buffs = buffs;
     this.modCharacter();
+    this.hasChanges.next(true);
   }
 
   exportChar(): string | undefined {
@@ -521,5 +541,71 @@ export class CharacterService {
 
   private async storeCharacters() {
     return (await Preferences.set({key: CHARACTERS, value: JSON.stringify(this.characters ?? [])}));
+  }
+
+  un_prepareSpell(uuid: string, prepare: boolean) {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    const index = this._activeChar.spells?.findIndex(spell => spell.uuid === uuid) ?? -1;
+    if (index === -1) {
+      this.snackBar.open("Invalid spell!", "OK");
+      return;
+    }
+    this._activeChar.spells![index].prepared = prepare;
+    const char = this.$modChar.value!;
+    char.spells![index].prepared = prepare;
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
+  }
+
+  addSpell(spell: Spell) {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    if (!this._activeChar?.spells?.length) {
+      this._activeChar.spells = [];
+    }
+    this._activeChar.spells.push(spell);
+    const char = this.$modChar.value!;
+    char.spells = structuredClone(this._activeChar.spells);
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
+  }
+
+  removeSpell(uuid: string) {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    if (!uuid) return;
+    this._activeChar.spells = this._activeChar.spells?.filter(spell => spell.uuid !== uuid);
+    const char = this.$modChar.value!;
+    char.spells = char.spells?.filter(spell => spell.uuid !== uuid);
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
+  }
+
+  updateSpell(spell?: Spell) {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    if (!spell?.uuid) {
+      this.snackBar.open("Invalid spell!", "OK");
+      return;
+    }
+    const index = this._activeChar.spells?.findIndex(s => s.uuid === spell.uuid) ?? -1;
+    if (!spell?.uuid || index === -1) {
+      this.snackBar.open("Invalid spell!", "OK");
+      return;
+    }
+    this._activeChar.spells![index] = structuredClone(spell);
+    const char = this.$modChar.value!;
+    char.spells![index] = structuredClone(spell);
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
   }
 }

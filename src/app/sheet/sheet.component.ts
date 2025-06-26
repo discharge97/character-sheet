@@ -21,6 +21,7 @@ import {CharClassFeatureComponent} from "../components/char-class-feature/char-c
 import {SpecialModifiersFeatsComponent} from "../dialogs/special-modifiers-feats/special-modifiers-feats.component";
 import {ModifierGroup} from "../models/modifierGroup";
 import {Clipboard} from "@angular/cdk/clipboard";
+import {CharSpellbookComponent} from "../components/char-spellbook/char-spellbook.component";
 
 @Component({
   selector: 'app-sheet',
@@ -45,6 +46,7 @@ import {Clipboard} from "@angular/cdk/clipboard";
     CharClassFeatureComponent,
     RouterLink,
     MatButton,
+    CharSpellbookComponent,
   ],
   templateUrl: './sheet.component.html',
   styleUrl: './sheet.component.scss'
@@ -56,7 +58,7 @@ export class SheetComponent implements OnDestroy {
   private sub?: Subscription;
 
   constructor(
-    private charService: CharacterService,
+    public charService: CharacterService,
     private route: ActivatedRoute,
     private router: Router,
     private clipboard: Clipboard,

@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>{{ data?.uuid ? "Edit " + data?.name : "Create Spell" }}</h2>
+
+<mat-dialog-content>
+  <div class="column">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="spell.name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Level</mat-label>
+      <mat-select [(ngModel)]="spell.level">
+        @for (lvl of levels; track $index) {
+          <mat-option [value]="$index">Level: {{ $index === 0 ? "Cantrip" : $index }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Range</mat-label>
+      <input matInput [(ngModel)]="spell.range">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Cast Time</mat-label>
+      <input matInput [(ngModel)]="spell.castTime">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Duration</mat-label>
+      <input matInput [(ngModel)]="spell.duration">
+    </mat-form-field>
+
+    <p>Components</p>
+    <div class="column section">
+      <mat-slide-toggle class="toggle" labelPosition="after" [(ngModel)]="spell.components!.v">Verbal</mat-slide-toggle>
+      <mat-slide-toggle class="toggle" labelPosition="after" [(ngModel)]="spell.components!.s">Somatic
+      </mat-slide-toggle>
+      <mat-slide-toggle class="toggle" labelPosition="after" [checked]="spell.components!.m !== undefined"
+                        (change)="spell.components!.m = $event.checked ?'':undefined">Material
+      </mat-slide-toggle>
+    </div>
+    @if (spell.components?.m !== undefined) {
+      <mat-form-field class="material-comp">
+        <mat-label>Material Component</mat-label>
+        <input matInput [(ngModel)]="spell.components!.m" placeholder="gem worth 100g...">
+      </mat-form-field>
+    }
+
+    <p>Other</p>
+    <div class="column section">
+      <mat-slide-toggle class="toggle" labelPosition="after" [(ngModel)]="spell.ritual">
+        <span class="row">
+        <mat-icon class="ritual">groups_3</mat-icon>
+        Ritual
+        </span>
+      </mat-slide-toggle>
+      <mat-slide-toggle class="toggle" labelPosition="after" [(ngModel)]="spell.concentration">
+        <span class="row">
+        <mat-icon class="conce">running_with_errors</mat-icon>
+        Concentration
+        </span>
+      </mat-slide-toggle>
+      <mat-slide-toggle class="toggle" labelPosition="after" [(ngModel)]="spell.prepared">Prepared</mat-slide-toggle>
+    </div>
+
+    <mat-form-field class="desc">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="spell.description" rows="15"></textarea>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-button class="close" [mat-dialog-close]="undefined">Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="spell">{{ data?.uuid ? "Update" : "Create" }}</button>
+</mat-dialog-actions>

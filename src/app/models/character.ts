@@ -7,6 +7,7 @@ import {Skill} from "./skill";
 import {JournalNote} from "./journalNote";
 import {ClassProficiency} from "./classProficiency";
 import {ModifierGroup} from "./modifierGroup";
+import {Spell} from "./spell";
 
 export interface Character {
   attunement?: number;
@@ -35,6 +36,7 @@ export interface Character {
   equipped: InventoryItem[];
   classFeatures?: ModifierGroup[];
   skills: Skill[];
+  spells?: Spell[];
   money: Money;
   buffs?: ModifierGroup[];
   height?: number;

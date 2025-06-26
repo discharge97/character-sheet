@@ -55,7 +55,10 @@
     </ng-template>
     <div class="tab-content">
       <h4>Spellbook</h4>
-      <p>In progress... Last task</p>
+      <app-char-spellbook #spellbook [spells]="char?.spells"/>
+      <button mat-fab aria-label="Add Spell" class="action-button" (click)="spellbook.spellDialog()">
+        <mat-icon>bookmark_add</mat-icon>
+      </button>
     </div>
   </mat-tab>
   <mat-tab>
@@ -85,14 +88,20 @@
   </button>
   <button mat-menu-item class="menu-item" (click)="saveChar()">
     <mat-icon>save_as</mat-icon>
-    Save Character changes
+    Save Character
   </button>
-  <button mat-menu-item class="menu-item" (click)="saveAndBack()">
-    <mat-icon>follow_the_signs</mat-icon>
-    Save Character changes & exit
-  </button>
+  @if (charService.hasChanges.value) {
+    <button mat-menu-item class="menu-item" (click)="saveAndBack()">
+      <mat-icon>follow_the_signs</mat-icon>
+      Save Character changes & exit
+    </button>
+  }
   <button mat-menu-item class="menu-item" routerLink="/home">
     <mat-icon>backspace</mat-icon>
-    Discard Character changes & exit
+    @if (charService.hasChanges.value) {
+      Discard Character changes & exit
+    } @else {
+      Exit
+    }
   </button>
 </mat-menu>

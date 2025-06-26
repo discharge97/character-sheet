@@ -1,0 +1,43 @@
+.section {
+  .row {
+    align-items: center;
+
+    .ritual {
+      color: rebeccapurple;
+      margin-right: 5px;
+    }
+
+    .conce {
+      color: grey;
+      margin-right: 5px;
+    }
+  }
+
+  & + .section {
+    margin-top: 10px;
+  }
+}
+
+.material-comp {
+  margin-top: 10px;
+}
+
+
+.toggle + .toggle {
+  margin-top: 10px;
+}
+
+.desc {
+  margin-top: 15px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 350px;
+
+  .close {
+    color: crimson;
+  }
+}

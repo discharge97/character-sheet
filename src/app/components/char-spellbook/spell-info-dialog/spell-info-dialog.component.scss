@@ -1,0 +1,33 @@
+.session {
+  .lvl {
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    justify-content: space-between;
+
+    .component {
+      &.s {
+        color: dodgerblue;
+      }
+
+      &.v {
+        color: forestgreen;
+      }
+
+      &.m {
+        color: goldenrod;
+      }
+
+      & + .component {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .desc {
+    border-top: 1px solid lightgray;
+    padding-top: 10px;
+    font-size: 14px;
+    white-space: pre-wrap;
+  }
+}

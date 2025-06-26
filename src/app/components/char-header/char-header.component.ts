@@ -8,6 +8,7 @@ import {CounterDialogComponent, CounterDialogData} from "../../dialogs/counter-d
 import {firstValueFrom} from "rxjs";
 import {CharacterService} from "../../services/character.service";
 import {CHARACTER_MODS} from "../../services/constants";
+import {MatBadge} from "@angular/material/badge";
 
 @Component({
   selector: 'app-char-header',
@@ -15,6 +16,7 @@ import {CHARACTER_MODS} from "../../services/constants";
     ProficiencyPipe,
     PassivePerceptionPipe,
     PassiveInsightPipe,
+    MatBadge,
   ],
   templateUrl: './char-header.component.html',
   styleUrl: './char-header.component.scss'
@@ -22,7 +24,7 @@ import {CHARACTER_MODS} from "../../services/constants";
 export class CharHeaderComponent {
   @Input({required: true}) character?: Character;
 
-  constructor(private dialog: MatDialog, private charService: CharacterService) {
+  constructor(private dialog: MatDialog, public charService: CharacterService) {
   }
 
   handleInspiration() {

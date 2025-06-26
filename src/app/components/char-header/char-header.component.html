@@ -1,5 +1,7 @@
 <div class="row title">
-  <h4 (click)="handleLevel()">{{ character?.name }} <span class="level">({{ character?.level }})</span></h4>
+  <h4 (click)="handleLevel()">{{ character?.name }} <span
+    class="level" matBadge="Save changes" matBadgeOverlap="false" matBadgeSize="large"
+    [matBadgeHidden]="!charService.hasChanges.value">({{ character?.level }})</span></h4>
 </div>
 <div class="header">
   <div class="info column col-40">

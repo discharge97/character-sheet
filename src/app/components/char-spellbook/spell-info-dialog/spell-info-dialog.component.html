@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>{{ spell?.name | titlecase }}</h2>
+<mat-dialog-content>
+  <div class="column col-100 session">
+    <span class="row lvl">
+        <span>Level: {{ !spell?.level ? 'Cantrip' : spell?.level }}</span>
+        <span>
+          <span class="component s">{{ spell.components?.s ? "S" : "" }}</span>
+          <span class="component v">{{ spell.components?.v ? "V" : "" }}</span>
+          <span class="component m">{{ spell.components?.m ? "M" : "" }}</span>
+        </span>
+      </span>
+    <span class="row lvl">
+        <span>Range: {{ spell.range | lowercase }}</span>
+      </span>
+    <span class="row lvl">
+        <span>Casting Time: {{ spell.castTime | lowercase }}</span>
+        <span>Duration: {{ spell?.duration | lowercase }}</span>
+      </span>
+    <span class="row lvl">
+            <span>
+              Concentration: {{ spell?.concentration ? "Yes" : "No" }}</span>
+            <span>Ritual: {{ spell?.ritual ? "Yes" : "No" }}</span>
+          </span>
+    <span class="desc">{{ spell?.description }}</span>
+  </div>
+</mat-dialog-content>
+
