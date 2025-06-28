@@ -6,19 +6,10 @@ export interface CustomUIControl {
     multi?: boolean;
     options: { name: string, value: boolean }[]
   };
-  slider?: { name: string, value: number, min: number, max: number };
-  size?: UIControlSize;
+  counter?: { value: number, min: number, max: number };
 }
 
 export enum UIControlType {
-  DropdownSelect = 'dropdown',
   Options = 'options',
   Counter = 'counter',
-  Slider = 'slider',
-}
-
-export enum UIControlSize {
-  FullWidth = 'size-100',
-  HalfWidth = 'size-45',
-  ThirdWidth = 'size-30',
 }

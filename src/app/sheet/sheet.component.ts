@@ -22,6 +22,7 @@ import {SpecialModifiersFeatsComponent} from "../dialogs/special-modifiers-feats
 import {ModifierGroup} from "../models/modifierGroup";
 import {Clipboard} from "@angular/cdk/clipboard";
 import {CharSpellbookComponent} from "../components/char-spellbook/char-spellbook.component";
+import {CharControlsComponent} from "../components/char-controls/char-controls.component";
 
 @Component({
   selector: 'app-sheet',
@@ -47,6 +48,7 @@ import {CharSpellbookComponent} from "../components/char-spellbook/char-spellboo
     RouterLink,
     MatButton,
     CharSpellbookComponent,
+    CharControlsComponent,
   ],
   templateUrl: './sheet.component.html',
   styleUrl: './sheet.component.scss'
@@ -111,10 +113,13 @@ export class SheetComponent implements OnDestroy {
   }
 
   exportCharToJSON() {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.charService.exportChar()));
+    const blob = new Blob([this.charService.exportChar()], {type: "application/json"});
+    const url = window.URL.createObjectURL(blob);
     const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", `${this.char?.race}_${this.char?.name}_${this.char?.level}.char`);
+    downloadAnchorNode.href = url;
+    downloadAnchorNode.download = `${this.char?.race}_${this.char?.name}_${this.char?.level}.json`;
     downloadAnchorNode.click();
+    window.URL.revokeObjectURL(url);
+    downloadAnchorNode?.remove();
   }
 }

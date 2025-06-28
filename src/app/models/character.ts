@@ -8,6 +8,7 @@ import {JournalNote} from "./journalNote";
 import {ClassProficiency} from "./classProficiency";
 import {ModifierGroup} from "./modifierGroup";
 import {Spell} from "./spell";
+import {CustomUIControl} from "./custom-ui-control";
 
 export interface Character {
   attunement?: number;
@@ -37,6 +38,7 @@ export interface Character {
   classFeatures?: ModifierGroup[];
   skills: Skill[];
   spells?: Spell[];
+  controls?: CustomUIControl[];
   money: Money;
   buffs?: ModifierGroup[];
   height?: number;

@@ -1,0 +1,11 @@
+.controls {
+  justify-content: space-around;
+
+  .column.col-80 {
+    text-align: right;
+  }
+
+  .option + .option {
+    margin-top: 10px;
+  }
+}

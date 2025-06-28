@@ -531,10 +531,10 @@ export class CharacterService {
     this.hasChanges.next(true);
   }
 
-  exportChar(): string | undefined {
+  exportChar(): string {
     if (!this._activeChar) {
       this.snackBar.open("Please select a character first!", "OK");
-      return;
+      return '';
     }
     return JSON.stringify(this._activeChar);
   }
