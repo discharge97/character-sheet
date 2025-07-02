@@ -32,13 +32,6 @@
         <mat-form-field>
           <mat-label>Option Text</mat-label>
           <input matInput [(ngModel)]="option.name">
-<!--          @if (optName.disabled) {-->
-<!--            <mat-icon matIconPrefix (click)="optName.disabled = false">edit</mat-icon>-->
-<!--          } @else {-->
-<!--            <mat-icon matIconPrefix-->
-<!--                      (click)="control.options[$index].name = optName.value;optName.disabled=true">save-->
-<!--            </mat-icon>-->
-<!--          }-->
           <mat-icon matIconSuffix class="delete" (click)="control.options.splice($index,1)">delete</mat-icon>
         </mat-form-field>
       }

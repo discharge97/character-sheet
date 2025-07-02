@@ -46,6 +46,6 @@ export class CreateUiControlDialogComponent {
   types: string[] = Object.values(UIControlType);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: CustomUIControl) {
-    this.control = structuredClone(data) ?? {uuid: uuid(), options: []} as any;
+    this.control = structuredClone(data) ?? {uuid: uuid(), options: [], counter: {}} as any;
   }
 }
