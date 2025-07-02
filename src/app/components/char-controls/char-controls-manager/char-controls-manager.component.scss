@@ -1,0 +1,22 @@
+.create {
+  margin-bottom: 20px;
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+}
+
+.column {
+  min-height: 150px;
+
+  .control {
+    margin: 5px 0;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.delete {
+  margin-left: 15px;
+  color: crimson;
+}

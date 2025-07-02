@@ -11,6 +11,7 @@ import {ModifierGroup} from "../models/modifierGroup";
 import {CharacterModService} from "./character.mod.service";
 import {Preferences} from "@capacitor/preferences";
 import {Spell} from "../models/spell";
+import {CustomUIControl} from '../models/custom-ui-control';
 
 @Injectable({
   providedIn: 'root'
@@ -605,6 +606,70 @@ export class CharacterService {
     this._activeChar.spells![index] = structuredClone(spell);
     const char = this.$modChar.value!;
     char.spells![index] = structuredClone(spell);
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
+  }
+
+  setControls(controls: CustomUIControl[]) {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    this._activeChar.controls = controls;
+    const char = this.$modChar.value!;
+    char.controls = structuredClone(controls);
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
+  }
+
+  removeControl(uuid: string) {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    if (!uuid) return;
+    this._activeChar.controls = this._activeChar.controls?.filter(ctrl => ctrl.uuid !== uuid);
+    const char = this.$modChar.value!;
+    char.controls = char.controls?.filter(ctrl => ctrl.uuid !== uuid);
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
+  }
+
+  addControl(control: CustomUIControl) {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    if (!control.uuid) {
+      this.snackBar.open("Invalid control!", "OK");
+      return;
+    }
+    if (!this._activeChar.controls?.length) {
+      this._activeChar.controls = [];
+    }
+    this._activeChar.controls.push(control);
+    const char = this.$modChar.value!;
+    char.controls = structuredClone(this._activeChar.controls);
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
+  }
+
+  modifyControl(control: CustomUIControl) {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    if (!this._activeChar.controls?.length) {
+      return;
+    }
+    const index = this._activeChar.controls.findIndex(c => c.uuid === control.uuid) ?? -1;
+    if (!control?.uuid || index === -1) {
+      this.snackBar.open("Invalid control!", "OK");
+      return;
+    }
+    this._activeChar.controls[index] = structuredClone(control);
+    const char = this.$modChar.value!;
+    char.controls![index] = structuredClone(control);
     this.$modChar.next(char);
     this.hasChanges.next(true);
   }

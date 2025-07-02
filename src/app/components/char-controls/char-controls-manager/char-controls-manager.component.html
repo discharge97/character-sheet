@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Sheet controls</h2>
+
+<mat-dialog-content>
+  <button class="create" mat-stroked-button (click)="openControlDialog()">Create new control</button>
+  <div class="column">
+    @for (control of data; track control.uuid) {
+      <span class="row control">
+        <span>{{ control.type | titlecase }}: {{ control.title | titlecase }}</span>
+        <span class="row">
+          <mat-icon (click)="openControlDialog(control)">edit</mat-icon>
+          <mat-icon (click)="deleteControl(control)" class="delete">delete</mat-icon>
+        </span>
+      </span>
+    }
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="start">
+  <button mat-raised-button [mat-dialog-close]="undefined">Close</button>
+</mat-dialog-actions>

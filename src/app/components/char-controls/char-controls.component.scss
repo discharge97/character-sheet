@@ -1,8 +1,31 @@
 .controls {
-  justify-content: space-around;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 10px;
 
-  .column.col-80 {
-    text-align: right;
+  & + .controls {
+    margin-top: 10px;
+  }
+
+  .counter {
+    min-width: 75px;
+  }
+
+  .slider-group {
+    min-width: calc(50% - 20px);
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+
+    & + .slider-group {
+      margin-left: 10px;
+    }
+  }
+
+  .title {
+    text-align: center;
   }
 
   .option + .option {

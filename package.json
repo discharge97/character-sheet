@@ -26,6 +26,8 @@
     "@capacitor/android": "^7.3.0",
     "@capacitor/cli": "^7.3.0",
     "@capacitor/core": "^7.3.0",
+    "@capacitor/file-transfer": "^1.0.1",
+    "@capacitor/filesystem": "^7.1.1",
     "@capacitor/preferences": "^7.0.1",
     "@fontsource-variable/lora": "^5.2.6",
     "material-icons": "^1.13.14",

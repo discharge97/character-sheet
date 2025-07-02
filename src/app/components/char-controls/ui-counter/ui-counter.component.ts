@@ -19,7 +19,6 @@ export class UiCounterComponent {
   modValue(num: number) {
     let val = (this.control?.counter?.value ?? 0) + num;
     if (num === 1) {
-
       this.valueChange.emit(val > this.control!.counter!.max ? this.control!.counter!.max : val);
       return;
     } else if (num === -1) {

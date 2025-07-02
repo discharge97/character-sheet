@@ -29,19 +29,18 @@
         </div>
       </div>
       <div class="column col-100">
-        <div class="row">
-          <div class="column col-50">
-            <button class="special-mods" (click)="openSpecialMods()" mat-raised-button>Special Modifiers (Feats)
+        <div class="row special-controls">
+          <div class="column col-45">
+            <button class="special-mods" (click)="openSpecialMods()" mat-raised-button>Char Modifiers (Feats)
             </button>
           </div>
-          <div class="column col-50">
-            <button class="special-mods" (click)="openSpecialMods()" mat-raised-button>Controls (Spell slots)</button>
+          <div class="column col-45">
+            <button class="special-mods" (click)="openControlsDialog()" mat-raised-button>Controls (Spell slots)</button>
           </div>
-
-          @if (char?.controls) {
-            <app-char-controls [controls]="char?.controls"/>
-          }
         </div>
+        @if (char?.controls) {
+          <app-char-controls [controls]="char?.controls"/>
+        }
         <app-char-notes [notes]="char?.notes"/>
       </div>
     </div>

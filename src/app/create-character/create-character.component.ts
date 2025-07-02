@@ -28,6 +28,7 @@ import {SKILLS} from "../models/skill";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {Dice} from "../models/dice";
 import {MaxHealthPipe} from "../pipes/max-health.pipe";
+import {MatHint} from "@angular/material/form-field";
 
 @Component({
   selector: 'app-create-character',
@@ -53,7 +54,8 @@ import {MaxHealthPipe} from "../pipes/max-health.pipe";
     MatCheckbox,
     MatPrefix,
     TitleCasePipe,
-    MatSlideToggle
+    MatSlideToggle,
+    MatHint
   ],
   templateUrl: './create-character.component.html',
   styleUrl: './create-character.component.scss'
@@ -76,6 +78,7 @@ export class CreateCharacterComponent {
       int: {},
       wis: {},
       cha: {},
+      armor: 10,
       skills: structuredClone(SKILLS),
       proficiency: {}
     };

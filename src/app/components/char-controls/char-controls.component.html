@@ -1,20 +1,18 @@
 <div class="row controls">
-  @for (control of controls; track control.uuid; let i = $index) {
-    @switch (control.type) {
-      @case (UIControlType.Counter) {
-        <app-ui-counter [control]="control" (valueChange)="control.counter!.value=$event"/>
+  @for (control of counterControls; track control.uuid; let i = $index) {
+    <app-ui-counter class="counter" [control]="control" (valueChange)="control.counter!.value=$event"/>
+  }
+</div>
+<div class="row controls">
+  @for (control of optionControls; track control.uuid; let i = $index) {
+    <div class="column col-45 slider-group">
+      <span class="option title">{{ control?.title }}</span>
+      @for (option of control?.options; track option; let j = $index) {
+        <mat-slide-toggle [(ngModel)]="option.value" class="option"
+                          (ngModelChange)="!control?.multi ? singleSelect(i,j):undefined">
+          {{ option?.name | titlecase }}
+        </mat-slide-toggle>
       }
-      @case (UIControlType.Options) {
-        <div class="column col-80">
-          <span class="option">{{ control?.title }}</span>
-          @for (option of control?.choices?.options; track option; let j = $index) {
-            <mat-slide-toggle [(ngModel)]="option.value" class="option" labelPosition="before"
-                              (ngModelChange)="!control?.choices?.multi ? singleSelect(i,j):undefined">
-              {{ option?.name }}
-            </mat-slide-toggle>
-          }
-        </div>
-      }
-    }
+    </div>
   }
 </div>

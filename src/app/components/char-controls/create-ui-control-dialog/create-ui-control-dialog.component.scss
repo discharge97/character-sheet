@@ -1,0 +1,23 @@
+.counter {
+  justify-content: space-around;
+
+  .min-max {
+    width: 30%;
+  }
+}
+
+.create-option {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 2px;
+}
+
+.delete {
+  color: crimson;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: 300px;
+}

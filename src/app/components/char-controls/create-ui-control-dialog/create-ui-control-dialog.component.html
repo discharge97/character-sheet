@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>{{ data?.uuid ? "Edit " + data?.title : "Create control" }}</h2>
+
+<mat-dialog-content>
+  <div class="column">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="control.title">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Option Type</mat-label>
+      <mat-select [(ngModel)]="control.type">
+        @for (type of types; track type) {
+          <mat-option [value]="type">{{ type|titlecase }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    @if (control?.type === 'options') {
+      <mat-slide-toggle [(ngModel)]="control.multi">Multiple</mat-slide-toggle>
+      <p class="create-option">Create new option</p>
+      <mat-form-field>
+        <mat-label>Option Text</mat-label>
+        <input matInput #optName>
+        <mat-icon matIconPrefix
+                  (click)="control.options.push({name: optName.value, value: false});optName.value=''">
+          save
+        </mat-icon>
+      </mat-form-field>
+      <p>Existing options</p>
+      @for (option of control?.options; track option) {
+        <mat-form-field>
+          <mat-label>Option Text</mat-label>
+          <input matInput [(ngModel)]="option.name">
+<!--          @if (optName.disabled) {-->
+<!--            <mat-icon matIconPrefix (click)="optName.disabled = false">edit</mat-icon>-->
+<!--          } @else {-->
+<!--            <mat-icon matIconPrefix-->
+<!--                      (click)="control.options[$index].name = optName.value;optName.disabled=true">save-->
+<!--            </mat-icon>-->
+<!--          }-->
+          <mat-icon matIconSuffix class="delete" (click)="control.options.splice($index,1)">delete</mat-icon>
+        </mat-form-field>
+      }
+    } @else if (control?.type === 'counter') {
+      <div class="row counter">
+        <mat-form-field class="min-max">
+          <mat-label>Min</mat-label>
+          <input matInput type="number" [(ngModel)]="control.counter!.min">
+        </mat-form-field>
+        <mat-form-field class="min-max">
+          <mat-label>Max</mat-label>
+          <input matInput type="number" [(ngModel)]="control.counter!.max">
+        </mat-form-field>
+      </div>
+    }
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button mat-stroked-button [mat-dialog-close]="undefined">Cancel</button>
+  <button mat-flat-button [mat-dialog-close]="control">Save</button>
+</mat-dialog-actions>

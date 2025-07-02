@@ -3,7 +3,7 @@
   <button mat-mini-fab (click)="modValue(+1)">
     <mat-icon>add</mat-icon>
   </button>
-  <p>{{ control?.counter?.value }}</p>
+  <p>{{ control?.counter?.value ?? 0 }}</p>
   <button mat-mini-fab (click)="modValue(-1)">
     <mat-icon>remove</mat-icon>
   </button>

@@ -23,6 +23,12 @@ import {ModifierGroup} from "../models/modifierGroup";
 import {Clipboard} from "@angular/cdk/clipboard";
 import {CharSpellbookComponent} from "../components/char-spellbook/char-spellbook.component";
 import {CharControlsComponent} from "../components/char-controls/char-controls.component";
+import {CustomUIControl, UIControlType} from "../models/custom-ui-control";
+import {Capacitor} from "@capacitor/core";
+import {Directory, Encoding, Filesystem} from "@capacitor/filesystem";
+import {
+  CharControlsManagerComponent
+} from "../components/char-controls/char-controls-manager/char-controls-manager.component";
 
 @Component({
   selector: 'app-sheet',
@@ -58,6 +64,7 @@ export class SheetComponent implements OnDestroy {
   char?: Character;
   selectedIndex: number = 1;
   private sub?: Subscription;
+  dummyControls: CustomUIControl[] = [];
 
   constructor(
     public charService: CharacterService,
@@ -76,6 +83,14 @@ export class SheetComponent implements OnDestroy {
         this.char = char;
       });
     });
+    this.dummyControls = [
+      {
+        title: "Test",
+        options: [{name: "nesto 1", value: false}, {name: "Nesto 2", value: false}],
+        type: UIControlType.Options,
+        uuid: "bbaaaaa"
+      },
+    ]
   }
 
   diceRoll() {
@@ -113,13 +128,31 @@ export class SheetComponent implements OnDestroy {
   }
 
   exportCharToJSON() {
-    const blob = new Blob([this.charService.exportChar()], {type: "application/json"});
-    const url = window.URL.createObjectURL(blob);
-    const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.href = url;
-    downloadAnchorNode.download = `${this.char?.race}_${this.char?.name}_${this.char?.level}.json`;
-    downloadAnchorNode.click();
-    window.URL.revokeObjectURL(url);
-    downloadAnchorNode?.remove();
+    if (Capacitor.getPlatform() === 'web') {
+      const blob = new Blob([this.charService.exportChar()], {type: "application/json"});
+      const url = window.URL.createObjectURL(blob);
+      const downloadAnchorNode = document.createElement('a');
+      downloadAnchorNode.href = url;
+      downloadAnchorNode.download = `${this.char?.race}_${this.char?.name}_${this.char?.level}.json`;
+      downloadAnchorNode.click();
+      window.URL.revokeObjectURL(url);
+      downloadAnchorNode?.remove();
+    } else if (Capacitor.getPlatform() === 'web') {
+      Filesystem.checkPermissions().then(() => {
+        Filesystem.writeFile({
+          path: `characters/${this.char?.race}_${this.char?.name}_${this.char?.level}.json}`,
+          data: this.charService.exportChar(),
+          directory: Directory.Documents,
+          encoding: Encoding.UTF8,
+        });
+      });
+    }
+  }
+
+  openControlsDialog() {
+    this.dialog.open(CharControlsManagerComponent, {
+      data: this.char?.controls,
+      disableClose: true
+    });
   }
 }
