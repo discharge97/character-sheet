@@ -25,10 +25,8 @@ export class AbilityScoreModifierPipe implements PipeTransform {
   private getMod(x: number) {
     if (x <= 9) {
       return -1;
-    } else if (x >= 10 && x <= 18) {
+    } {
       return Math.floor((x - 10) / 2);
-    } else {
-      return Math.ceil((x - 10) / 2);
     }
   }
 }

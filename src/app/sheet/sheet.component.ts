@@ -137,7 +137,7 @@ export class SheetComponent implements OnDestroy {
       downloadAnchorNode.click();
       window.URL.revokeObjectURL(url);
       downloadAnchorNode?.remove();
-    } else if (Capacitor.getPlatform() === 'web') {
+    } else if (Capacitor.getPlatform() === 'android') {
       Filesystem.checkPermissions().then(() => {
         Filesystem.writeFile({
           path: `characters/${this.char?.race}_${this.char?.name}_${this.char?.level}.json}`,
