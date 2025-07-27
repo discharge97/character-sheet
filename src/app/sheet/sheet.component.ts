@@ -138,14 +138,24 @@ export class SheetComponent implements OnDestroy {
       window.URL.revokeObjectURL(url);
       downloadAnchorNode?.remove();
     } else if (Capacitor.getPlatform() === 'android') {
-      Filesystem.checkPermissions().then(() => {
-        Filesystem.writeFile({
-          path: `characters/${this.char?.race}_${this.char?.name}_${this.char?.level}.json}`,
-          data: this.charService.exportChar(),
-          directory: Directory.Documents,
-          encoding: Encoding.UTF8,
+      try {
+        // Check and request permissions (required for Directory.Documents/ExternalStorage on Android)
+        Filesystem.requestPermissions().then(permission => {
+          if (permission.publicStorage === 'granted') {
+            Filesystem.writeFile({
+              path: 'mydocument.txt',
+              data: 'This is a document for shared storage.',
+              directory: Directory.Documents, // or Directory.ExternalStorage
+              encoding: Encoding.UTF8,
+            });
+            console.log('File written to external storage successfully!');
+          } else {
+            console.warn('External storage permission not granted.');
+          }
         });
-      });
+      } catch (error) {
+        console.error('Error writing file:', error);
+      }
     }
   }
 
