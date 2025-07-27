@@ -29,6 +29,7 @@ import {Directory, Encoding, Filesystem} from "@capacitor/filesystem";
 import {
   CharControlsManagerComponent
 } from "../components/char-controls/char-controls-manager/char-controls-manager.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-sheet',
@@ -70,6 +71,7 @@ export class SheetComponent implements OnDestroy {
     public charService: CharacterService,
     private route: ActivatedRoute,
     private router: Router,
+    private snackBar: MatSnackBar,
     private clipboard: Clipboard,
     private dialog: MatDialog) {
     firstValueFrom(this.route.params).then(res => {
@@ -137,24 +139,24 @@ export class SheetComponent implements OnDestroy {
       downloadAnchorNode.click();
       window.URL.revokeObjectURL(url);
       downloadAnchorNode?.remove();
-    } else if (Capacitor.getPlatform() === 'android') {
+    } else {
       try {
-        // Check and request permissions (required for Directory.Documents/ExternalStorage on Android)
         Filesystem.requestPermissions().then(permission => {
           if (permission.publicStorage === 'granted') {
             Filesystem.writeFile({
-              path: 'mydocument.txt',
-              data: 'This is a document for shared storage.',
-              directory: Directory.Documents, // or Directory.ExternalStorage
+              path: `${this.char?.race?.replaceAll(" ", ".")}_${this.char?.name?.replaceAll(" ", ".")}_${this.char?.level ?? 1}.json`,
+              data: this.charService.exportChar(),
+              directory: Directory.Documents,
               encoding: Encoding.UTF8,
             });
-            console.log('File written to external storage successfully!');
+            this.snackBar.open(`${this.char?.name}: exported to Documents folder!`, "OK", {panelClass: 'success'});
           } else {
-            console.warn('External storage permission not granted.');
+            this.snackBar.open("No permission found.");
           }
         });
       } catch (error) {
         console.error('Error writing file:', error);
+        this.snackBar.open("Error: " + error);
       }
     }
   }
