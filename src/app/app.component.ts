@@ -24,7 +24,7 @@ export class AppComponent implements OnDestroy {
           firstValueFrom(this.dialog.open(ConfirmationDialogComponent,
             {
               data: {
-                title: "Are you sure you can to exit character sheet? You have unsaved changes!"
+                title: "You have unsaved changes!"
               }
             }).afterClosed()).then((res?: boolean) => {
             if (!res) return;
