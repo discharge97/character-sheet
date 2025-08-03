@@ -30,6 +30,8 @@ export class AppComponent implements OnDestroy {
             if (!res) return;
             window.history.back();
           });
+        }else {
+          window.history.back();
         }
       } else {
         App.exitApp();
