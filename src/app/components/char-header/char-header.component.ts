@@ -9,6 +9,14 @@ import {firstValueFrom} from "rxjs";
 import {CharacterService} from "../../services/character.service";
 import {CHARACTER_MODS} from "../../services/constants";
 import {MatBadge} from "@angular/material/badge";
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelDescription, MatExpansionPanelHeader,
+  MatExpansionPanelTitle
+} from "@angular/material/expansion";
+import {SpellSaveDcPipe} from "../../pipes/spell-save-dc.pipe";
+import {SpellAttackPowerPipe} from "../../pipes/spell-attack-power.pipe";
 
 @Component({
   selector: 'app-char-header',
@@ -17,6 +25,12 @@ import {MatBadge} from "@angular/material/badge";
     PassivePerceptionPipe,
     PassiveInsightPipe,
     MatBadge,
+    MatAccordion,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    MatExpansionPanelDescription,
+    SpellSaveDcPipe,
+    SpellAttackPowerPipe,
   ],
   templateUrl: './char-header.component.html',
   styleUrl: './char-header.component.scss'

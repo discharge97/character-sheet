@@ -29,6 +29,7 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {Dice} from "../models/dice";
 import {MaxHealthPipe} from "../pipes/max-health.pipe";
 import {MatHint} from "@angular/material/form-field";
+import {AbilityModifier} from "../models/inventoryItem";
 
 @Component({
   selector: 'app-create-character',
@@ -66,6 +67,7 @@ export class CreateCharacterComponent {
   alignments: string[] = Alignments;
   editBGModIndex: number = -1;
   dices: number[] = Object.values(Dice).slice(Object.keys(Dice).length / 2, Object.keys(Dice).length) as number[];
+  abilityModifiers: string[] = Object.values(AbilityModifier);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Character, private maxHP: MaxHealthPipe) {
     this.char = data ?? {

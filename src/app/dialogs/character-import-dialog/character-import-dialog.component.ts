@@ -38,7 +38,6 @@ export class CharacterImportDialogComponent {
   constructor(private dialogRef: MatDialogRef<CharacterImportDialogComponent>, private snackBar: MatSnackBar) {
   }
 
-
   saveChar() {
     if (!this.char) return;
     this.dialogRef.close(this.char);
@@ -46,7 +45,7 @@ export class CharacterImportDialogComponent {
 
   fileChanged(file: any) {
     new Response(file.target.files?.[0]).json().then(json => {
-      this.char = JSON.parse(json);
+      this.char = json;
     }).catch((e: any) => {
       this.snackBar.open(e)
     });

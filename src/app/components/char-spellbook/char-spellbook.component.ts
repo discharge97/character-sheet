@@ -9,6 +9,9 @@ import {firstValueFrom} from "rxjs";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {SpellInfoDialogComponent} from "./spell-info-dialog/spell-info-dialog.component";
 import {CreateSpellDialogComponent} from "./create-spell-dialog/create-spell-dialog.component";
+import {Character} from "../../models/character";
+import {SpellSaveDcPipe} from "../../pipes/spell-save-dc.pipe";
+import {SpellAttackPowerPipe} from "../../pipes/spell-attack-power.pipe";
 
 @Component({
   selector: 'app-char-spellbook',
@@ -17,30 +20,17 @@ import {CreateSpellDialogComponent} from "./create-spell-dialog/create-spell-dia
     MatIcon,
     MatTabGroup,
     MatTab,
-    LowerCasePipe
+    LowerCasePipe,
+    SpellAttackPowerPipe,
+    SpellSaveDcPipe
   ],
   templateUrl: './char-spellbook.component.html',
   styleUrl: './char-spellbook.component.scss'
 })
 export class CharSpellbookComponent {
-  @Input({required: true}) spells?: Spell[] = [];
+  @Input({required: true}) char?: Character;
 
   constructor(private charService: CharacterService, private dialog: MatDialog) {
-    // setTimeout(() => {
-    //   this.spells = [{
-    //     name: "Test spell",
-    //     uuid: "jsbjbvjbe",
-    //     level: 0,
-    //     castTime: "1 action",
-    //     range: "30ft",
-    //     components: {s: true, v: true, m: "aaa"},
-    //     concentration: true,
-    //     ritual: true,
-    //     duration: "Instant",
-    //     description: " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla enim sit amet nisl lacinia, et varius diam aliquet. Vivamus scelerisque nisl erat, sed laoreet odio consequat et. Fusce consectetur sit amet metus non dictum. Maecenas sed ornare nisl. Etiam posuere risus quis dui suscipit tempor. Donec maximus nec turpis vitae semper. " +
-    //       "\nInteger at viverra eros. Nunc maximus turpis nec nibh pellentesque semper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
-    //   }];
-    // }, 1500)
   }
 
   togglePrepareSpell(spell: Spell) {
@@ -48,11 +38,11 @@ export class CharSpellbookComponent {
   }
 
   get preparedSpells(): Spell[] {
-    return this.spells?.filter(s => s?.prepared) ?? [];
+    return this.char?.spells?.filter(s => s?.prepared) ?? [];
   }
 
   get learnedSpells(): Spell[] {
-    return this.spells?.filter(s => !s?.prepared) ?? [];
+    return this.char?.spells?.filter(s => !s?.prepared) ?? [];
   }
 
   spellInfo(spell: Spell) {

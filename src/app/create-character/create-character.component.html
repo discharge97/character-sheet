@@ -138,6 +138,33 @@
       </div>
     </div>
 
+    <p class="little-title">Spell Specs</p>
+    <div class="column">
+      <span class="spell-spec-info">Proficiency + Ability Score + 8</span>
+      <mat-form-field class="input">
+        <mat-label>Ability Score</mat-label>
+        <mat-select [(ngModel)]="char.spellSaveDC">
+          <mat-option [value]="undefined" class="uppercase">None</mat-option>
+          @for (mod of abilityModifiers; track mod) {
+            <mat-option [value]="mod" class="uppercase">{{ mod }}</mat-option>
+          }
+        </mat-select>
+        <span matPrefix class="spell-spec-info bold">Spell Save DC</span>
+      </mat-form-field>
+
+      <span class="spell-spec-info">Proficiency + Ability Score</span>
+      <mat-form-field class="input">
+        <mat-label>Ability Score</mat-label>
+        <mat-select [(ngModel)]="char.spellAttackPower">
+          <mat-option [value]="undefined" class="uppercase">None</mat-option>
+          @for (mod of abilityModifiers; track mod) {
+            <mat-option [value]="mod" class="uppercase">{{ mod }}</mat-option>
+          }
+        </mat-select>
+        <span matPrefix class="spell-spec-info bold">Spell Attack Power</span>
+      </mat-form-field>
+    </div>
+
     <p class="little-title">Proficiencies</p>
     <div class="column">
       <mat-slide-toggle class="prof" [(ngModel)]="char.proficiency!.lightArmor">Light Armor</mat-slide-toggle>

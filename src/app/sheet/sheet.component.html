@@ -66,7 +66,7 @@
     </ng-template>
     <div class="tab-content">
       <h4>Spellbook</h4>
-      <app-char-spellbook #spellbook [spells]="char?.spells"/>
+      <app-char-spellbook #spellbook [char]="char"/>
       <button mat-fab aria-label="Add Spell" class="action-button" (click)="spellbook.spellDialog()">
         <mat-icon>bookmark_add</mat-icon>
       </button>

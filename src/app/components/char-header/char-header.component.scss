@@ -2,6 +2,15 @@
   width: 100%;
 }
 
+.expandable {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.stats {
+  height: 32px;
+}
+
 .title {
   h4 {
     border-bottom: 1px solid lightgray;

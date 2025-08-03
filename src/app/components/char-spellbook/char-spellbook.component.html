@@ -1,5 +1,11 @@
+@if (char?.spellSaveDC || char?.spellAttackPower) {
+  <p class="row spell-specs spread-between">
+    <span>Spell Save DC: <span class="value">{{ (char | spellSaveDC) ?? '(unspecified)' }}</span></span>
+    <span>Spell Power: <span class="value">{{ (char | spellAttackPower) ?? '(unspecified)' }}</span></span>
+  </p>
+}
 <mat-tab-group>
-  <mat-tab label="Prepared Spells">
+  <mat-tab [label]="'Prepared Spells (' + preparedSpells.length + ')'">
     <div class="column content">
       @for (spell of preparedSpells; track spell) {
         <div class="column col-100 session" (click)="spellInfo(spell)">
@@ -35,7 +41,7 @@
       }
     </div>
   </mat-tab>
-  <mat-tab label="Learned Spells">
+  <mat-tab [label]="'Learned Spells (' + learnedSpells.length + ')'">
     <div class="column content">
       @for (spell of learnedSpells; track spell) {
         <div class="column col-100 session" (click)="spellInfo(spell)">

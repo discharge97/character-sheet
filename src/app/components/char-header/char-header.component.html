@@ -3,20 +3,39 @@
     class="level" matBadge="Save changes" matBadgeOverlap="false" matBadgeSize="large"
     [matBadgeHidden]="!charService.hasChanges.value">({{ character?.level }})</span></h4>
 </div>
+
+<mat-accordion class="expandable">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header class="stats">
+      <mat-panel-description>Character Information</mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="header">
+      <div class="info column col-100">
+        <p>Species: <span>{{ character?.race }}</span></p>
+        <p>Class: <span>{{ character?.charClass }}</span></p>
+        <p>Background: <span>{{ character?.background?.title }}</span></p>
+        <p>Attunements: <span>{{ character?.attunement ?? 0 }}/{{ maxAttunements }}</span></p>
+        <p>Alignment: <span>{{ character?.alignment }}</span></p>
+        <p (click)="handleExperience()">Experience: <span>{{ character?.experience }}</span></p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
 <div class="header">
-  <div class="info column col-40">
-    <p>Attunements: <span>{{ character?.attunement ?? 0 }}/{{ maxAttunements }}</span></p>
-    <p>Proficiency: <span>+{{ character | proficiency }}</span></p>
+  <div class="info column col-50">
     <p>P. Perception: <span>{{ character | passivePerception }}</span></p>
-    <p>P. Insight: <span>{{ character | passiveInsight }}</span></p>
-    <p (click)="handleInspiration()">Inspiration: <span>{{ character?.inspiration ?? 0 }}</span></p>
+    <p>Proficiency: <span>+{{ character | proficiency }}</span></p>
+    @if (character?.spellSaveDC) {
+      <p>Spell Save DC: <span>{{ character | spellSaveDC }}</span></p>
+    }
   </div>
 
-  <div class="info column col-60">
-    <p>Class: <span>{{ character?.charClass }}</span></p>
-    <p>Species: <span>{{ character?.race }}</span></p>
-    <p>Background: <span>{{ character?.background?.title }}</span></p>
-    <p>Alignment: <span>{{ character?.alignment }}</span></p>
-    <p (click)="handleExperience()">Experience: <span>{{ character?.experience }}</span></p>
+  <div class="info column col-50">
+    <p>P. Insight: <span>{{ character | passiveInsight }}</span></p>
+    <p (click)="handleInspiration()">Inspiration: <span>{{ character?.inspiration ?? 0 }}</span></p>
+    @if (character?.spellAttackPower) {
+      <p>Spell Attack Power: <span>{{ character | spellAttackPower }}</span></p>
+    }
   </div>
 </div>

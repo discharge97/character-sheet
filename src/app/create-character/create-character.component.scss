@@ -30,6 +30,19 @@
   margin-bottom: 10px;
 }
 
+.spell-spec-info {
+  font-size: 12px;
+  margin: 0 10px;
+
+  &.bold {
+    font-weight: bold;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
 .actions {
   display: flex;
   justify-content: space-between;
