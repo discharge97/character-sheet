@@ -7,6 +7,7 @@
     "build": "ng build --configuration production",
     "build-android": "npm run build && npm run android",
     "android": "npx cap copy && npx cap open android",
+    "sync": "npx cap sync",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
