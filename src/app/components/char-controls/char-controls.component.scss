@@ -3,13 +3,16 @@
   width: 100%;
   overflow: auto;
   padding-bottom: 10px;
+  justify-content: space-around;
 
   & + .controls {
     margin-top: 10px;
   }
 
   .counter {
+    width: 75px;
     min-width: 75px;
+    align-content: end;
   }
 
   .slider-group {

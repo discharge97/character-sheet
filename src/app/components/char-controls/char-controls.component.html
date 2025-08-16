@@ -1,6 +1,6 @@
 <div class="row controls">
   @for (control of counterControls; track control.uuid; let i = $index) {
-    <app-ui-counter class="counter" [control]="control" (valueChange)="control.counter!.value=$event"/>
+    <app-ui-counter class="counter" [control]="control" (valueChange)="control.counter!.value=$event;updateControl(control)"/>
   }
 </div>
 <div class="row controls">
