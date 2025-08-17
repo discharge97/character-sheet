@@ -12,65 +12,82 @@
       <span class="row title">
         <span class="name">{{ spell?.name | titlecase }}</span>
         <span class="actions">
-          <mat-icon
-            (click)="$event.stopPropagation();togglePrepareSpell(spell)">nearby_off</mat-icon>
-          <mat-icon (click)="$event.stopPropagation();spellDialog(spell)">edit</mat-icon>
-          <mat-icon (click)="$event.stopPropagation();deleteSpell(spell)" class="delete">delete</mat-icon>
+          <mat-icon inline
+                    (click)="$event.stopPropagation();togglePrepareSpell(spell)">nearby_off</mat-icon>
+          <mat-icon inline (click)="$event.stopPropagation();spellDialog(spell)">edit</mat-icon>
+          <mat-icon inline (click)="$event.stopPropagation();deleteSpell(spell)" class="delete">delete</mat-icon>
         </span>
       </span>
-          <span class="row lvl">
-        <span>Level: {{ !spell?.level ? 'Cantrip' : spell?.level }}</span>
+          <span class="row name">
+        <span>Level: <span class="value">{{ !spell?.level ? 'Cantrip' : spell?.level }}</span> | <span
+          class="value">Range: {{ spell.range }}</span></span>
         <span class="row components">
           @if (spell.concentration) {
-            <span class="component c"><mat-icon>running_with_errors</mat-icon></span>
+            <span class="component c"><mat-icon inline>running_with_errors</mat-icon></span>
           }
           @if (spell.ritual) {
-            <span class="component r"><mat-icon>groups_3</mat-icon></span>
+            <span class="component r"><mat-icon inline>groups_3</mat-icon></span>
           }
-          <span>(</span><span class="component s">{{ spell.components?.s ? "S" : "" }}</span>
-          <span class="component v">{{ spell.components?.v ? "V" : "" }}</span>
-          <span class="component m">{{ spell.components?.m ? "M" : "" }}</span>)
+          <span class="component bracket">(</span>
+          @if (spell.components?.s) {
+            <span class="component s">S</span>
+          }
+          @if (spell.components?.v) {
+            <span class="component v">V</span>
+          }
+          @if (spell.components?.m) {
+            <span class="component m">M</span>
+          }
+          <span class="component bracket">)</span>
         </span>
       </span>
-          <span class="row lvl">
-            <span>Casting Time: {{ spell.castTime | lowercase }}</span>
-            <span>Duration: {{ spell?.duration | lowercase }}</span>
+          <span class="row name">
+            <span>Casting Time: <span class="value">{{ spell.castTime | lowercase }}</span></span>
+            <span>Duration: <span class="value">{{ spell?.duration | lowercase }}</span></span>
           </span>
           <span class="desc">{{ spell?.description?.slice(0, 200) }}...</span>
         </div>
       }
     </div>
   </mat-tab>
-  <mat-tab [label]="'Learned Spells (' + learnedSpells.length + ')'">
+  <mat-tab [label]="'Prepared Spells (' + learnedSpells.length + ')'">
     <div class="column content">
       @for (spell of learnedSpells; track spell) {
         <div class="column col-100 session" (click)="spellInfo(spell)">
       <span class="row title">
         <span class="name">{{ spell?.name | titlecase }}</span>
         <span class="actions">
-          <mat-icon
-            (click)="$event.stopPropagation();togglePrepareSpell(spell)">psychology</mat-icon>
-          <mat-icon (click)="$event.stopPropagation();spellDialog(spell)">edit</mat-icon>
-          <mat-icon (click)="$event.stopPropagation();deleteSpell(spell)" class="delete">delete</mat-icon>
+          <mat-icon inline
+                    (click)="$event.stopPropagation();togglePrepareSpell(spell)">nearby_off</mat-icon>
+          <mat-icon inline (click)="$event.stopPropagation();spellDialog(spell)">edit</mat-icon>
+          <mat-icon inline (click)="$event.stopPropagation();deleteSpell(spell)" class="delete">delete</mat-icon>
         </span>
       </span>
-          <span class="row lvl">
-        <span>Level: {{ !spell?.level ? 'Cantrip' : spell?.level }}</span>
+          <span class="row name">
+        <span>Level: <span class="value">{{ !spell?.level ? 'Cantrip' : spell?.level }}</span></span>
         <span class="row components">
           @if (spell.concentration) {
-            <span class="component c"><mat-icon>running_with_errors</mat-icon></span>
+            <span class="component c"><mat-icon inline>running_with_errors</mat-icon></span>
           }
           @if (spell.ritual) {
-            <span class="component r"><mat-icon>groups_3</mat-icon></span>
+            <span class="component r"><mat-icon inline>groups_3</mat-icon></span>
           }
-          <span>(</span><span class="component s">{{ spell.components?.s ? "S" : "" }}</span>
-          <span class="component v">{{ spell.components?.v ? "V" : "" }}</span>
-          <span class="component m">{{ spell.components?.m ? "M" : "" }}</span>)
+          <span class="component bracket">(</span>
+          @if (spell.components?.s) {
+            <span class="component s">S</span>
+          }
+          @if (spell.components?.v) {
+            <span class="component v">V</span>
+          }
+          @if (spell.components?.m) {
+            <span class="component m">M</span>
+          }
+          <span class="component bracket">)</span>
         </span>
       </span>
-          <span class="row lvl">
-            <span>Casting Time: {{ spell.castTime | lowercase }}</span>
-            <span>Duration: {{ spell?.duration | lowercase }}</span>
+          <span class="row name">
+            <span>Casting Time: <span class="value">{{ spell.castTime | lowercase }}</span></span>
+            <span>Duration: <span class="value">{{ spell?.duration | lowercase }}</span></span>
           </span>
           <span class="desc">{{ spell?.description?.slice(0, 200) }}...</span>
         </div>

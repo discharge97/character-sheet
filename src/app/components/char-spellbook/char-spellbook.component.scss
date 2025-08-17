@@ -28,6 +28,8 @@
 
       .name {
         color: darkslateblue;
+        font-weight: bold;
+        font-size: 14px;
         border-bottom: 1px solid darkslateblue;
       }
 
@@ -43,36 +45,61 @@
       }
     }
 
-    .lvl {
+    .name {
       margin-bottom: 5px;
       font-size: 12px;
-      font-weight: bold;
       justify-content: space-between;
       align-items: center;
+      color: #8f8f8f;
+
+      .value {
+        font-weight: bold;
+        color: #3e3e3e;
+
+        & + .value {
+          margin-left: 10px;
+        }
+      }
 
       .components {
         align-items: center;
 
         .component {
+          &.bracket {
+            color: lightgrey;
+          }
+
           &.c {
             color: grey;
+
+            mat-icon {
+              font-size: 16px;
+              line-height: 16px;
+            }
           }
 
           &.r {
             color: rebeccapurple;
-            margin-right: 10px;
+
+            mat-icon {
+              font-size: 22px;
+              line-height: 16px;
+            }
           }
 
           &.s {
             color: dodgerblue;
+            font-weight: bold;
           }
 
           &.v {
             color: forestgreen;
+            font-weight: bold;
           }
 
           &.m {
             color: goldenrod;
+            font-weight: bold;
           }
 
           & + .component {
@@ -83,7 +110,7 @@
     }
 
     .desc {
-      font-size: 14px;
+      font-size: 12px;
       white-space: pre-wrap;
     }
   }

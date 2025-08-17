@@ -439,6 +439,7 @@ export class CharacterService {
       this._activeChar.spells = [];
     }
     this._activeChar.spells.push(spell);
+    this._activeChar.spells = this._activeChar.spells.sort((a, b) => a.level - b.level);
     const char = this.$modChar.value!;
     char.spells = structuredClone(this._activeChar.spells);
     this.$modChar.next(char);

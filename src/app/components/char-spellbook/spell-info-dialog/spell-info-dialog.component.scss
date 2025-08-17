@@ -1,21 +1,29 @@
 .session {
-  .lvl {
+  .name {
     margin-bottom: 5px;
     font-size: 12px;
-    font-weight: bold;
     justify-content: space-between;
+    color: #8f8f8f;
+
+    .value {
+      font-weight: bold;
+      color: #3e3e3e;
+    }
 
     .component {
       &.s {
         color: dodgerblue;
+        font-weight: bold;
       }
 
       &.v {
         color: forestgreen;
+        font-weight: bold;
       }
 
       &.m {
         color: goldenrod;
+        font-weight: bold;
       }
 
       & + .component {
