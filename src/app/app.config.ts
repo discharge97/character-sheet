@@ -6,6 +6,7 @@ import {ProficiencyPipe} from "./pipes/proficiency.pipe";
 import {MAT_DATE_LOCALE, provideNativeDateAdapter} from "@angular/material/core";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
 import {MaxHealthPipe} from "./pipes/max-health.pipe";
+import {HttpClient, provideHttpClient} from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,7 @@ export const appConfig: ApplicationConfig = {
     ProficiencyPipe,
     MaxHealthPipe,
     provideNativeDateAdapter(),
+    provideHttpClient(),
     provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes, withHashLocation(), withComponentInputBinding()),
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},

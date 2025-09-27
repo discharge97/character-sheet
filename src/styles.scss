@@ -162,3 +162,9 @@ body {
     color: lightgray !important;
   }
 }
+
+.actions {
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+  }
+}

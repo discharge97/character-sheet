@@ -35,7 +35,9 @@
   display: flex;
   justify-content: space-between;
   gap: 15px;
+  width: 90vw;
   min-width: 350px;
+  max-width: 600px;
 
   .close {
     color: crimson;

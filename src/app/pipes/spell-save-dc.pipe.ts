@@ -13,7 +13,6 @@ export class SpellSaveDcPipe implements PipeTransform {
 
   transform(char: Character | undefined): number | undefined {
     if (!char?.spellSaveDC) return undefined;
-    console.log(char.spellSaveDC);
     return (8 + this.prof.transform(char) + (+this.mod.transform(char[char.spellSaveDC])));
   }
 }

@@ -1,0 +1,37 @@
+.spell {
+  border-bottom: 1px solid lightgrey;
+
+  padding: 10px 0;
+}
+
+.name {
+  margin: 0;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.desc {
+  white-space: pre-wrap;
+
+  span {
+    display: block;
+  }
+}
+
+.btn-slim {
+  height: 30px;
+}
+
+.actions {
+  align-items: center;
+  width: 100%;
+}
+
+.close {
+  width: 100%;
+  margin-top: 20px;
+  color: crimson !important;
+  border-color: crimson !important;
+}

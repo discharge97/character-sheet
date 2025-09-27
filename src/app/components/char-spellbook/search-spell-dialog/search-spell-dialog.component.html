@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Search spells</h2>
+<mat-dialog-content>
+  @if (searching) {
+    <mat-progress-bar mode="indeterminate"/>
+  }
+  <div class="column gap">
+    @for (spell of spellsSearch; track spell) {
+      <div class="column spell">
+        <h3 class="name">{{ spell.name }}</h3>
+        <div class="row spread-between">
+          <span><span class="title">Level:</span> {{ spell?.level }}</span>
+          <span><span class="title">Duration:</span> {{ spell?.duration }}</span>
+        </div>
+        <div class="row spread-between">
+          <span><span class="title">Range:</span> {{ spell?.range_text }}</span>
+          <span><span class="title">Cast Time:</span> {{ spell?.casting_time }}</span>
+        </div>
+        <div class="row spread-between">
+          <span><span class="title">Somatic: </span>{{ spell?.somatic ? '✅' : '❌' }}</span>
+          <span><span class="title">Verbal: </span>{{ spell?.verbal ? '✅' : '❌' }}</span>
+          <span><span class="title">Material: </span>{{ spell?.material ? '✅' : '❌' }}</span>
+        </div>
+        <p class="desc">
+          <span>{{ spell.desc }}</span>
+          <span>{{ spell.higher_level }}</span>
+        </p>
+
+        <button mat-flat-button class="btn-slim" (click)="importSpell(spell)">Use spell</button>
+      </div>
+    }
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="row spread-between actions">
+    <mat-form-field>
+      <mat-label>Spell Name</mat-label>
+      <input matInput [disabled]="searching" [(ngModel)]="spellName">
+    </mat-form-field>
+    <button mat-raised-button [disabled]="searching" (click)="searchSpell()">Search</button>
+  </div>
+  <button mat-stroked-button class="close btn-slim" [mat-dialog-close]="false">Close</button>
+</mat-dialog-actions>

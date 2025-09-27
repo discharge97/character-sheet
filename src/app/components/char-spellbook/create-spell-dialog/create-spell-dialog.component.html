@@ -5,6 +5,7 @@
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input matInput [(ngModel)]="spell.name">
+      <mat-icon matIconSuffix (click)="searchSpell()">search</mat-icon>
     </mat-form-field>
 
     <mat-form-field>
@@ -74,5 +75,5 @@
 
 <mat-dialog-actions class="actions">
   <button mat-button class="close" [mat-dialog-close]="undefined">Cancel</button>
-  <button mat-raised-button [mat-dialog-close]="spell">{{ data?.uuid ? "Update" : "Create" }}</button>
+  <button mat-flat-button [mat-dialog-close]="spell">{{ data?.uuid ? "Update" : "Create" }}</button>
 </mat-dialog-actions>
