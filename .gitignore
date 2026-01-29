@@ -1,8 +1,7 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
-/dist/3rdpartylicenses.txt
-/dist/prerendered-routes.json
+/dist
 /tmp
 /out-tsc
 /bazel-out
