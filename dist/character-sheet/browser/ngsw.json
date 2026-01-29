@@ -1,0 +1,107 @@
+{
+  "configVersion": 1,
+  "timestamp": 1769645163789,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/chunk-2QEF2NAY.js",
+        "/chunk-3J7GGTVR.js",
+        "/chunk-I3D7CGGV.js",
+        "/chunk-MAJRBRJV.js",
+        "/chunk-SMYZKTVZ.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main-AL5N32TN.js",
+        "/manifest.webmanifest",
+        "/polyfills-B6TNHZQ6.js",
+        "/styles-56D26X2K.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/media/lora-cyrillic-ext-wght-normal-UVMK5E2G.woff2",
+        "/media/lora-cyrillic-wght-normal-5NKYAKJY.woff2",
+        "/media/lora-latin-ext-wght-normal-476Q5XGH.woff2",
+        "/media/lora-latin-wght-normal-PUPD5E2P.woff2",
+        "/media/lora-math-wght-normal-LP75OWBH.woff2",
+        "/media/lora-symbols-wght-normal-B5KYHB5H.woff2",
+        "/media/lora-vietnamese-wght-normal-DEKJZX3J.woff2",
+        "/media/material-icons-JLIDJUWE.woff",
+        "/media/material-icons-LEZCGFVT.woff2",
+        "/media/material-icons-outlined-7BWLPMFK.woff2",
+        "/media/material-icons-outlined-PCUTWIDZ.woff",
+        "/media/material-icons-round-SLOHZIXU.woff",
+        "/media/material-icons-round-WEHMTW23.woff2",
+        "/media/material-icons-sharp-HCCYMPXE.woff2",
+        "/media/material-icons-sharp-U4OLFP3G.woff",
+        "/media/material-icons-two-tone-LCGWGE2N.woff",
+        "/media/material-icons-two-tone-M5N5K6F5.woff2"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/chunk-2QEF2NAY.js": "513a76a72b84bdbe20f3267baa3d53a74bc42865",
+    "/chunk-3J7GGTVR.js": "545e5e4869351fc01305dea9c510add0044ebd80",
+    "/chunk-I3D7CGGV.js": "00edecf53d0ea9b6dd9ecdcbb717c654fbf818dc",
+    "/chunk-MAJRBRJV.js": "e854d419b822107ee93f4d8c0c828deb463a0141",
+    "/chunk-SMYZKTVZ.js": "7ed146b2635a10db020832a17b4506515a77356c",
+    "/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/index.html": "d1ae2024ecda03fc44b3fa80189b5550f43c7256",
+    "/main-AL5N32TN.js": "d887a790d91ea74e625f2f0595ea51c114123b2d",
+    "/manifest.webmanifest": "4337ce0d1997c19245c68ff48efd383a84c0d054",
+    "/media/lora-cyrillic-ext-wght-normal-UVMK5E2G.woff2": "4d14bd3f8594e74583b7bdfceb9baac50d0d804d",
+    "/media/lora-cyrillic-wght-normal-5NKYAKJY.woff2": "d2e278768f9f34e5171c38a15bd1c90785d13478",
+    "/media/lora-latin-ext-wght-normal-476Q5XGH.woff2": "b91d0b050954ca8f7107ab1651fd1b58fba1c02f",
+    "/media/lora-latin-wght-normal-PUPD5E2P.woff2": "ea32bea90eb3eed42f94b4e8078a99b70f112275",
+    "/media/lora-math-wght-normal-LP75OWBH.woff2": "63cb1eb53df74454d45bd6cbf25df07fef978f88",
+    "/media/lora-symbols-wght-normal-B5KYHB5H.woff2": "5261de59dfafc3adcebfcf39de4d2b03a8c5c458",
+    "/media/lora-vietnamese-wght-normal-DEKJZX3J.woff2": "6d3e5ac62b2d5046aab8bf5e1e1e340b22fb6290",
+    "/media/material-icons-JLIDJUWE.woff": "e4bb7c1e40d3febee58df963db276b2bf68c117b",
+    "/media/material-icons-LEZCGFVT.woff2": "0bc0c675480d94ec7e8609dda6227f88c5d08d2c",
+    "/media/material-icons-outlined-7BWLPMFK.woff2": "2f9e28ab559782402f27332633c843c40209d95a",
+    "/media/material-icons-outlined-PCUTWIDZ.woff": "b52ccd8fca4199d257b2a9fe377db29862f2853e",
+    "/media/material-icons-round-SLOHZIXU.woff": "c41bfee3f01218e18d53f4f4cac00f385ac9fbb1",
+    "/media/material-icons-round-WEHMTW23.woff2": "abe05e0641f1050fbe00ef0dbb10c5ea72c26cff",
+    "/media/material-icons-sharp-HCCYMPXE.woff2": "cf1c7b4d066d18af44cf7bc664dd2e46652a3a30",
+    "/media/material-icons-sharp-U4OLFP3G.woff": "829cb48cb2dd17ae5e425b82dc186eb670694a10",
+    "/media/material-icons-two-tone-LCGWGE2N.woff": "02225d888afe4eebc7312b7432878dc8aef1f50f",
+    "/media/material-icons-two-tone-M5N5K6F5.woff2": "296ff0bff395a77c2e33e7e31fffe73980bd93cf",
+    "/polyfills-B6TNHZQ6.js": "bf76ac291d7f51c1139b7edcf86b359a30c08c64",
+    "/styles-56D26X2K.css": "30030921ac0bc977bbae6dc5b57860005bbe87cd"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
