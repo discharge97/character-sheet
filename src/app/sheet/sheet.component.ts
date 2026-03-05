@@ -30,6 +30,8 @@ import {
   CharControlsManagerComponent
 } from "../components/char-controls/char-controls-manager/char-controls-manager.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatBadge} from "@angular/material/badge";
+import {ConfirmationDialogComponent} from "../dialogs/confirmation-dialog/confirmation-dialog.component";
 
 @Component({
   selector: 'app-sheet',
@@ -56,6 +58,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
     MatButton,
     CharSpellbookComponent,
     CharControlsComponent,
+    MatBadge,
   ],
   templateUrl: './sheet.component.html',
   styleUrl: './sheet.component.scss'
@@ -176,10 +179,18 @@ export class SheetComponent implements OnDestroy {
     this.charService.longRest();
   }
 
-  protected backToHome() {
+  protected async backToHome() {
     if (this.charService.hasChanges.value) {
-
+      const res = await firstValueFrom(this.dialog.open(ConfirmationDialogComponent, {
+        data: {
+          title: "⚠️ Unsaved changes",
+          body: "You have unsaved changes!! Are you sure you want to discard then and exit?"
+        }
+      }).afterClosed());
+      if (!res) return;
     }
+
+    this.router.navigate(['home']);
 
   }
 }
