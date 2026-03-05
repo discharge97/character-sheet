@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1769645163789,
+  "timestamp": 1772670742529,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -18,7 +18,7 @@
         "/chunk-SMYZKTVZ.js",
         "/favicon.ico",
         "/index.html",
-        "/main-AL5N32TN.js",
+        "/main-HWPLMITU.js",
         "/manifest.webmanifest",
         "/polyfills-B6TNHZQ6.js",
         "/styles-56D26X2K.css"
@@ -62,8 +62,8 @@
     "/chunk-MAJRBRJV.js": "e854d419b822107ee93f4d8c0c828deb463a0141",
     "/chunk-SMYZKTVZ.js": "7ed146b2635a10db020832a17b4506515a77356c",
     "/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
-    "/index.html": "d1ae2024ecda03fc44b3fa80189b5550f43c7256",
-    "/main-AL5N32TN.js": "d887a790d91ea74e625f2f0595ea51c114123b2d",
+    "/index.html": "4915bcb1c90b8c11e60cba5eed222ffc27161261",
+    "/main-HWPLMITU.js": "6ca316460034719f309843d409fcd2d3944b17aa",
     "/manifest.webmanifest": "4337ce0d1997c19245c68ff48efd383a84c0d054",
     "/media/lora-cyrillic-ext-wght-normal-UVMK5E2G.woff2": "4d14bd3f8594e74583b7bdfceb9baac50d0d804d",
     "/media/lora-cyrillic-wght-normal-5NKYAKJY.woff2": "d2e278768f9f34e5171c38a15bd1c90785d13478",
