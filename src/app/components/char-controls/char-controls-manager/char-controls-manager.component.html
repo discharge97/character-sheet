@@ -4,8 +4,14 @@
   <button class="create" mat-stroked-button (click)="openControlDialog()">Create new control</button>
   <div class="column">
     @for (control of data; track control.uuid) {
-      <span class="row control">
+      <span class="row control spread-between">
+        <span class="row">
+          <mat-icon inline class="move-icon" [style.color]="$index === 0?'lightgray':'royalblue'"
+                    (click)="$index === 0?undefined: moveControl($index,$index-1)">arrow_upward</mat-icon>
+          <mat-icon inline class="move-icon" [style.color]="$index === data.length-1?'lightgray':'royalblue'"
+                    (click)="$index === data.length-1?undefined: moveControl($index,$index+ 1)">arrow_downward</mat-icon>
         <span>{{ control.type | titlecase }}: {{ control.title | titlecase }}</span>
+        </span>
         <span class="row">
           <mat-icon (click)="openControlDialog(control)">edit</mat-icon>
           <mat-icon (click)="deleteControl(control)" class="delete">delete</mat-icon>

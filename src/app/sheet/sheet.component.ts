@@ -54,11 +54,9 @@ import {ConfirmationDialogComponent} from "../dialogs/confirmation-dialog/confir
     MatMenu,
     MatMenuTrigger,
     CharClassFeatureComponent,
-    RouterLink,
     MatButton,
     CharSpellbookComponent,
     CharControlsComponent,
-    MatBadge,
   ],
   templateUrl: './sheet.component.html',
   styleUrl: './sheet.component.scss'
@@ -68,7 +66,6 @@ export class SheetComponent implements OnDestroy {
   char?: Character;
   selectedIndex: number = 1;
   private sub?: Subscription;
-  dummyControls: CustomUIControl[] = [];
 
   constructor(
     public charService: CharacterService,
@@ -88,14 +85,6 @@ export class SheetComponent implements OnDestroy {
         this.char = char;
       });
     });
-    this.dummyControls = [
-      {
-        title: "Test",
-        options: [{name: "nesto 1", value: false}, {name: "Nesto 2", value: false}],
-        type: UIControlType.Options,
-        uuid: "bbaaaaa"
-      },
-    ]
   }
 
   diceRoll() {

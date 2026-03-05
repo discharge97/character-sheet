@@ -27,8 +27,8 @@ import {MatButton} from "@angular/material/button";
     MatButton
   ],
   selector: 'app-char-controls-manager',
+  templateUrl: './char-controls-manager.component.html',
   styleUrl: './char-controls-manager.component.scss',
-  templateUrl: './char-controls-manager.component.html'
 })
 export class CharControlsManagerComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: CustomUIControl[],
@@ -62,5 +62,12 @@ export class CharControlsManagerComponent {
 
   getLatestControls() {
     this.data = this.charService.getCharacter()?.value?.controls ?? [];
+  }
+
+  protected moveControl(cIndex: number, newIndex: number) {
+    this.data.splice(newIndex, 0, this.data.splice(cIndex, 1)[0]);
+
+    this.charService.setControls(this.data);
+    this.getLatestControls();
   }
 }

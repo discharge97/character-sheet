@@ -10,15 +10,13 @@ import {CustomUIControl, UIControlType} from "../../../models/custom-ui-control"
 import {v4 as uuid} from 'uuid';
 import {MatButton} from "@angular/material/button";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatFormField, MatInput, MatLabel, MatPrefix, MatSuffix} from "@angular/material/input";
+import {MatFormField, MatInput, MatLabel, MatSuffix} from "@angular/material/input";
 import {MatOption, MatSelect} from "@angular/material/select";
 import {TitleCasePipe} from "@angular/common";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {MatIcon} from "@angular/material/icon";
-import {MatCheckbox} from "@angular/material/checkbox";
 import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
 
-// @ts-ignore
 @Component({
   selector: 'app-create-ui-control-dialog',
   imports: [
@@ -37,9 +35,7 @@ import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
     TitleCasePipe,
     MatSlideToggle,
     MatIcon,
-    MatPrefix,
     MatSuffix,
-    MatCheckbox,
     MatRadioButton,
     MatRadioGroup
   ],
@@ -52,5 +48,20 @@ export class CreateUiControlDialogComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: CustomUIControl) {
     this.control = structuredClone(data) ?? {uuid: uuid(), options: [], counter: {}} as any;
+  }
+
+  protected resetOptions() {
+    this.control.options.forEach((option) => {
+      option.value = false;
+    })
+  }
+
+  protected resetControl() {
+    if (this.control.type === UIControlType.Counter) {
+      this.control.options = [];
+      this.control.multi = undefined;
+    } else if (this.control.type === UIControlType.Options) {
+      this.control.counter = {} as any;
+    }
   }
 }

@@ -24,11 +24,11 @@ export class CharControlsComponent {
   }
 
   singleSelect(cIndex: number, oIndex: number) {
-    for (let i = 0; i < (this.controls?.[cIndex]?.options?.length ?? 0); i++) {
-      this.controls![cIndex].options[i].value = oIndex === i;
+    for (let i = 0; i < (this.optionControls?.[cIndex]?.options?.length ?? 0); i++) {
+      if (oIndex === i) continue;
+      this.optionControls![cIndex].options[i].value = oIndex === i;
     }
-    this.updateControl(this.controls![cIndex]);
-
+    this.updateControl(this.optionControls![cIndex]);
   }
 
   get counterControls(): CustomUIControl[] {

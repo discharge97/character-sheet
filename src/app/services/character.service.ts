@@ -551,10 +551,15 @@ export class CharacterService {
       return;
     }
 
-    if (!this._activeChar.controls?.length) return;
-    this._activeChar.controls.forEach(control => {
-      if (control.resetOn === 'S' && control.counter) {
-        control.counter.value = structuredClone(control.counter?.max ?? 0);
+    this._activeChar.controls?.forEach(control => {
+      if (control.resetOn === 'S') {
+        if (control.counter?.value !== undefined) {
+          control.counter.value = structuredClone(control.counter?.max ?? 0);
+        } else if (control.options?.length) {
+          control.options.forEach((option) => {
+            option.value = false;
+          });
+        }
       }
     });
 
@@ -582,8 +587,14 @@ export class CharacterService {
       return;
     }
     this._activeChar.controls.forEach(control => {
-      if (control.resetOn && control.counter) {
-        control.counter.value = structuredClone(control.counter?.max ?? 0);
+      if (control.resetOn) {
+        if (control.counter?.value !== undefined) {
+          control.counter.value = structuredClone(control.counter?.max ?? 0);
+        } else if (control.options) {
+          control.options.forEach((option) => {
+            option.value = false;
+          });
+        }
       }
     });
     char.controls = structuredClone(this._activeChar.controls);
