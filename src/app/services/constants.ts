@@ -11,6 +11,9 @@ export const CHARACTER_MODS = {
   damageRange: 0,
   damageDice: [] as Dice[],
   skills: [] as ModSkill[],
+  initiative: 0,
+  spellSaveDC: 0,
+  spellAttackPower: 0,
   maxAttunements: 3
 }
 

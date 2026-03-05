@@ -35,7 +35,8 @@
             </button>
           </div>
           <div class="column col-45">
-            <button class="special-mods" (click)="openControlsDialog()" mat-raised-button>Controls (Spell slots)</button>
+            <button class="special-mods" (click)="openControlsDialog()" mat-raised-button>Controls (Spell slots)
+            </button>
           </div>
         </div>
         @if (char?.controls) {
@@ -101,13 +102,21 @@
     <mat-icon>save_as</mat-icon>
     Save Character
   </button>
+  <button mat-menu-item class="menu-item" (click)="shortRest()">
+    <mat-icon>local_fire_department</mat-icon>
+    Short Rest
+  </button>
+  <button mat-menu-item class="menu-item" (click)="longRest()">
+    <mat-icon>hotel</mat-icon>
+    Long Rest
+  </button>
   @if (charService.hasChanges.value) {
     <button mat-menu-item class="menu-item" (click)="saveAndBack()">
       <mat-icon>follow_the_signs</mat-icon>
       Save Character changes & exit
     </button>
   }
-  <button mat-menu-item class="menu-item" routerLink="/home">
+  <button mat-menu-item class="menu-item" (click)="backToHome()">
     <mat-icon>backspace</mat-icon>
     @if (charService.hasChanges.value) {
       Discard Character changes & exit

@@ -20,11 +20,15 @@ export enum ModifierType {
   Disadvantage = 'disadvantage',
   Attunement = 'attunement',
   MaxAttunement = 'max_attunements',
+  Initiative = 'initiative',
+  SpellSaveDC = 'spell_saveDC',
+  SpellAttackPower = 'spell_attack_power'
 }
 
 export interface Modifier {
   type: ModifierType;
   amount?: number;
+  proficiency?: boolean;
   skill?: Skill;
   maxAC?: number;
   dice?: Dice;

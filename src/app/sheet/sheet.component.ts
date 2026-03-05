@@ -167,4 +167,19 @@ export class SheetComponent implements OnDestroy {
       disableClose: true
     });
   }
+
+  protected shortRest() {
+    this.charService.shortRest();
+  }
+
+  protected longRest() {
+    this.charService.longRest();
+  }
+
+  protected backToHome() {
+    if (this.charService.hasChanges.value) {
+
+    }
+
+  }
 }

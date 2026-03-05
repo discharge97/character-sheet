@@ -5,7 +5,7 @@
   </div>
   <div class="column col-33">
     <span class="title">Initiative</span>
-    <span>💪🏼 {{ character?.dex | abilityModifier }}</span>
+    <span>💪🏼 {{ initiativeBonus + +(character?.dex | abilityModifier) }}</span>
   </div>
   <div class="column col-33">
     <span class="title">Speed</span>

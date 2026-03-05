@@ -9,6 +9,7 @@ import {Subscription} from "rxjs";
 import {Dice} from "../../models/dice";
 import {AbilityScores, Skill, SkillAbility, SkillName} from "../../models/skill";
 import {MatHint} from "@angular/material/form-field";
+import {MatCheckbox} from "@angular/material/checkbox";
 
 @Component({
   selector: 'app-modifier-creation',
@@ -20,7 +21,8 @@ import {MatHint} from "@angular/material/form-field";
     MatOption,
     MatInput,
     MatButton,
-    MatHint
+    MatHint,
+    MatCheckbox
   ],
   templateUrl: './modifier-creation.component.html',
   styleUrl: './modifier-creation.component.scss'
@@ -36,6 +38,7 @@ export class ModifierCreationComponent implements OnDestroy {
   form = new FormGroup({
     type: new FormControl<ModifierType>(undefined!, Validators.required),
     amount: new FormControl<number>(undefined!),
+    proficiency: new FormControl<boolean>(undefined!),
     skill: new FormControl<Skill>(undefined!),
     maxAC: new FormControl<number>(undefined!),
     dice: new FormControl<Dice>(undefined!),

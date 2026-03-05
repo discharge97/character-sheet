@@ -15,6 +15,8 @@ import {MatOption, MatSelect} from "@angular/material/select";
 import {TitleCasePipe} from "@angular/common";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {MatIcon} from "@angular/material/icon";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
 
 // @ts-ignore
 @Component({
@@ -36,7 +38,10 @@ import {MatIcon} from "@angular/material/icon";
     MatSlideToggle,
     MatIcon,
     MatPrefix,
-    MatSuffix
+    MatSuffix,
+    MatCheckbox,
+    MatRadioButton,
+    MatRadioGroup
   ],
   templateUrl: './create-ui-control-dialog.component.html',
   styleUrl: './create-ui-control-dialog.component.scss'

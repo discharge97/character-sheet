@@ -47,6 +47,15 @@
         </mat-form-field>
       </div>
     }
+
+    <p>Reset counter on:</p>
+    <div class="row counter">
+      <mat-radio-group aria-label="Select an reset option" [(ngModel)]="control.resetOn">
+        <mat-radio-button labelPosition="after" [value]="undefined" checked>None</mat-radio-button>
+        <mat-radio-button value="S">Short Rest</mat-radio-button>
+        <mat-radio-button value="L">Long Rest</mat-radio-button>
+      </mat-radio-group>
+    </div>
   </div>
 </mat-dialog-content>
 

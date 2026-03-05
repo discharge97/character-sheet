@@ -8,7 +8,7 @@
     </mat-select>
   </mat-form-field>
 
-  @if (category === 'amount' || modType.value === 'ac' || modType.value === 'skill') {
+  @if (category === 'amount' || modType.value === 'ac' || modType.value === 'skill' || modType.value === 'initiative' || modType.value === 'spell_saveDC' || modType.value === 'spell_attack_power') {
     <mat-form-field class="input">
       <mat-label>Amount</mat-label>
       <input matInput type="number" formControlName="amount">
@@ -16,6 +16,10 @@
         <mat-hint>Base armor 10! Amount is added to it</mat-hint>
       }
     </mat-form-field>
+  }
+
+  @if (modType.value === 'initiative') {
+    <mat-checkbox labelPosition="after" formControlName="proficiency"> Add proficiency amount?</mat-checkbox>
   }
 
   <!--  ability & skill -->

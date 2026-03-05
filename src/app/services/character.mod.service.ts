@@ -4,6 +4,7 @@ import {Modifier, ModifierType} from "../models/modifier";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {AbilityScoreModifierPipe} from "../pipes/ability-score-modifier.pipe";
 import {CHARACTER_MODS} from "./constants";
+import {ProficiencyPipe} from "../pipes/proficiency.pipe";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import {CHARACTER_MODS} from "./constants";
 export class CharacterModService {
   constructor(
     private snackBar: MatSnackBar,
-    private abilityModifier: AbilityScoreModifierPipe
+    private abilityModifier: AbilityScoreModifierPipe,
+    private proficiency: ProficiencyPipe
   ) {
   }
 
@@ -36,6 +38,7 @@ export class CharacterModService {
     CHARACTER_MODS.damageMelee = 0;
     CHARACTER_MODS.damageRange = 0;
     CHARACTER_MODS.maxAttunements = 3;
+    CHARACTER_MODS.initiative = 0;
     CHARACTER_MODS.damageDice = [];
     CHARACTER_MODS.skills = [];
 
@@ -128,6 +131,18 @@ export class CharacterModService {
             modChar.attunement = 0;
           }
           modChar.attunement += modifier.amount ?? 0;
+          break;
+        case ModifierType.Initiative:
+          CHARACTER_MODS.initiative += (modifier.amount ?? 0);
+          if (modifier?.proficiency) {
+            CHARACTER_MODS.initiative += this.proficiency.transform(char);
+          }
+          break;
+        case ModifierType.SpellSaveDC:
+          CHARACTER_MODS.spellSaveDC += (modifier.amount ?? 0);
+          break;
+        case ModifierType.SpellAttackPower:
+          CHARACTER_MODS.spellAttackPower += (modifier.amount ?? 0);
           break;
         default:
           this.snackBar.open(`Invalid ModifierType: ${modifier?.type}!`, "OK");

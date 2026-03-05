@@ -56,4 +56,8 @@ export class CharStatsComponent {
   get charSpeed(): number {
     return (this.character?.speed ?? 0) + CHARACTER_MODS.speed;
   }
+
+  get initiativeBonus():number{
+    return CHARACTER_MODS.initiative;
+  }
 }

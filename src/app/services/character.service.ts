@@ -12,6 +12,7 @@ import {CharacterModService} from "./character.mod.service";
 import {Preferences} from "@capacitor/preferences";
 import {Spell} from "../models/spell";
 import {CustomUIControl} from '../models/custom-ui-control';
+import {MaxHealthPipe} from "../pipes/max-health.pipe";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class CharacterService {
   private $modChar: BehaviorSubject<Character | undefined> = new BehaviorSubject<Character | undefined>(undefined);
   public hasChanges: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  constructor(private snackBar: MatSnackBar, private modService: CharacterModService) {
+  constructor(private snackBar: MatSnackBar, private modService: CharacterModService, private maxHealthPipe: MaxHealthPipe) {
     Preferences.get({key: CHARACTERS}).then(res => {
       this.characters = JSON.parse(res.value ?? '[]');
     });
@@ -540,6 +541,52 @@ export class CharacterService {
     this._activeChar.controls[index] = structuredClone(control);
     const char = this.$modChar.value!;
     char.controls![index] = structuredClone(control);
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
+  }
+
+  shortRest() {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+
+    if (!this._activeChar.controls?.length) return;
+    this._activeChar.controls.forEach(control => {
+      if (control.resetOn === 'S' && control.counter) {
+        control.counter.value = structuredClone(control.counter?.max ?? 0);
+      }
+    });
+
+    const char = this.$modChar.value!;
+    char.controls = structuredClone(this._activeChar.controls);
+    this.$modChar.next(char);
+    this.hasChanges.next(true);
+  }
+
+  longRest() {
+    if (!this._activeChar) {
+      this.snackBar.open("Please select a character first!", "OK");
+      return;
+    }
+    this._activeChar.health = this.maxHealthPipe.transform(this.$modChar.value);
+    this._activeChar.temp_health = 0;
+
+    const char = this.$modChar.value!;
+    char.health = this._activeChar.health;
+    char.temp_health = 0;
+
+    if (!this._activeChar.controls?.length) {
+      this.$modChar.next(char);
+      this.hasChanges.next(true);
+      return;
+    }
+    this._activeChar.controls.forEach(control => {
+      if (control.resetOn && control.counter) {
+        control.counter.value = structuredClone(control.counter?.max ?? 0);
+      }
+    });
+    char.controls = structuredClone(this._activeChar.controls);
     this.$modChar.next(char);
     this.hasChanges.next(true);
   }
