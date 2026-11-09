@@ -50,7 +50,7 @@
       }
     </div>
   </mat-tab>
-  <mat-tab [label]="'Prepared Spells (' + learnedSpells.length + ')'">
+  <mat-tab [label]="'Learned Spells (' + learnedSpells.length + ')'">
     <div class="column content">
       @for (spell of learnedSpells; track spell) {
         <div class="column col-100 session" (click)="spellInfo(spell)">
