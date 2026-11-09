@@ -3,26 +3,26 @@
     margin-bottom: 5px;
     font-size: 12px;
     justify-content: space-between;
-    color: #8f8f8f;
+    color: var(--ink-muted);
 
     .value {
       font-weight: bold;
-      color: #3e3e3e;
+      color: var(--ink);
     }
 
     .component {
       &.s {
-        color: dodgerblue;
+        color: #345a73;
         font-weight: bold;
       }
 
       &.v {
-        color: forestgreen;
+        color: #41603c;
         font-weight: bold;
       }
 
       &.m {
-        color: goldenrod;
+        color: #805b19;
         font-weight: bold;
       }
 
@@ -33,7 +33,7 @@
   }
 
   .desc {
-    border-top: 1px solid lightgray;
+    border-top: 1px solid var(--rule);
     padding-top: 10px;
     font-size: 14px;
     white-space: pre-wrap;

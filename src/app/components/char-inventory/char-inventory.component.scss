@@ -9,7 +9,7 @@
 
 .inventory {
   .item {
-    border-bottom: 1px dotted lightgray;
+    border-bottom: 1px dotted var(--rule);
     padding-bottom: 2px;
     margin-bottom: 10px;
 
@@ -23,8 +23,8 @@
 
 
     .name {
-      color: darkslateblue;
-      border-bottom: 1px solid darkslateblue;
+      color: var(--wine);
+      border-bottom: 1px solid var(--wine);
       width: min-content;
     }
 

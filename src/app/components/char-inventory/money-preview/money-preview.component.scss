@@ -9,7 +9,7 @@
     align-items: center;
 
     .negative {
-      color: red;
+      color: var(--danger);
     }
 
     mat-icon {
@@ -18,19 +18,19 @@
 
     &.gold {
       mat-icon {
-        color: gold;
+        color: var(--coin-gold);
       }
     }
 
     &.silver {
       mat-icon {
-        color: silver;
+        color: var(--coin-silver);
       }
     }
 
     &.copper {
       mat-icon {
-        color: coral;
+        color: var(--coin-copper);
       }
     }
   }

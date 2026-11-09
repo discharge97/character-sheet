@@ -2,15 +2,24 @@
   margin-top: 10px;
 }
 
+.row > .column.col-40 {
+  width: 45%;
+}
+
 .ability-score {
   padding: 2px;
   text-align: center;
-  border: 2px solid lightgray;
-  border-radius: 15px;
-  color: #3e3e3e;
+  border: 1px solid var(--rule);
+  border-radius: 8px 8px 16px 16px;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--parchment-light), var(--parchment-deep));
+  box-shadow: inset 0 0 0 2px rgba(255, 249, 232, 0.6);
 
   .title {
-    font-size: 11px;
+    font-size: 9px;
+    color: var(--wine);
+    font-weight: 700;
+    overflow-wrap: anywhere;
   }
 
   & + .ability-score {
@@ -19,11 +28,14 @@
 
   .score {
     font-size: 36px;
+    line-height: 1.15;
   }
 }
 
 .skills {
   margin-left: 8px;
+  width: calc(55% - 8px);
+  min-width: 0;
   margin-top: 5px;
   margin-bottom: 5px;
   justify-content: space-around;
@@ -31,7 +43,7 @@
   .skill {
     font-size: 10px;
     padding-bottom: 2px;
-    border-bottom: 1px dashed lightgray;
+    border-bottom: 1px dashed var(--rule);
     position: relative;
     align-items: center;
 
@@ -54,11 +66,11 @@
       height: 13px;
 
       &.yes {
-        color: limegreen;
+        color: var(--success);
       }
 
       &.no {
-        color: crimson;
+        color: var(--danger);
       }
     }
   }

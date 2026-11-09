@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  min-width: 350px;
+  min-width: 0;
 
   .no {
-    color: crimson;
+    color: var(--danger);
   }
 }

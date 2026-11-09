@@ -1,32 +1,58 @@
 .content {
   align-items: center;
-  color: #3e3e3e;
+  color: var(--ink);
   margin: 0 auto;
-  padding-top: 20px;
+  padding: 32px 0 48px;
+
+  h3 {
+    margin: 0 0 24px;
+    text-align: center;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 65%;
+      margin: 12px auto 0;
+      border-bottom: 2px solid var(--brass);
+    }
+  }
 
   .char-actions {
     justify-content: space-between;
+    gap: 10px;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
+
+    button {
+      flex: 1;
+      min-width: 0;
+      padding: 0 8px;
+    }
   }
 }
 
 .char {
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  margin: 10px 10px;
-  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--wine);
+  border-radius: 4px;
+  margin: 8px 0;
+  padding: 14px;
   width: 100%;
+  background: linear-gradient(135deg, var(--parchment-light), var(--parchment));
+  box-shadow: 0 3px 8px rgba(72, 43, 34, 0.12);
 
   .title {
     font-weight: bold;
-    color: darkslateblue;
-    margin-bottom: 5px;
+    color: var(--wine);
+    margin-bottom: 8px;
     justify-content: space-between;
 
     .delete {
       margin-left: 15px;
-      color: crimson;
+      color: var(--danger);
     }
   }
 }

@@ -20,7 +20,7 @@
     height: 20px;
 
     .desc {
-      color: grey;
+      color: var(--ink-muted);
     }
 
     .name {
@@ -37,10 +37,10 @@ input[type="file"] {
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  min-width: 350px;
+  min-width: 0;
 
   .clear {
-    color: crimson;
-    border-color: crimson !important;
+    color: var(--danger);
+    border-color: var(--danger) !important;
   }
 }

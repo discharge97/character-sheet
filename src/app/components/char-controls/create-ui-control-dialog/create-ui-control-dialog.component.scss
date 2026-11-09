@@ -7,17 +7,17 @@
 }
 
 .create-option {
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid var(--rule);
   padding-bottom: 2px;
 }
 
 .delete {
-  color: crimson;
+  color: var(--danger);
 }
 
 .actions {
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  min-width: 300px;
+  min-width: 0;
 }

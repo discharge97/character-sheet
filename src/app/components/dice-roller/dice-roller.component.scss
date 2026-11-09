@@ -1,27 +1,27 @@
 .dice-roller {
   justify-content: center;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: var(--parchment-light);
   width: 250px;
 
   .dice {
     font-size: 164px;
     font-weight: bold;
-    color: #3e3e3e;
+    color: var(--ink);
 
     &.nat-1 {
-      color: crimson;
+      color: var(--danger);
     }
 
     &.nat-20 {
-      color: darkslateblue;
+      color: var(--wine);
     }
   }
 }
 
 .column.col-33 {
   padding: 0.5em;
-  background-color: whitesmoke;
+  background-color: var(--parchment-light);
 
   button {
     margin-bottom: 0.5em;

@@ -1,5 +1,5 @@
 .little-title {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--rule);
   padding-bottom: 2px;
   font-weight: bold;
 }
@@ -13,7 +13,7 @@
   align-items: center;
 
   .delete {
-    color: crimson;
+    color: var(--danger);
     margin-left: 10px;
   }
 }
@@ -47,5 +47,5 @@
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  min-width: 300px;
+  min-width: 0;
 }

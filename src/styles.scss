@@ -3,41 +3,172 @@
 @import '@fontsource-variable/lora';
 
 :root {
+  --ink: #34241b;
+  --ink-muted: #705847;
+  --parchment: #f3e7c9;
+  --parchment-light: #fbf3df;
+  --parchment-deep: #e4d1aa;
+  --leather: #482b22;
+  --leather-dark: #2d1b16;
+  --wine: #762f2b;
+  --brass: #a57735;
+  --rule: #b69a70;
+  --danger: #a12e2b;
+  --success: #41603c;
+  --coin-gold: #9a6a13;
+  --coin-silver: #626263;
+  --coin-copper: #a24f2e;
+
+  @include mat.theme-overrides((
+    primary: #762f2b,
+    on-primary: #fff7e7,
+    primary-container: #efdbb9,
+    on-primary-container: #49221b,
+    secondary: #66503a,
+    on-secondary: #fff7e7,
+    secondary-container: #e8d6b3,
+    on-secondary-container: #34241b,
+    tertiary: #665033,
+    on-tertiary: #fff7e7,
+    tertiary-container: #ebd8b2,
+    on-tertiary-container: #38291b,
+    background: #e4d1aa,
+    on-background: #34241b,
+    surface: #f7edda,
+    surface-bright: #fbf3df,
+    surface-dim: #e4d1aa,
+    surface-container-lowest: #fff9ec,
+    surface-container-low: #f7edda,
+    surface-container: #f0e2c6,
+    surface-container-high: #ead9b9,
+    surface-container-highest: #e2cda7,
+    surface-variant: #e8d8ba,
+    on-surface: #34241b,
+    on-surface-variant: #604d3d,
+    outline: #846b50,
+    outline-variant: #c9b18b,
+    error: #a12e2b,
+    on-error: #fff7e7,
+    error-container: #f6dbcf,
+    on-error-container: #6b1c1c,
+    inverse-surface: #482b22,
+    inverse-on-surface: #fff4df,
+    inverse-primary: #f3b8a9,
+    surface-tint: #762f2b,
+    body-large-font: ('Lora Variable', Georgia, serif),
+    body-medium-font: ('Lora Variable', Georgia, serif),
+    body-small-font: ('Lora Variable', Georgia, serif),
+    label-large-font: ('Lora Variable', Georgia, serif),
+    label-medium-font: ('Lora Variable', Georgia, serif),
+    label-small-font: ('Lora Variable', Georgia, serif),
+    title-large-font: ('Lora Variable', Georgia, serif),
+    title-medium-font: ('Lora Variable', Georgia, serif),
+    title-small-font: ('Lora Variable', Georgia, serif),
+    headline-small-font: ('Lora Variable', Georgia, serif)
+  ));
+
   @include mat.snack-bar-overrides((
-    supporting-text-color: white,
+    supporting-text-color: #fff7e7,
     supporting-text-weight: bold
   ));
 
   .mdc-snackbar:not(.success) {
     .mdc-snackbar__surface {
-      background-color: crimson !important;
+      background-color: #852d29 !important;
     }
   }
 
   .mdc-snackbar.success {
     .mdc-snackbar__surface {
-      background-color: green !important;
+      background-color: #41603c !important;
     }
   }
 
   .mdc-snackbar.info {
     .mdc-snackbar__surface {
-      background-color: #3e3e3e !important;
+      background-color: #482b22 !important;
     }
   }
 }
 
-//html, body {
-//  height: 100%;
-//  background: url("../public/icons/axe.png");
-//  background-repeat: space;
-//  background-color: rgba(255, 255, 255, 0.97);
-//  background-blend-mode: lighten;
-//}
-
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--ink);
+  font-family: 'Lora Variable', Georgia, serif;
+  background-color: var(--parchment);
+  background-image:
+    radial-gradient(ellipse at 15% 10%, rgba(255, 250, 232, 0.75), transparent 50%),
+    radial-gradient(ellipse at 85% 85%, rgba(166, 121, 67, 0.13), transparent 55%),
+    linear-gradient(110deg, #ead9b7, #f8efd9 48%, #ead8b5);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+  color: var(--wine);
+  font-family: 'Lora Variable', Georgia, serif;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+}
+
+.mat-mdc-dialog-surface,
+.mat-mdc-menu-panel,
+.mat-mdc-select-panel {
+  border: 1px solid var(--rule);
+}
+
+.mat-mdc-dialog-surface {
+  background-image: linear-gradient(135deg, rgba(255, 250, 235, 0.65), transparent 70%);
+}
+
+.mat-expansion-panel {
+  border: 1px solid var(--rule);
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  font-weight: 600;
+}
+
+.mat-mdc-tab-header {
+  background: rgba(72, 43, 34, 0.06);
+  border-bottom: 1px solid var(--rule);
+}
+
+.sheet > .mat-mdc-tab-header {
+  background: var(--leather);
+  border-top: 2px solid var(--brass);
+  border-bottom: 0;
+  @include mat.tabs-overrides((
+    active-label-text-color: #f6deb0,
+    inactive-label-text-color: #d3b995,
+    active-focus-label-text-color: #f6deb0,
+    active-hover-label-text-color: #fff4dc,
+    inactive-focus-label-text-color: #fff4dc,
+    inactive-hover-label-text-color: #fff4dc,
+    active-indicator-color: #d2a75a
+  ));
+}
+
+.sheet > .mat-mdc-tab-header .mat-mdc-tab {
+  min-width: 0;
+  padding: 0;
+  flex: 1 1 0;
+}
+
+.sheet > .mat-mdc-tab-body-wrapper {
+  flex: 1;
+  min-height: 0;
+}
+
+.mat-mdc-dialog-actions {
+  flex-wrap: wrap;
 }
 
 .row {
@@ -53,32 +184,29 @@ body {
   }
 
   &.gold {
-    --mdc-slider-handle-color: gold !important;
+    --mdc-slider-handle-color: var(--coin-gold) !important;
     @include mat.slider-overrides((
-      active-track-color: gold,
-      active-track-shape: gold,
-      focus-handle-color: gold,
-      label-container-color: gold,
+      active-track-color: var(--coin-gold),
+      focus-handle-color: var(--coin-gold),
+      label-container-color: var(--coin-gold),
     ));
   }
 
   &.silver {
-    --mdc-slider-handle-color: silver !important;
+    --mdc-slider-handle-color: var(--coin-silver) !important;
     @include mat.slider-overrides((
-      active-track-color: silver,
-      active-track-shape: silver,
-      focus-handle-color: silver,
-      label-container-color: silver,
+      active-track-color: var(--coin-silver),
+      focus-handle-color: var(--coin-silver),
+      label-container-color: var(--coin-silver),
     ));
   }
 
   &.copper {
-    --mdc-slider-handle-color: coral !important;
+    --mdc-slider-handle-color: var(--coin-copper) !important;
     @include mat.slider-overrides((
-      active-track-color: coral,
-      active-track-shape: coral,
-      focus-handle-color: coral,
-      label-container-color: coral,
+      active-track-color: var(--coin-copper),
+      focus-handle-color: var(--coin-copper),
+      label-container-color: var(--coin-copper),
     ));
   }
 
@@ -139,8 +267,8 @@ body {
   }
 }
 
-.mat-mdc-tab-body-content {
-  height: calc(100vh - 49px) !important;
+.sheet > .mat-mdc-tab-body-wrapper > .mat-mdc-tab-body > .mat-mdc-tab-body-content {
+  height: 100%;
 }
 
 .death-saves {
@@ -159,7 +287,7 @@ body {
   }
 
   input::placeholder {
-    color: lightgray !important;
+    color: var(--ink-muted) !important;
   }
 }
 

@@ -1,5 +1,5 @@
 .spell {
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid var(--rule);
 
   padding: 10px 0;
 }
@@ -32,6 +32,6 @@
 .close {
   width: 100%;
   margin-top: 20px;
-  color: crimson !important;
-  border-color: crimson !important;
+  color: var(--danger) !important;
+  border-color: var(--danger) !important;
 }

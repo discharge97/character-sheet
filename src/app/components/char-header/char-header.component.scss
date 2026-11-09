@@ -13,7 +13,7 @@
 
 .title {
   h4 {
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid var(--rule);
     width: 90%;
     margin-top: 8px;
     margin-left: 1em;
@@ -23,7 +23,7 @@
 
     .level {
       font-weight: normal;
-      color: gray;
+      color: var(--ink-muted);
     }
   }
 }
@@ -39,8 +39,8 @@
     p {
       font-style: italic;
       padding-left: 5px;
-      border-bottom: 1px solid lightgray;
-      color: darkgrey;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-muted);
       margin-top: 0;
     }
 
@@ -48,7 +48,7 @@
       font-weight: bold;
       font-style: normal;
       padding: 0 0.5em;
-      color: #3e3e3e;
+      color: var(--ink);
     }
   }
 }

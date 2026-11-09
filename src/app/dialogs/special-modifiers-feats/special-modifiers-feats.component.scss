@@ -6,23 +6,25 @@
 
 .mod-group {
   margin-top: 15px;
-  border: 1px solid lightgray;
+  border: 1px solid var(--rule);
   border-radius: 5px;
   padding: 10px;
+  background: rgba(255, 249, 232, 0.45);
 
   &.selected {
-    border-color: #3e3e3e;
+    border-color: var(--wine);
+    box-shadow: inset 3px 0 var(--wine);
   }
 
   .title {
     justify-content: space-between;
-    border-bottom: 1px solid darkslateblue;
+    border-bottom: 1px solid var(--wine);
     padding-bottom: 3px;
-    color: darkslateblue;
+    color: var(--wine);
     font-weight: bold;
 
     .delete {
-      color: crimson;
+      color: var(--danger);
       margin-left: 15px;
     }
   }
@@ -31,5 +33,5 @@
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  min-width: 350px;
+  min-width: 0;
 }
