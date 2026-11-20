@@ -3,7 +3,8 @@
 }
 
 h4 {
-  color: #3e3e3e;
+  color: var(--app-heading-color, #3e3e3e);
+  font-family: var(--app-display-font);
   text-align: center;
 }
 
@@ -28,19 +29,58 @@ h4 {
   position: absolute;
   right: 15px;
   bottom: 10svh;
-  opacity: 0.7;
+  border: 1px solid var(--app-card-border);
+  box-shadow: var(--app-card-shadow);
 }
 
 .settings {
-  position: absolute;
-  right: 23px;
-  bottom: 10svh;
-  opacity: 0.7;
-  z-index: 999;
+  position: fixed;
+  right: 6px;
+  bottom: 56px;
+  z-index: 10000;
+  background-color: var(--app-primary-color);
+  color: var(--app-on-primary-color);
+  border: 1px solid var(--app-card-border);
+  box-shadow: var(--app-card-shadow);
 }
 
 .special-mods {
   font-size: 12px;
   margin: 15px 0;
   height: 32px;
+}
+
+.discard {
+  color: var(--app-danger-color);
+}
+
+.theme-swatch {
+  display: inline-flex;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 50%;
+  box-sizing: border-box;
+
+  &--plain { background: linear-gradient(135deg, #dce2e8 50%, #526477 50%); }
+  &--paper { background: linear-gradient(135deg, #f8e9cb 50%, #982c38 50%); }
+  &--scifi { background: linear-gradient(135deg, #bceaff 50%, #006d9c 50%); }
+  &--nature { background: linear-gradient(135deg, #c2edc2 50%, #176b36 50%); }
+  &--steampunk { background: linear-gradient(135deg, #d4e4ea 50%, #865026 50%); }
+  &--dark { background: linear-gradient(135deg, #b9b4c3 50%, #393b42 50%); }
+}
+
+.theme-check {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #273044;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
 }

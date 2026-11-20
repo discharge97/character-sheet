@@ -32,6 +32,7 @@ import {
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatBadge} from "@angular/material/badge";
 import {ConfirmationDialogComponent} from "../dialogs/confirmation-dialog/confirmation-dialog.component";
+import {CHARACTER_THEMES, CharacterTheme, ThemeService} from "../services/theme.service";
 
 @Component({
   selector: 'app-sheet',
@@ -64,8 +65,10 @@ import {ConfirmationDialogComponent} from "../dialogs/confirmation-dialog/confir
 export class SheetComponent implements OnDestroy {
   uuid?: string;
   char?: Character;
+  readonly themes = CHARACTER_THEMES;
   selectedIndex: number = 1;
   private sub?: Subscription;
+  private destroyed = false;
 
   constructor(
     public charService: CharacterService,
@@ -73,17 +76,30 @@ export class SheetComponent implements OnDestroy {
     private router: Router,
     private snackBar: MatSnackBar,
     private clipboard: Clipboard,
-    private dialog: MatDialog) {
-    firstValueFrom(this.route.params).then(res => {
+    private dialog: MatDialog,
+    private themeService: ThemeService) {
+    firstValueFrom(this.route.params).then(async res => {
       this.uuid = res['uuid'];
       if (!this.uuid) return;
-      if (!this.charService.setActiveCharacter(this.uuid)) {
+      const activated = await this.charService.setActiveCharacter(this.uuid);
+      if (this.destroyed) return;
+      if (!activated) {
         this.router.navigate(['home']);
         return;
       }
       this.sub = this.charService.getCharacter()?.subscribe(char => {
         this.char = char;
       });
+      const activeCharacter = this.charService.getCharacter()?.value;
+      if (activeCharacter) {
+        try {
+          const theme = await this.themeService.activateCharacter(activeCharacter.uuid, activeCharacter.theme);
+          if (theme) this.charService.setActiveCharacterTheme(activeCharacter.uuid, theme);
+        } catch (error) {
+          console.error('Unable to load character theme:', error);
+          this.snackBar.open("Unable to load this character's theme. Using Plain.", 'OK');
+        }
+      }
     });
   }
 
@@ -97,7 +113,22 @@ export class SheetComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroyed = true;
     this.sub?.unsubscribe();
+    this.themeService.clearActiveTheme();
+  }
+
+  async selectTheme(theme: CharacterTheme): Promise<void> {
+    const uuid = this.char?.uuid;
+    if (!uuid) return;
+    try {
+      if (await this.themeService.setCharacterTheme(uuid, theme)) {
+        this.charService.setActiveCharacterTheme(uuid, theme);
+      }
+    } catch (error) {
+      console.error('Unable to save character theme:', error);
+      this.snackBar.open("Unable to save this character's theme. Please try again.", 'OK');
+    }
   }
 
   saveChar(): boolean {

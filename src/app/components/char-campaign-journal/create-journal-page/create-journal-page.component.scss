@@ -1,8 +1,8 @@
 .title {
   font-weight: bold;
-  color: #3e3e3e;
+  color: var(--app-heading-color, #3e3e3e);
   text-align: center;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--app-divider-color);
   padding-bottom: 5px;
   margin: 20px;
 }

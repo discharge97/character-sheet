@@ -13,6 +13,7 @@ import {Preferences} from "@capacitor/preferences";
 import {Spell} from "../models/spell";
 import {CustomUIControl} from '../models/custom-ui-control';
 import {MaxHealthPipe} from "../pipes/max-health.pipe";
+import type {CharacterTheme} from "./theme.service";
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,16 @@ export class CharacterService {
 
     this.modCharacter();
     return true;
+  }
+
+  setActiveCharacterTheme(uuid: string, theme: CharacterTheme): void {
+    if (this._activeChar?.uuid !== uuid) return;
+    this._activeChar.theme = theme;
+
+    const char = this.$modChar.value;
+    if (!char) return;
+    char.theme = theme;
+    this.$modChar.next(char);
   }
 
   saveActiveCharacter(uuid: string): boolean {

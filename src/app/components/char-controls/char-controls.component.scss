@@ -17,8 +17,9 @@
 
   .slider-group {
     min-width: calc(50% - 20px);
-    border: 1px solid lightgray;
-    border-radius: 10px;
+    border: 1px solid var(--app-card-border);
+    border-radius: var(--app-card-radius);
+    background: linear-gradient(135deg, var(--app-card-start), var(--app-card-end));
     padding: 5px;
     margin-bottom: 10px;
 

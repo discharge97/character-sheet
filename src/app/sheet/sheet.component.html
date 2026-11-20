@@ -1,5 +1,5 @@
 <mat-tab-group headerPosition="below" class="sheet" [(selectedIndex)]="selectedIndex">
-  <mat-tab>
+  <mat-tab aria-label="Inventory">
     <ng-template mat-tab-label>
       <mat-icon class="icon-label">backpack</mat-icon>
     </ng-template>
@@ -11,7 +11,7 @@
       </button>
     </div>
   </mat-tab>
-  <mat-tab>
+  <mat-tab aria-label="Character">
     <ng-template mat-tab-label>
       <mat-icon class="icon-label">contact_page</mat-icon>
     </ng-template>
@@ -49,7 +49,7 @@
       <mat-icon>casino</mat-icon>
     </button>
   </mat-tab>
-  <mat-tab>
+  <mat-tab aria-label="Class features">
     <ng-template mat-tab-label>
       <mat-icon class="icon-label">sports_martial_arts</mat-icon>
     </ng-template>
@@ -61,7 +61,7 @@
       </button>
     </div>
   </mat-tab>
-  <mat-tab>
+  <mat-tab aria-label="Spellbook">
     <ng-template mat-tab-label>
       <mat-icon class="icon-label">menu_book</mat-icon>
     </ng-template>
@@ -73,7 +73,7 @@
       </button>
     </div>
   </mat-tab>
-  <mat-tab>
+  <mat-tab aria-label="Campaign journal">
     <ng-template mat-tab-label>
       <mat-icon class="icon-label">book</mat-icon>
     </ng-template>
@@ -86,10 +86,15 @@
     </button>
   </mat-tab>
 </mat-tab-group>
-<button mat-mini-fab aria-label="Settings" class="settings" [matMenuTriggerFor]="menu">
+<button mat-mini-fab aria-label="Settings" class="settings"
+        [matMenuTriggerFor]="menu">
   <mat-icon>settings</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
+  <button mat-menu-item class="menu-item" [matMenuTriggerFor]="themeMenu">
+    <mat-icon>palette</mat-icon>
+    Theme
+  </button>
   <button mat-menu-item class="menu-item" (click)="shortRest()">
     <mat-icon>local_fire_department</mat-icon>
     Short Rest
@@ -119,9 +124,22 @@
   <button mat-menu-item class="menu-item" (click)="backToHome()">
     <mat-icon>backspace</mat-icon>
     @if (charService.hasChanges.value) {
-      <span style="color: firebrick">Discard</span> Character changes & exit
+      <span class="discard">Discard</span> Character changes & exit
     } @else {
       Exit
     }
   </button>
+</mat-menu>
+<mat-menu #themeMenu="matMenu" aria-label="Character theme">
+  @for (theme of themes; track theme.value) {
+    <button mat-menu-item class="menu-item" role="menuitemradio"
+            [attr.aria-checked]="(char?.theme ?? 'plain') === theme.value" (click)="selectTheme(theme.value)">
+      <span matMenuItemIcon class="theme-swatch theme-swatch--{{ theme.value }}" aria-hidden="true">
+        @if ((char?.theme ?? 'plain') === theme.value) {
+          <span class="theme-check">&#10003;</span>
+        }
+      </span>
+      <span>{{ theme.label }}</span>
+    </button>
+  }
 </mat-menu>

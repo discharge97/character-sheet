@@ -3,7 +3,7 @@
 }
 
 .decoration {
-  color: #3e3e3e;
+  color: var(--app-heading-color, #3e3e3e);
   font-size: 14px;
 }
 

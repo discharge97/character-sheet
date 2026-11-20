@@ -1,10 +1,10 @@
 .spell-specs {
   font-size: 14px;
   padding: 0 10px;
-  color: gray;
+  color: var(--app-muted-color);
 
   .value {
-    color: #3e3e3e;
+    color: var(--app-heading-color, #3e3e3e);
   }
 }
 
@@ -12,14 +12,13 @@
   margin: 0 auto 50px;
 
   .session {
-    border-bottom: 1px solid lightgray;
-    padding-bottom: 10px;
-    color: #3e3e3e;
+    margin-top: 10px;
+    color: var(--app-heading-color, #3e3e3e);
 
     .title {
       font-weight: bold;
       margin-bottom: 5px;
-      margin-top: 10px;
+      margin-top: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -27,10 +26,10 @@
       align-items: center;
 
       .name {
-        color: darkslateblue;
+        color: var(--app-accent-color, darkslateblue);
         font-weight: bold;
         font-size: 14px;
-        border-bottom: 1px solid darkslateblue;
+        border-bottom: 1px solid var(--app-accent-color, darkslateblue);
       }
 
       .actions {
@@ -41,7 +40,7 @@
       }
 
       .delete {
-        color: crimson;
+        color: var(--app-danger-color);
       }
     }
 
@@ -50,11 +49,11 @@
       font-size: 12px;
       justify-content: space-between;
       align-items: center;
-      color: #8f8f8f;
+      color: var(--app-muted-color);
 
       .value {
         font-weight: bold;
-        color: #3e3e3e;
+        color: var(--app-heading-color, #3e3e3e);
 
         & + .value {
           margin-left: 10px;
@@ -66,11 +65,11 @@
 
         .component {
           &.bracket {
-            color: lightgrey;
+            color: var(--app-muted-color);
           }
 
           &.c {
-            color: grey;
+            color: var(--app-muted-color);
 
             mat-icon {
               font-size: 16px;
@@ -79,7 +78,7 @@
           }
 
           &.r {
-            color: rebeccapurple;
+            color: var(--app-spell-ritual-color);
 
             mat-icon {
               font-size: 22px;
@@ -88,17 +87,17 @@
           }
 
           &.s {
-            color: dodgerblue;
+            color: var(--app-spell-somatic-color);
             font-weight: bold;
           }
 
           &.v {
-            color: forestgreen;
+            color: var(--app-spell-verbal-color);
             font-weight: bold;
           }
 
           &.m {
-            color: goldenrod;
+            color: var(--app-spell-material-color);
             font-weight: bold;
           }
 

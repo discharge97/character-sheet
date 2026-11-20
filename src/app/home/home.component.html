@@ -7,7 +7,7 @@
   </div>
 
   @for (char of characters; track char.uuid) {
-    <div class="column char" (click)="openCharSheet(char?.uuid)">
+    <div class="column char themed-card" (click)="openCharSheet(char?.uuid)">
       <span class="title row">
         <span>{{ char?.name }} {{ char?.level }}</span>
         <span>

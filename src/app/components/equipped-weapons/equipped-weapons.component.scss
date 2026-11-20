@@ -3,13 +3,13 @@
   text-align: center;
   font-size: 12px;
   padding-bottom: 5px;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--app-divider-color);
   margin: 10px auto;
 }
 
 .name {
-  border-bottom: 1px solid darkslateblue;
-  color: darkslateblue;
+  border-bottom: 1px solid var(--app-accent-color, darkslateblue);
+  color: var(--app-accent-color, darkslateblue);
 }
 
 .row {
@@ -19,10 +19,10 @@
   justify-content: space-between;
   width: 100%;
   margin-left: 15px;
-  border-bottom: 1px dashed lightgray;
+  border-bottom: 1px dashed var(--app-divider-color);
 }
 
 .dmg {
-  color: #3e3e3e;
+  color: var(--app-heading-color, #3e3e3e);
   margin-left: 10px;
 }

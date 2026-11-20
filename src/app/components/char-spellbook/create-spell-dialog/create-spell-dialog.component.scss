@@ -3,12 +3,12 @@
     align-items: center;
 
     .ritual {
-      color: rebeccapurple;
+      color: var(--app-spell-ritual-color);
       margin-right: 5px;
     }
 
     .conce {
-      color: grey;
+      color: var(--app-muted-color);
       margin-right: 5px;
     }
   }
@@ -40,6 +40,6 @@
   max-width: 600px;
 
   .close {
-    color: crimson;
+    color: var(--app-danger-color);
   }
 }

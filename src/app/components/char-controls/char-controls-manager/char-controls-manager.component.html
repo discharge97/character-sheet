@@ -6,9 +6,9 @@
     @for (control of data; track control.uuid) {
       <span class="row control spread-between">
         <span class="row">
-          <mat-icon inline class="move-icon" [style.color]="$index === 0?'lightgray':'royalblue'"
+          <mat-icon inline class="move-icon" [class.move-disabled]="$index === 0"
                     (click)="$index === 0?undefined: moveControl($index,$index-1)">arrow_upward</mat-icon>
-          <mat-icon inline class="move-icon" [style.color]="$index === data.length-1?'lightgray':'royalblue'"
+          <mat-icon inline class="move-icon" [class.move-disabled]="$index === data.length-1"
                     (click)="$index === data.length-1?undefined: moveControl($index,$index+ 1)">arrow_downward</mat-icon>
         <span>{{ control.type | titlecase }}: {{ control.title | titlecase }}</span>
         </span>

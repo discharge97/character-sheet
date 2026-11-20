@@ -8,7 +8,7 @@
   <mat-tab [label]="'Prepared Spells (' + preparedSpells.length + ')'">
     <div class="column content">
       @for (spell of preparedSpells; track spell) {
-        <div class="column col-100 session" (click)="spellInfo(spell)">
+        <div class="column col-100 session themed-card" (click)="spellInfo(spell)">
       <span class="row title">
         <span class="name">{{ spell?.name | titlecase }}</span>
         <span class="actions">
@@ -53,7 +53,7 @@
   <mat-tab [label]="'Prepared Spells (' + learnedSpells.length + ')'">
     <div class="column content">
       @for (spell of learnedSpells; track spell) {
-        <div class="column col-100 session" (click)="spellInfo(spell)">
+        <div class="column col-100 session themed-card" (click)="spellInfo(spell)">
       <span class="row title">
         <span class="name">{{ spell?.name | titlecase }}</span>
         <span class="actions">
@@ -95,5 +95,4 @@
     </div>
   </mat-tab>
 </mat-tab-group>
-
 

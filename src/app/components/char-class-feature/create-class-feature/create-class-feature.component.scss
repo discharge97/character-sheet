@@ -1,8 +1,8 @@
 .title {
   font-weight: bold;
-  color: #3e3e3e;
+  color: var(--app-heading-color, #3e3e3e);
   text-align: center;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--app-divider-color);
   padding-bottom: 5px;
   margin: 20px;
 }
@@ -12,7 +12,7 @@
 }
 
 .decoration {
-  color: #3e3e3e;
+  color: var(--app-heading-color, #3e3e3e);
   font-size: 14px;
 }
 
@@ -23,8 +23,8 @@
   min-width: 300px;
 
   .delete {
-    color: crimson;
-    border-color: crimson;
+    color: var(--app-danger-color);
+    border-color: var(--app-danger-color);
   }
 }
 
@@ -33,7 +33,7 @@
 
   .mod-item {
     justify-content: space-between;
-    border-bottom: 1px dashed lightgray;
+    border-bottom: 1px dashed var(--app-divider-color);
     align-items: center;
   }
 }

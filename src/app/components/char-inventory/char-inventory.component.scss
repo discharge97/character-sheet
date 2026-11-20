@@ -9,9 +9,12 @@
 
 .inventory {
   .item {
-    border-bottom: 1px dotted lightgray;
-    padding-bottom: 2px;
-    margin-bottom: 10px;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    border: 1px solid var(--app-divider-color);
+    border-radius: var(--app-card-radius);
+    background-color: var(--app-surface-container-low-color);
 
     .row {
       white-space: nowrap;
@@ -23,8 +26,8 @@
 
 
     .name {
-      color: darkslateblue;
-      border-bottom: 1px solid darkslateblue;
+      color: var(--app-accent-color, darkslateblue);
+      border-bottom: 1px solid var(--app-accent-color, darkslateblue);
       width: min-content;
     }
 

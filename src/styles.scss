@@ -27,17 +27,407 @@
   }
 }
 
-//html, body {
-//  height: 100%;
-//  background: url("../public/icons/axe.png");
-//  background-repeat: space;
-//  background-color: rgba(255, 255, 255, 0.97);
-//  background-blend-mode: lighten;
-//}
+html {
+  --app-page-color: #fafafa;
+  --app-page-pattern: url('/theme-patterns/plain.svg');
+  --app-heading-color: #252a31;
+  --app-accent-color: #526477;
+  --app-body-text-color: #252a31;
+  --app-muted-color: #5d626b;
+  --app-divider-color: #d5d8dc;
+  --app-card-start: #ffffff;
+  --app-card-end: #f0f1f2;
+  --app-card-border: #d1d4d8;
+  --app-card-shadow: 0 3px 10px rgba(35, 40, 48, 0.10);
+  --app-card-radius: 14px;
+  --app-display-font: Roboto, "Helvetica Neue", sans-serif;
+  --app-nav-color: #ffffff;
+  --app-page-glow: rgba(90, 101, 114, 0.07);
+  --app-danger-color: #b51e38;
+  --app-success-color: #1e682e;
+  --app-coin-gold: #754c00;
+  --app-coin-silver: #485a70;
+  --app-coin-copper: #883919;
+  --app-spell-ritual-color: #63358f;
+  --app-spell-somatic-color: #005a9e;
+  --app-spell-verbal-color: #21662f;
+  --app-spell-material-color: #754d00;
+  --app-background-color: #fafafa;
+  --app-surface-color: #ffffff;
+  --app-surface-container-color: #eeeeef;
+  --app-surface-container-low-color: #f7f7f7;
+  --app-surface-container-high-color: #e7e8e9;
+  --app-surface-container-highest-color: #dedfe1;
+  --app-surface-variant-color: #e5e6e8;
+  --app-text-color: #252a31;
+  --app-text-variant-color: #4b5159;
+  --app-outline-color: #686e76;
+  --app-outline-variant-color: #c5c8cc;
+  --app-primary-color: #526477;
+  --app-on-primary-color: #ffffff;
+  --app-primary-container-color: #dce2e8;
+  --app-on-primary-container-color: #303b48;
+  --app-secondary-color: #625e57;
+  --app-on-secondary-color: #ffffff;
+  --app-secondary-container-color: #e8e4de;
+  --app-on-secondary-container-color: #39352f;
+  --app-tertiary-color: #496a68;
+  --app-on-tertiary-color: #ffffff;
+  --app-tertiary-container-color: #dce8e5;
+  --app-on-tertiary-container-color: #2c4442;
+  --app-error-color: #ba1a1a;
+  --app-error-container-color: #ffdad6;
+  --app-on-error-color: #ffffff;
+  --app-on-error-container-color: #93000a;
+  --mat-sys-background: var(--app-background-color);
+  --mat-sys-on-background: var(--app-text-color);
+  --mat-sys-surface: var(--app-surface-color);
+  --mat-sys-surface-bright: var(--app-surface-color);
+  --mat-sys-surface-dim: var(--app-surface-container-highest-color);
+  --mat-sys-on-surface: var(--app-text-color);
+  --mat-sys-surface-container: var(--app-surface-container-color);
+  --mat-sys-surface-container-low: var(--app-surface-container-low-color);
+  --mat-sys-surface-container-lowest: var(--app-card-start);
+  --mat-sys-surface-container-high: var(--app-surface-container-high-color);
+  --mat-sys-surface-container-highest: var(--app-surface-container-highest-color);
+  --mat-sys-surface-variant: var(--app-surface-variant-color);
+  --mat-sys-on-surface-variant: var(--app-text-variant-color);
+  --mat-sys-outline: var(--app-outline-color);
+  --mat-sys-outline-variant: var(--app-outline-variant-color);
+  --mat-sys-primary: var(--app-primary-color);
+  --mat-sys-on-primary: var(--app-on-primary-color);
+  --mat-sys-primary-container: var(--app-primary-container-color);
+  --mat-sys-on-primary-container: var(--app-on-primary-container-color);
+  --mat-sys-secondary: var(--app-secondary-color);
+  --mat-sys-on-secondary: var(--app-on-secondary-color);
+  --mat-sys-secondary-container: var(--app-secondary-container-color);
+  --mat-sys-on-secondary-container: var(--app-on-secondary-container-color);
+  --mat-sys-tertiary: var(--app-tertiary-color);
+  --mat-sys-on-tertiary: var(--app-on-tertiary-color);
+  --mat-sys-tertiary-container: var(--app-tertiary-container-color);
+  --mat-sys-on-tertiary-container: var(--app-on-tertiary-container-color);
+  --mat-sys-surface-tint: var(--app-primary-color);
+  --mat-sys-error: var(--app-error-color);
+  --mat-sys-error-container: var(--app-error-container-color);
+  --mat-sys-on-error: var(--app-on-error-color);
+  --mat-sys-on-error-container: var(--app-on-error-container-color);
+
+  @include mat.expansion-overrides((
+    container-background-color: var(--app-card-start),
+    container-text-color: var(--app-text-color),
+    container-shape: var(--app-card-radius),
+    header-description-color: var(--app-heading-color),
+    header-indicator-color: var(--app-accent-color)
+  ));
+  @include mat.menu-overrides((
+    container-color: var(--app-card-start),
+    container-shape: var(--app-card-radius),
+    item-label-text-color: var(--app-text-color),
+    item-icon-color: var(--app-accent-color)
+  ));
+  @include mat.dialog-overrides((
+    container-color: var(--app-card-start),
+    container-shape: var(--app-card-radius),
+    subhead-color: var(--app-heading-color),
+    supporting-text-color: var(--app-text-color)
+  ));
+}
+
+html[data-theme='paper'] {
+  --app-page-color: #fcf5e6;
+  --app-page-pattern: url('/theme-patterns/paper.svg');
+  --app-heading-color: #44291c;
+  --app-accent-color: #982c38;
+  --app-body-text-color: #44291c;
+  --app-muted-color: #70513a;
+  --app-divider-color: #d8be94;
+  --app-card-start: #fff9ec;
+  --app-card-end: #f6e1ba;
+  --app-card-border: #d8b77c;
+  --app-card-shadow: 0 3px 10px rgba(115, 64, 27, 0.14);
+  --app-card-radius: 9px;
+  --app-display-font: "Lora Variable", Georgia, serif;
+  --app-nav-color: #fff4de;
+  --app-page-glow: rgba(224, 153, 55, 0.20);
+  --app-background-color: #fcf5e6;
+  --app-surface-color: #fff9ec;
+  --app-surface-container-color: #f4e3c2;
+  --app-surface-container-low-color: #fcf0d7;
+  --app-surface-container-high-color: #efd9b2;
+  --app-surface-container-highest-color: #e8cfa2;
+  --app-surface-variant-color: #efdbbb;
+  --app-text-color: #44291c;
+  --app-text-variant-color: #664a35;
+  --app-outline-color: #856848;
+  --app-outline-variant-color: #ceb18a;
+  --app-primary-color: #982c38;
+  --app-primary-container-color: #ffd9d8;
+  --app-on-primary-container-color: #5f1722;
+  --app-secondary-color: #80541f;
+  --app-secondary-container-color: #f9dfb5;
+  --app-on-secondary-container-color: #50320e;
+  --app-tertiary-color: #8e580a;
+  --app-tertiary-container-color: #ffdf9f;
+  --app-on-tertiary-container-color: #573500;
+}
+
+html[data-theme='scifi'] {
+  --app-page-color: #eff9ff;
+  --app-page-pattern: url('/theme-patterns/scifi.svg');
+  --app-heading-color: #11354b;
+  --app-accent-color: #006d9c;
+  --app-body-text-color: #11354b;
+  --app-muted-color: #365d74;
+  --app-divider-color: #a9d2e5;
+  --app-card-start: #f5fcff;
+  --app-card-end: #d5efff;
+  --app-card-border: #9acfe6;
+  --app-card-shadow: 0 3px 12px rgba(0, 100, 145, 0.14);
+  --app-card-radius: 9px;
+  --app-nav-color: #edfbff;
+  --app-page-glow: rgba(29, 173, 221, 0.18);
+  --app-background-color: #eff9ff;
+  --app-surface-color: #f5fcff;
+  --app-surface-container-color: #d9f0fd;
+  --app-surface-container-low-color: #edf9ff;
+  --app-surface-container-high-color: #cde9f9;
+  --app-surface-container-highest-color: #c0e1f2;
+  --app-surface-variant-color: #cfe9f4;
+  --app-text-color: #11354b;
+  --app-text-variant-color: #385e71;
+  --app-outline-color: #557c8f;
+  --app-outline-variant-color: #a8cddf;
+  --app-primary-color: #006d9c;
+  --app-primary-container-color: #bceaff;
+  --app-on-primary-container-color: #003e5a;
+  --app-secondary-color: #345b9a;
+  --app-secondary-container-color: #d5e4ff;
+  --app-on-secondary-container-color: #203d70;
+  --app-tertiary-color: #006f78;
+  --app-tertiary-container-color: #a7eff2;
+  --app-on-tertiary-container-color: #00474e;
+}
+
+html[data-theme='nature'] {
+  --app-page-color: #f1faeb;
+  --app-page-pattern: url('/theme-patterns/nature.svg');
+  --app-heading-color: #263d27;
+  --app-accent-color: #176b36;
+  --app-body-text-color: #263d27;
+  --app-muted-color: #4e6749;
+  --app-divider-color: #c5b99f;
+  --app-card-start: #f8fff2;
+  --app-card-end: #d9efce;
+  --app-card-border: #b5a27f;
+  --app-card-shadow: 0 3px 10px rgba(45, 99, 42, 0.16);
+  --app-card-radius: 18px;
+  --app-nav-color: #f0faea;
+  --app-page-glow: rgba(55, 153, 57, 0.22);
+  --app-background-color: #f1faeb;
+  --app-surface-color: #f8fff2;
+  --app-surface-container-color: #ddedd4;
+  --app-surface-container-low-color: #eef8e8;
+  --app-surface-container-high-color: #d1e5c7;
+  --app-surface-container-highest-color: #c5dbb9;
+  --app-surface-variant-color: #d5e9cb;
+  --app-text-color: #263d27;
+  --app-text-variant-color: #485e43;
+  --app-outline-color: #637b5c;
+  --app-outline-variant-color: #abc7a2;
+  --app-primary-color: #176b36;
+  --app-primary-container-color: #c2edc2;
+  --app-on-primary-container-color: #124722;
+  --app-secondary-color: #70451f;
+  --app-secondary-container-color: #f2dfc8;
+  --app-on-secondary-container-color: #4b2d13;
+  --app-tertiary-color: #78552c;
+  --app-tertiary-container-color: #f0e2c6;
+  --app-on-tertiary-container-color: #503713;
+}
+
+html[data-theme='steampunk'] {
+  --app-page-color: #f7f1e7;
+  --app-page-pattern: url('/theme-patterns/steampunk.svg');
+  --app-heading-color: #39342e;
+  --app-accent-color: #86451f;
+  --app-body-text-color: #39342e;
+  --app-muted-color: #66584b;
+  --app-divider-color: #c9b99c;
+  --app-card-start: #fff8e9;
+  --app-card-end: #ddd6c9;
+  --app-card-border: #baa886;
+  --app-card-shadow: 0 3px 10px rgba(78, 60, 42, 0.17);
+  --app-card-radius: 8px;
+  --app-display-font: "Lora Variable", Georgia, serif;
+  --app-nav-color: #f4ede0;
+  --app-page-glow: rgba(184, 125, 57, 0.19);
+  --app-background-color: #f7f1e7;
+  --app-surface-color: #fff8e9;
+  --app-surface-container-color: #e5ddcf;
+  --app-surface-container-low-color: #f4ecdf;
+  --app-surface-container-high-color: #dcd3c4;
+  --app-surface-container-highest-color: #d1c7b8;
+  --app-surface-variant-color: #e1d8c8;
+  --app-text-color: #39342e;
+  --app-text-variant-color: #60574d;
+  --app-outline-color: #796c5c;
+  --app-outline-variant-color: #c6b8a4;
+  --app-primary-color: #865026;
+  --app-primary-container-color: #ffddbc;
+  --app-on-primary-container-color: #542f12;
+  --app-secondary-color: #4b626c;
+  --app-secondary-container-color: #d4e4ea;
+  --app-on-secondary-container-color: #2c434d;
+  --app-tertiary-color: #775c12;
+  --app-tertiary-container-color: #f5e0a1;
+  --app-on-tertiary-container-color: #493800;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --app-page-color: #303239;
+  --app-page-pattern: url('/theme-patterns/dark.svg');
+  --app-heading-color: #f0eff2;
+  --app-accent-color: #b9b7c1;
+  --app-body-text-color: #f0eff2;
+  --app-muted-color: #c6c5cc;
+  --app-divider-color: #5c5e67;
+  --app-card-start: #393b42;
+  --app-card-end: #303239;
+  --app-card-border: #5c5e67;
+  --app-card-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+  --app-nav-color: #303239;
+  --app-page-glow: rgba(132, 140, 153, 0.10);
+  --app-danger-color: #ff9aab;
+  --app-success-color: #95daa1;
+  --app-coin-gold: #f4c968;
+  --app-coin-silver: #d1d8e6;
+  --app-coin-copper: #f4aa88;
+  --app-spell-ritual-color: #d0c4df;
+  --app-spell-somatic-color: #9bceff;
+  --app-spell-verbal-color: #9bdfa9;
+  --app-spell-material-color: #f2cf7d;
+  --app-background-color: #303239;
+  --app-surface-color: #303239;
+  --app-surface-container-color: #393b42;
+  --app-surface-container-low-color: #303239;
+  --app-surface-container-high-color: #42444b;
+  --app-surface-container-highest-color: #4b4d55;
+  --app-surface-variant-color: #51535b;
+  --app-text-color: #f0eff2;
+  --app-text-variant-color: #d1d0d5;
+  --app-outline-color: #aaa9b1;
+  --app-outline-variant-color: #5c5e67;
+  --app-primary-color: #b9b4c3;
+  --app-on-primary-color: #29272e;
+  --app-primary-container-color: #514e57;
+  --app-on-primary-container-color: #eeebf1;
+  --app-secondary-color: #ffb19b;
+  --app-on-secondary-color: #4d1808;
+  --app-secondary-container-color: #754234;
+  --app-on-secondary-container-color: #ffded4;
+  --app-tertiary-color: #8ad9d0;
+  --app-on-tertiary-color: #003731;
+  --app-tertiary-container-color: #354c49;
+  --app-on-tertiary-container-color: #c2d5d2;
+  --app-error-color: #ffb4ab;
+  --app-error-container-color: #73363a;
+  --app-on-error-color: #690005;
+  --app-on-error-container-color: #ffdad6;
+}
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--app-page-color);
+  background-image: var(--app-page-pattern),
+    radial-gradient(ellipse at 85% 0%, var(--app-page-glow), transparent 55%);
+  background-size: 192px 192px, 100% 100%;
+  background-repeat: repeat, no-repeat;
+  color: var(--app-body-text-color);
+}
+
+html[data-theme='paper'],
+html[data-theme='scifi'],
+html[data-theme='nature'],
+html[data-theme='steampunk'] {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] h1,
+html[data-theme='dark'] h2,
+html[data-theme='dark'] h3,
+html[data-theme='dark'] h4,
+html[data-theme='dark'] h5,
+html[data-theme='dark'] p,
+html[data-theme='dark'] label {
+  color: var(--app-text-color);
+}
+
+html[data-theme='paper'] h1,
+html[data-theme='paper'] h2,
+html[data-theme='paper'] h3,
+html[data-theme='paper'] h4,
+html[data-theme='paper'] h5,
+html[data-theme='scifi'] h1,
+html[data-theme='scifi'] h2,
+html[data-theme='scifi'] h3,
+html[data-theme='scifi'] h4,
+html[data-theme='scifi'] h5,
+html[data-theme='nature'] h1,
+html[data-theme='nature'] h2,
+html[data-theme='nature'] h3,
+html[data-theme='nature'] h4,
+html[data-theme='nature'] h5,
+html[data-theme='steampunk'] h1,
+html[data-theme='steampunk'] h2,
+html[data-theme='steampunk'] h3,
+html[data-theme='steampunk'] h4,
+html[data-theme='steampunk'] h5 {
+  color: var(--app-heading-color);
+}
+
+html[data-theme] .mat-mdc-dialog-surface,
+html[data-theme] .mat-mdc-menu-panel {
+  color: var(--app-text-color);
+}
+
+.mat-expansion-panel {
+  border: 1px solid var(--app-card-border);
+  background-image: linear-gradient(135deg, var(--app-card-start), var(--app-card-end));
+}
+
+.mat-mdc-menu-panel,
+.mat-mdc-dialog-surface {
+  border: 1px solid var(--app-card-border);
+}
+
+app-sheet > .sheet > .mat-mdc-tab-header {
+  box-sizing: border-box;
+  background-color: var(--app-nav-color);
+  border-top: 1px solid var(--app-divider-color);
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.06);
+
+  .mat-mdc-tab {
+    min-width: 0;
+    padding: 0 6px;
+  }
+
+  .mat-mdc-tab.mdc-tab--active .mdc-tab__content {
+    padding: 5px 12px;
+    border-radius: var(--app-card-radius);
+    background-color: var(--app-primary-container-color);
+  }
+}
+
+.themed-card {
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid var(--app-card-border);
+  border-left: 4px solid var(--app-accent-color);
+  border-radius: var(--app-card-radius);
+  background: linear-gradient(135deg, var(--app-card-start), var(--app-card-end));
+  box-shadow: var(--app-card-shadow);
 }
 
 .row {
@@ -159,7 +549,7 @@ body {
   }
 
   input::placeholder {
-    color: lightgray !important;
+    color: var(--app-muted-color) !important;
   }
 }
 

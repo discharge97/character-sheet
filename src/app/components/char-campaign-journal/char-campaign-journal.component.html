@@ -1,6 +1,6 @@
 <div class="column col-90 content">
   @for (session of journal; track session?.uuid) {
-    <div class="column col-100 session" (click)="openJournalPage(session)">
+    <div class="column col-100 session themed-card" (click)="openJournalPage(session)">
       <span class="row title">
         <span>{{ session?.title }}</span>
         <mat-icon class="delete" (click)="$event.stopPropagation();removeJournalPage(session.date)">delete</mat-icon>

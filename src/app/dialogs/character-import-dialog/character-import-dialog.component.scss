@@ -20,7 +20,7 @@
     height: 20px;
 
     .desc {
-      color: grey;
+      color: var(--app-muted-color);
     }
 
     .name {
@@ -40,7 +40,7 @@ input[type="file"] {
   min-width: 350px;
 
   .clear {
-    color: crimson;
-    border-color: crimson !important;
+    color: var(--app-danger-color);
+    border-color: var(--app-danger-color) !important;
   }
 }

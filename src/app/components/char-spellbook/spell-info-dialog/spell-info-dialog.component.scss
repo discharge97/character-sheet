@@ -3,26 +3,26 @@
     margin-bottom: 5px;
     font-size: 12px;
     justify-content: space-between;
-    color: #8f8f8f;
+    color: var(--app-muted-color);
 
     .value {
       font-weight: bold;
-      color: #3e3e3e;
+      color: var(--app-heading-color, #3e3e3e);
     }
 
     .component {
       &.s {
-        color: dodgerblue;
+        color: var(--app-spell-somatic-color);
         font-weight: bold;
       }
 
       &.v {
-        color: forestgreen;
+        color: var(--app-spell-verbal-color);
         font-weight: bold;
       }
 
       &.m {
-        color: goldenrod;
+        color: var(--app-spell-material-color);
         font-weight: bold;
       }
 
@@ -33,7 +33,7 @@
   }
 
   .desc {
-    border-top: 1px solid lightgray;
+    border-top: 1px solid var(--app-divider-color);
     padding-top: 10px;
     font-size: 14px;
     white-space: pre-wrap;

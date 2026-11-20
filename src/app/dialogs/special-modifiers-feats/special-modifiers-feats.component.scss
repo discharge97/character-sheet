@@ -6,23 +6,23 @@
 
 .mod-group {
   margin-top: 15px;
-  border: 1px solid lightgray;
-  border-radius: 5px;
+  border: 1px solid var(--app-card-border);
+  border-radius: var(--app-card-radius);
   padding: 10px;
 
   &.selected {
-    border-color: #3e3e3e;
+    border-color: var(--app-heading-color, #3e3e3e);
   }
 
   .title {
     justify-content: space-between;
-    border-bottom: 1px solid darkslateblue;
+    border-bottom: 1px solid var(--app-accent-color, darkslateblue);
     padding-bottom: 3px;
-    color: darkslateblue;
+    color: var(--app-accent-color, darkslateblue);
     font-weight: bold;
 
     .delete {
-      color: crimson;
+      color: var(--app-danger-color);
       margin-left: 15px;
     }
   }

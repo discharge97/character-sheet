@@ -3,22 +3,38 @@
 }
 
 .ability-score {
-  padding: 2px;
+  --mat-badge-background-color: var(--app-primary-color);
+  --mat-badge-text-color: var(--app-on-primary-color);
+  box-sizing: border-box;
+  padding: 2px 2px 4px;
   text-align: center;
-  border: 2px solid lightgray;
-  border-radius: 15px;
-  color: #3e3e3e;
+  border: 1px solid var(--app-card-border);
+  border-top: 3px solid var(--app-accent-color);
+  border-radius: var(--app-card-radius);
+  background: linear-gradient(155deg, var(--app-card-start), var(--app-card-end));
+  box-shadow: var(--app-card-shadow);
+  color: var(--app-heading-color, #3e3e3e);
 
   .title {
-    font-size: 11px;
+    color: var(--app-muted-color);
+    font-size: 10px;
+    font-weight: 600;
   }
 
   & + .ability-score {
-    margin-top: 10px;
+    margin-top: 8px;
   }
 
   .score {
-    font-size: 36px;
+    font-size: 34px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  .mod {
+    color: var(--app-accent-color);
+    font-weight: 600;
   }
 }
 
@@ -31,7 +47,7 @@
   .skill {
     font-size: 10px;
     padding-bottom: 2px;
-    border-bottom: 1px dashed lightgray;
+    border-bottom: 1px dashed var(--app-divider-color);
     position: relative;
     align-items: center;
 
@@ -54,11 +70,11 @@
       height: 13px;
 
       &.yes {
-        color: limegreen;
+        color: var(--app-success-color);
       }
 
       &.no {
-        color: crimson;
+        color: var(--app-danger-color);
       }
     }
   }

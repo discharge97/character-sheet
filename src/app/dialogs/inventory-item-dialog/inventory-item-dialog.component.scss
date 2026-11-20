@@ -4,7 +4,7 @@ h2 {
 
 .chips {
   min-height: 40px;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid var(--app-divider-color);
 }
 
 .dice {
@@ -12,9 +12,9 @@ h2 {
 
   mat-icon {
     margin-left: 5px;
-    color: white;
+    color: var(--app-on-primary-color);
     border-radius: 50%;
-    background-color: lightgray;
+    background-color: var(--app-primary-color);
   }
 }
 
@@ -23,8 +23,8 @@ h2 {
 }
 
 .modifier {
-  border: 1px solid lightgray;
-  border-radius: 10px;
+  border: 1px solid var(--app-card-border);
+  border-radius: var(--app-card-radius);
   padding: 10px;
 
   .title {
@@ -33,7 +33,7 @@ h2 {
 
     .delete {
       margin-left: 15px;
-      color: crimson;
+      color: var(--app-danger-color);
     }
   }
 }

@@ -9,8 +9,10 @@ import {ClassProficiency} from "./classProficiency";
 import {ModifierGroup} from "./modifierGroup";
 import {Spell} from "./spell";
 import {CustomUIControl} from "./custom-ui-control";
+import type {CharacterTheme} from "../services/theme.service";
 
 export interface Character {
+  theme?: CharacterTheme;
   attunement?: number;
   uuid: string;
   name: string;

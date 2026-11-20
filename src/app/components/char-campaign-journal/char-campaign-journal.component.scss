@@ -2,9 +2,7 @@
   margin: 0 auto;
 
   .session {
-    border-bottom: 1px solid lightgray;
-    padding-bottom: 10px;
-    color: #3e3e3e;
+    color: var(--app-heading-color, #3e3e3e);
 
     .title {
       font-weight: bold;
@@ -16,11 +14,12 @@
       align-items: center;
 
       .delete {
-        color: crimson;
+        color: var(--app-danger-color);
       }
     }
 
     .date {
+      color: var(--app-muted-color);
       margin-bottom: 5px;
       font-size: 14px;
     }
